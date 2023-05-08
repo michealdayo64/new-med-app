@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Schedule - AmiTop Care LLC{% endblock %}
+
+{% block content %} 
+  
+
+<section class="page-title bg-1" style="background-image: url('{% static "images/doctor.jpeg" %}');">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="block text-center">
+            <span class="text-white">Patient Scheduling</span>
+            <h1 class="text-capitalize mb-5 text-lg">Patient Scheduling</h1>
+  
+            <ul class="list-inline breadcumb-nav">
+              <li class="list-inline-item"><a href="" class="text-white">Home</a></li>
+              <li class="list-inline-item"><span class="text-white">></span></li>
+              <li class="list-inline-item"><a href="#" class="text-white-50">Schedule Appointment</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="schedule">
+    <div class="container">
+        <br>
+        <br>
+        <div class="book-text">
+        <h3>Book Your Free Initial 15 min Telehealth Consultation</h3>
+    <p>Please select services type and your availibility to book your consultation with us.</p>
+</div>
+<div class="container">
+    <div class="container">
+    <div class="tab-container">
+        <div class="tab active1" id="t1">
+            <i class="icofont-server"></i>
+            <p>Select Service</p>
+        </div>
+        <div class="tab" id="t2">
+            <i class="icofont-ui-calendar"></i>
+            <p>Date & Time</p>
+        </div>
+        <div class="tab" id="t3">
+            <i class="icofont-files-stack"></i>
+            <p>Basic Details</p>
+        </div>
+        <div class="tab" id="t4">
+            <i class="icofont-law-document"></i>
+            <p>Summary</p>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="panel-container">
+        
+          <div class="mycar-aler">
+            <i class="icofont-power"></i><p> Please select any service to book an appointment.</p>
+          </div>
+        
+        <div class="select-service">
+          <a id="service">Select Service</a>
+        </div>
+          
+          <div class="service-content" id="btn-trial">
+            <div class = "content-container">
+              <img src="" alt="logo">
+              <div class="mytextT">
+              <div class="mytext">
+                <div class="mytextText">
+                  <a>15 Minutes Free Initial Consultation</a>
+                </div>
+                <i class="icofont-check-circled"></i>
+              </div>
+              <a>This initial free 15 minutes consultation is not an appointment, once the consultation has been done the provider will schedule the appointment. Please Note: If this is an emergency please call 911</a>
+              <p>Duration: 15m</p>
+            </div>
+            </div>
+            
+          </div>
+        
+        
+        
+          <a id="dateandtime">Date and Time</a>
+          <div id="datetime-panel">
+            
+            <div class="mydate">
+              <h3>Pick a date</h3>
+              <div class="date-picker-wrapper" id="date-wrapper">
+                <div class="selected-date"></div>
+          
+                <div class="dates-container">
+                  <div class="month">
+                    <div class="arrows prev-month">&lt;</div>
+                    <div class="month-item"></div>
+                    <div class="arrows next-month">&gt;</div>
+                  </div>
+          
+                  <div class="days-container"></div>
+                </div>
+              </div>
+            </div>
+            <div class="mydate">
+              <h3>Pick a Time</h3>
+              
+            </div>
+          </div>
+          <div class="back" id="sec-back">
+            <p>back</p>
+          </div>
+
+          
+          <div id="basicdetail">Basic Details</div>
+          <div class="basicdetail-content">
+            
+          </div>
+
+          <div is="summary"></div>
+          <div class="summary-content">
+            <p>hello</p>
+          </div>
+    </div>
+</div>
+</div>
+    </div>
+    
+  </section>
+
+  <br>
+  <br>
+
+  <script src="{% static 'js/schedule.js'%}"></script>
+  
+{% endblock %}

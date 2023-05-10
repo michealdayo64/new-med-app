@@ -2,13 +2,15 @@
 const btn_trial = document.getElementById("btn-trial");
 const service = document.getElementById("service");
 const dateandtime = document.getElementById("dateandtime");
-const datetime_panel = document.getElementById("datetime-panel");
+const datetime_panel = document.querySelector(".datetime-panel");
 const t1 = document.getElementById("t1");
 const t2 = document.getElementById("t2");
 const active2 = document.getElementsByClassName("active2");
-const mydate = document.getElementsByClassName("mydate");
 const alert = document.getElementsByClassName("mycar-aler")[0];
 const sec_back = document.getElementById("sec-back");
+var bb = document.getElementsByClassName("bb")
+console.log(bb)
+var select_time = document.getElementsByClassName("select-time")
 
 const date_picker_ele = document.querySelector(".date-picker-wrapper");
 const selected_date_ele = document.querySelector(" .selected-date");
@@ -18,25 +20,18 @@ const next_month_ele = document.querySelector(".month .next-month");
 const prev_month_ele = document.querySelector(".month .prev-month");
 const days_ele = document.querySelector(".days-container");
 
-/*allTab.forEach((tabBTN) =>
-  tabBTN.addEventListener("click", () => {
-    tabBTN.classList.add;
-  })
-);*/
+
 
 function trialBTN() {
   service.style.display = "none";
   btn_trial.style.display = "none";
   dateandtime.style.display = "block";
-  datetime_panel.classList.add("datetime-content");
+  datetime_panel.style.display = "flex";
   t1.classList.remove("active1");
   t2.classList.add("active2");
   sec_back.style.display = "block";
   date_picker_ele.style.display = "block"
   alert.style.display = "none";
-  for (var i = 0; i < mydate.length; i++) {
-    mydate[i].style.display = "block";
-  }
 }
 
 btn_trial.addEventListener("click", trialBTN);
@@ -49,15 +44,25 @@ sec_back.addEventListener("click", () => {
   service.style.display = "block";
   btn_trial.style.display = "block";
   dateandtime.style.display = "none";
-  datetime_panel.classList.remove("datetime-content");
+  datetime_panel.style.display = "none"
   t1.classList.add("active1");
   t2.classList.remove("active2");
   sec_back.style.display = "none";
   alert.style.display = "none";
-  for (var i = 0; i < mydate.length; i++) {
-    mydate[i].style.display = "none";
-  }
+  
 });
+
+
+/*bb.forEach((selectBTN) =>
+selectBTN.addEventListener("click", () => {
+  console.log("hello")
+  for (var i = 0; i < select_time.length; i++) {
+     console.log(select_time[i].innerHTML)
+  }
+  })
+);*/
+
+
 
 
 // CALENDAR CODE
@@ -94,15 +99,15 @@ selected_date_ele.dataset.value = selectedDate;
 
 populateDates();
 
-date_picker_ele.addEventListener("click", toggleDatePicker);
+//date_picker_ele.addEventListener("click", toggleDatePicker);
 next_month_ele.addEventListener("click", goToNextMonth);
 prev_month_ele.addEventListener("click", goToPrevMonth);
 
-function toggleDatePicker(e) {
+/*function toggleDatePicker(e) {
   if (!checkClassExist(e.path, "dates-container")) {
     dates_ele.classList.toggle("active");
   }
-}
+}*/
 
 function checkClassExist(path, selector) {
   if (path !== undefined) {
@@ -163,6 +168,7 @@ function populateDates() {
     day_element.addEventListener("click", function () {
       selectedDate = new Date(year + "-" + (month + 1) + "-" + (i + 1));
       selectedDay = i + 1;
+      console.log(selectedDay)
       selectedMonth = month;
       selectedYear = year;
 
@@ -189,3 +195,6 @@ function formatDate(selectedDate) {
 
   return day + " / " + month + " / " + year;
 }
+
+
+

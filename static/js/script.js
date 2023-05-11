@@ -180,8 +180,8 @@
  // Shuffle js filter and masonry
     var Shuffle = window.Shuffle;
     var jQuery = window.jQuery;
-
-    var myShuffle = new Shuffle(document.querySelector('.shuffle-wrapper'), {
+	  var el = document.querySelector('.shuffle-wrapper')
+    var myShuffle = new Shuffle(el, {
         itemSelector: '.shuffle-item',
         buffer: 1
     });

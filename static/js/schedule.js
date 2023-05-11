@@ -5,13 +5,14 @@ const dateandtime = document.getElementById("dateandtime");
 const datetime_panel = document.querySelector(".datetime-panel");
 const t1 = document.getElementById("t1");
 const t2 = document.getElementById("t2");
+const t3 = document.getElementById("t3")
 const active2 = document.getElementsByClassName("active2");
 const alert = document.getElementsByClassName("mycar-aler")[0];
 const sec_back = document.getElementById("sec-back");
 var bb = document.getElementsByClassName("bb")
-console.log(bb)
 var select_time = document.getElementsByClassName("select-time")
-
+const basic_detail = document.getElementById("basicdetail")
+const basicdetail_content = document.querySelector(".basicdetail-content")
 const date_picker_ele = document.querySelector(".date-picker-wrapper");
 const selected_date_ele = document.querySelector(" .selected-date");
 const dates_ele = document.querySelector(".dates-container");
@@ -49,21 +50,23 @@ sec_back.addEventListener("click", () => {
   t2.classList.remove("active2");
   sec_back.style.display = "none";
   alert.style.display = "none";
-  
 });
 
 
-/*bb.forEach((selectBTN) =>
-selectBTN.addEventListener("click", () => {
-  console.log("hello")
-  for (var i = 0; i < select_time.length; i++) {
-     console.log(select_time[i].innerHTML)
+  function selectTime(timeId){
+    const valuu = document.getElementById(timeId).textContent
+    console.log(valuu)
+    dateandtime.style.display = "none";
+    datetime_panel.style.display = "none";
+    t1.classList.remove("active1");
+    t2.classList.remove("active2");
+    t3.classList.add("active3")
+    sec_back.style.display = "block";
+    basic_detail.style.display = "block"
+    basicdetail_content.style.display = "block"
   }
-  })
-);*/
-
-
-
+    
+  
 
 // CALENDAR CODE
 

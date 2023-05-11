@@ -61,6 +61,18 @@ p {
   background: #223a66;
 }
 
+.sticky{
+  position: fixed;
+  top: 0;
+  border-bottom: 1px solid gray;
+  box-shadow: -1px 3px 4px -1px rgba(194,194,194,0.75);
+-webkit-box-shadow: -1px 3px 4px -1px rgba(194,194,194,0.75);
+-moz-box-shadow: -1px 3px 4px -1px rgba(194,194,194,0.75);
+  width: 100%;
+  background-color: white;
+  z-index: 100;
+}
+
 input[type="email"], input[type="password"], input[type="text"], input[type="tel"] {
   box-shadow: none;
   height: 45px;
@@ -789,13 +801,41 @@ a:focus {
 
 .panel-container #basicdetail{
   display: none;
+  color: #01225f;
+  font-weight: bold;
 }
 
 .panel-container .basicdetail-content{
-  padding: 20px;
   height: 100px;
   width: 100%;
   display: none;
+
+}
+
+.basicdetail-content input{
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid rgb(219, 219, 219);
+  height: 35px;
+  
+}
+
+.basicdetail-content label{
+  font-size: 13px;
+  color: #152440;
+}
+
+.basicdetail-content label a{
+  color: red;
+}
+
+.basicdetail-content input:focus{
+  outline: none;
+}
+
+.basicdetail-content input[type =text]{
+  padding: 10px;
+  
 }
 
 .mycar-aler{

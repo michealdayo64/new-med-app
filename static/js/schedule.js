@@ -21,6 +21,7 @@ const month_ele = document.querySelector(".month .month-item");
 const next_month_ele = document.querySelector(".month .next-month");
 const prev_month_ele = document.querySelector(".month .prev-month");
 const days_ele = document.querySelector(".days-container");
+console.log(days_ele);
 var input = document.querySelector("#phone");
 const next_btn = document.querySelector(".next-btn");
 const space_panel1 = document.querySelector(".space-panel1");
@@ -29,9 +30,12 @@ const next_btn1 = document.querySelector(".next-btn1");
 const date_content = document.querySelector(".date-content");
 const space_panel2 = document.querySelector(".space-panel2");
 const space_panel3 = document.querySelector(".space-panel3");
+const space_panel4 = document.querySelector(".space-panel4");
 const next_btn2 = document.querySelector(".next-btn2");
-const previous_btn2 = document.querySelector(".back-btn2");
+const next_btn3 = document.querySelector(".next-btn3");
+const previous_btn2 = document.querySelector(".previous-btn2");
 const yesback2 = document.querySelector(".yesback2");
+const summary_content = document.querySelector(".summary-content");
 
 var nhm;
 
@@ -71,7 +75,6 @@ previous_btn2.addEventListener("click", () => {
   space_panel2.style.display = "flex";
   next_btn2.style.display = "none";
   space_panel3.style.display = "none";
-  dateandtime.style.display = "block";
   datetime_panel.style.display = "flex";
 });
 
@@ -82,16 +85,17 @@ yesback2.addEventListener("click", (e) => {
   t1.classList.remove("active1");
   t2.classList.remove("active2");
   t3.classList.remove("active3");
-  t4.classList.add("active3");
-  sec_back.style.display = "block";
-  basic_detail.style.display = "block";
-  basicdetail_content.style.display = "block";
+  t4.classList.add("active4");
+  //sec_back.style.display = "block";
+  basic_detail.style.display = "none";
+  basicdetail_content.style.display = "none";
   date_content.style.display = "none";
   next_btn1.style.display = "none";
   space_panel2.style.display = "none";
   space_panel3.style.display = "none";
-  space_panel4.style.display = "block";
-  next_btn2.style.display = "flex";
+  space_panel4.style.display = "flex";
+  next_btn3.style.display = "flex";
+  summary_content.style.display = "flex";
 });
 
 /*sec_back.addEventListener("click", () => {
@@ -113,13 +117,14 @@ function selectTime(timeId) {
   t1.classList.remove("active1");
   t2.classList.remove("active2");
   t3.classList.add("active3");
-  sec_back.style.display = "block";
+  //sec_back.style.display = "block";
   basic_detail.style.display = "block";
   basicdetail_content.style.display = "block";
   date_content.style.display = "none";
   next_btn1.style.display = "none";
   space_panel2.style.display = "none";
   space_panel3.style.display = "flex";
+  space_panel4.style.display = "none";
   next_btn2.style.display = "flex";
 }
 

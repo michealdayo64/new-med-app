@@ -17,8 +17,8 @@
       <div class="front">
         <img src="{% static 'images/doctor.jpeg' %}" alt="">
         <div class="text">
-            <span class="text-1">Every patient well-being <br> is our great Priority</span>
-            <span class="text-2">Let's help you get better</span>
+          <span class="text-1">Every patient well-being <br> is our great Priority</span>
+          <span class="text-2">Let's help you get better</span>
         </div>
       </div>
       
@@ -26,13 +26,9 @@
     <div class="forms">
         <div class="form-content">
           <div class="login-form">
-            <div class="title">Register</div>
+            <div class="title">Login</div>
           <form action="#">
             <div class="input-boxes">
-                <div class="input-box">
-                    <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Enter your name" required>
-                  </div>
               <div class="input-box">
                 <i class="fas fa-envelope"></i>
                 <input type="text" placeholder="Enter your email" required>
@@ -45,10 +41,11 @@
               <div class="button input-box">
                 <input type="submit" value="Sumbit">
               </div>
-              <div class="text sign-up-text">Don't have an account? <a href="{% url 'login' %}">SigIn now</a></div>
+              <div class="text sign-up-text">Don't have an account? <a href="{% url 'register' %}" for="">SigUp now</a></div>
             </div>
         </form>
       </div>
+        
     </div>
     </div>
   </div>

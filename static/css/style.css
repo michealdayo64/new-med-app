@@ -597,7 +597,7 @@ a:focus {
   width: 100%;
   border: 1px solid gray;
   border-radius: 10px;
-  
+  background-color: white;
 }
 
 
@@ -669,6 +669,13 @@ a:focus {
 }
 
 .panel-container .space-panel3{
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.panel-container .space-panel4{
   display: none;
   flex-direction: column;
   justify-content: space-between;
@@ -921,11 +928,32 @@ a:focus {
 
 .panel-container .summary-content{
   padding: 20px;
-  height: 100px;
   width: 100%;
-  border: 1px solid gray;
-  border-radius: 10px;
   display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-container .summary-content img{
+  width: 150px;
+  height: 150px;
+  
+}
+
+
+
+.panel-container .summary-content .summary-detail{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-detail .vl{
+  border-left: 2px solid black;
+  height: 100%;
+  padding: 20px;
+
 }
 
 .next-btn{
@@ -947,6 +975,7 @@ a:focus {
   align-items: center;
   width: 170px;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .next-btn .yesback p{
@@ -975,6 +1004,7 @@ a:focus {
   align-items: center;
   width: 170px;
   justify-content: end;
+  cursor: pointer;
 }
 
 .next-btn1 .yesback1 p{
@@ -1003,6 +1033,7 @@ a:focus {
   align-items: center;
   width: 170px;
   justify-content: end;
+  cursor: pointer;
 }
 
 .next-btn2 .previous-btn2{
@@ -1016,6 +1047,41 @@ a:focus {
 }
 
 .next-btn2 .yesback2 h6{
+  color: white;
+}
+
+.next-btn3{
+  display: none;
+  background-color: rgb(238, 234, 234);
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.next-btn3 .yesback3{
+  display: flex;
+  padding: 10px;
+  background-color: #04AA6D;
+  border-radius: 10px;
+  align-items: center;
+  width: 170px;
+  justify-content: end;
+  font-weight: bold;
+}
+
+.next-btn3 .previous-btn3{
+  color: #01225f;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.next-btn3 .yesback3 p{
+  color: white;
+}
+
+.next-btn3 .yesback3 h6{
   color: white;
 }
 

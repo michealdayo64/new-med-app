@@ -3,15 +3,6 @@ from .models import Ailments
 
 # Create your views here.
 
-def registerView(request):
-    return render(request, 'auth/register.html')
-
-def loginView(request):
-    return render(request, 'auth/login.html')
-
-def update_profile(request):
-    return render(request, 'auth/update_profile.html')
-
 def index(request):
     ailment_list = Ailments.objects.all()
     context = {

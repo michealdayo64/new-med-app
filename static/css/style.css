@@ -597,7 +597,6 @@ a:focus {
   width: 100%;
   border: 1px solid gray;
   border-radius: 10px;
-  padding: 20px;
   
 }
 
@@ -636,6 +635,44 @@ a:focus {
   display: flex;
   align-items: center;
   justify-content: flex-start
+}
+
+.serve-content1{
+  padding: 20px;
+}
+
+.date-content{
+  padding: 20px;
+}
+
+.basic-content{
+  padding: 20px;
+}
+
+.service-content img{
+  width: 100px;
+  height: 50px;
+}
+
+.panel-container .space-panel1{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.panel-container .space-panel2{
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.panel-container .space-panel3{
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .mytext{
@@ -820,6 +857,13 @@ a:focus {
   
 }
 
+.basicdetail-content textarea{
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgb(219, 219, 219);
+  width: 100%;
+} 
+
 .basicdetail-content label{
   font-size: 13px;
   color: #152440;
@@ -850,17 +894,9 @@ a:focus {
 -moz-box-shadow: -3px 9px 33px 1px rgba(153,144,144,0.75);
 }
 
-.back{
-  display: none;
-}
 
-.back p{
-  padding: 10px;
-  background-color: red;
-  color: white;
-  width: 50px;
-  margin-top: 20px;
-}
+
+
 
 .mycar-aler i{
   margin-left: 15px;
@@ -892,9 +928,102 @@ a:focus {
   display: none;
 }
 
+.next-btn{
+  display: flex;
+  background-color: rgb(238, 234, 234);
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+}
+
+.next-btn .yesback{
+  display: flex;
+  padding: 10px;
+  background-color: #04AA6D;
+  border-radius: 10px;
+  align-items: center;
+  width: 170px;
+  justify-content: space-between;
+}
+
+.next-btn .yesback p{
+  color: white;
+}
+
+.next-btn .yesback h6{
+  color: white;
+}
+
+.next-btn1{
+  display: none;
+  background-color: rgb(238, 234, 234);
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.next-btn1 .yesback1{
+  display: flex;
+  padding: 10px;
+  background-color: #04AA6D;
+  border-radius: 10px;
+  align-items: center;
+  width: 170px;
+  justify-content: end;
+}
+
+.next-btn1 .yesback1 p{
+  color: white;
+}
+
+.next-btn1 .yesback1 h6{
+  color: white;
+}
+
+.next-btn2{
+  display: none;
+  background-color: rgb(238, 234, 234);
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.next-btn2 .yesback2{
+  display: flex;
+  padding: 10px;
+  background-color: #04AA6D;
+  border-radius: 10px;
+  align-items: center;
+  width: 170px;
+  justify-content: end;
+}
+
+.next-btn2 .previous-btn2{
+  color: #01225f;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.next-btn2 .yesback2 p{
+  color: white;
+}
+
+.next-btn2 .yesback2 h6{
+  color: white;
+}
+
 .banner .block {
   padding: 80px 0px 160px;
 }
+
+
 
 .banner .block h1 {
   font-size: 60px;

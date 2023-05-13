@@ -1,263 +1,3 @@
-//var allTab = [...document.getElementsByClassName("tab")];
-const btn_trial = document.getElementById("btn-trial");
-const service = document.getElementById("service");
-const dateandtime = document.getElementById("dateandtime");
-const datetime_panel = document.querySelector(".datetime-panel");
-const t1 = document.getElementById("t1");
-const t2 = document.getElementById("t2");
-const t3 = document.getElementById("t3");
-const t4 = document.getElementById("t4");
-const active2 = document.getElementsByClassName("active2");
-const alert = document.getElementsByClassName("mycar-aler")[0];
-const sec_back = document.getElementById("sec-back");
-var bb = document.getElementsByClassName("bb");
-var select_time = document.getElementsByClassName("select-time");
-const basic_detail = document.getElementById("basicdetail");
-const basicdetail_content = document.querySelector(".basicdetail-content");
-const date_picker_ele = document.querySelector(".date-picker-wrapper");
-const selected_date_ele = document.querySelector(" .selected-date");
-const dates_ele = document.querySelector(".dates-container");
-const month_ele = document.querySelector(".month .month-item");
-const next_month_ele = document.querySelector(".month .next-month");
-const prev_month_ele = document.querySelector(".month .prev-month");
-const days_ele = document.querySelector(".days-container");
-var input = document.querySelector("#phone");
-const next_btn = document.querySelector(".next-btn");
-const space_panel1 = document.querySelector(".space-panel1");
-const serve_content1 = document.querySelector(".serve-content1");
-const next_btn1 = document.querySelector(".next-btn1");
-const date_content = document.querySelector(".date-content");
-const space_panel2 = document.querySelector(".space-panel2");
-const space_panel3 = document.querySelector(".space-panel3");
-const next_btn2 = document.querySelector(".next-btn2");
-const previous_btn2 = document.querySelector(".back-btn2");
-const yesback2 = document.querySelector(".yesback2");
-
-var nhm;
-
-function trialBTN() {
-  service.style.display = "none";
-  btn_trial.style.display = "none";
-  dateandtime.style.display = "block";
-  datetime_panel.style.display = "flex";
-  t1.classList.remove("active1");
-  t2.classList.add("active2");
-  next_btn.style.display = "none";
-  space_panel1.style.display = "none";
-  serve_content1.style.display = "none";
-  next_btn1.style.display = "flex";
-  date_picker_ele.style.display = "block";
-  alert.style.display = "none";
-  space_panel2.style.display = "flex";
-}
-
-btn_trial.addEventListener("click", trialBTN);
-
-t2.addEventListener("click", () => {
-  alert.style.display = "flex";
-});
-
-previous_btn2.addEventListener("click", () => {
-  service.style.display = "none";
-  btn_trial.style.display = "none";
-  dateandtime.style.display = "block";
-  datetime_panel.style.display = "flex";
-  t1.classList.remove("active1");
-  t2.classList.add("active2");
-  t3.classList.remove("active3");
-  next_btn1.style.display = "flex";
-  date_picker_ele.style.display = "block";
-  alert.style.display = "none";
-  space_panel2.style.display = "flex";
-  next_btn2.style.display = "none";
-  space_panel3.style.display = "none";
-  dateandtime.style.display = "block";
-  datetime_panel.style.display = "flex";
-});
-
-yesback2.addEventListener("click", (e) => {
-  e.preventDefault();
-  dateandtime.style.display = "none";
-  datetime_panel.style.display = "none";
-  t1.classList.remove("active1");
-  t2.classList.remove("active2");
-  t3.classList.remove("active3");
-  t4.classList.add("active3");
-  sec_back.style.display = "block";
-  basic_detail.style.display = "block";
-  basicdetail_content.style.display = "block";
-  date_content.style.display = "none";
-  next_btn1.style.display = "none";
-  space_panel2.style.display = "none";
-  space_panel3.style.display = "none";
-  space_panel4.style.display = "block";
-  next_btn2.style.display = "flex";
-});
-
-/*sec_back.addEventListener("click", () => {
-  service.style.display = "block";
-  btn_trial.style.display = "block";
-  dateandtime.style.display = "none";
-  datetime_panel.style.display = "none";
-  t1.classList.add("active1");
-  t2.classList.remove("active2");
-  sec_back.style.display = "none";
-  alert.style.display = "none";
-});*/
-
-function selectTime(timeId) {
-  const valuu = document.getElementById(timeId).textContent;
-  console.log(valuu);
-  dateandtime.style.display = "none";
-  datetime_panel.style.display = "none";
-  t1.classList.remove("active1");
-  t2.classList.remove("active2");
-  t3.classList.add("active3");
-  sec_back.style.display = "block";
-  basic_detail.style.display = "block";
-  basicdetail_content.style.display = "block";
-  date_content.style.display = "none";
-  next_btn1.style.display = "none";
-  space_panel2.style.display = "none";
-  space_panel3.style.display = "flex";
-  next_btn2.style.display = "flex";
-}
-
-// CALENDAR CODE
-
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-let date = new Date();
-let day = date.getDate();
-let month = date.getMonth();
-let year = date.getFullYear();
-
-let selectedDate = date;
-let selectedDay = day;
-let selectedMonth = month;
-let selectedYear = year;
-
-month_ele.textContent = months[month] + " " + year;
-
-selected_date_ele.textContent = formatDate(date);
-selected_date_ele.dataset.value = selectedDate;
-
-populateDates();
-
-//date_picker_ele.addEventListener("click", toggleDatePicker);
-next_month_ele.addEventListener("click", goToNextMonth);
-prev_month_ele.addEventListener("click", goToPrevMonth);
-
-/*function toggleDatePicker(e) {
-  if (!checkClassExist(e.path, "dates-container")) {
-    dates_ele.classList.toggle("active");
-  }
-}*/
-
-function checkClassExist(path, selector) {
-  if (path !== undefined) {
-    for (let i = 0; i < path.length; i++) {
-      if (path[i].classList && path[i].classList.contains(selector)) {
-        return true;
-      }
-    }
-  }
-  return false;
-}
-
-function goToNextMonth() {
-  month++;
-  if (month > 11) {
-    month = 0;
-    year++;
-  }
-  month_ele.textContent = months[month] + " " + year;
-  populateDates();
-}
-
-function goToPrevMonth() {
-  month--;
-  if (month < 0) {
-    month = 11;
-    year--;
-  }
-  month_ele.textContent = months[month] + " " + year;
-  populateDates();
-}
-
-function populateDates() {
-  days_ele.innerHTML = "";
-  let total_days;
-
-  if (month == 1) {
-    total_days = 28;
-  } else if (month % 2 === 0) {
-    total_days = 31;
-  } else {
-    total_days = 30;
-  }
-
-  for (let i = 0; i < total_days; i++) {
-    const day_element = document.createElement("div");
-    day_element.classList.add("day");
-    day_element.textContent = i + 1;
-
-    if (
-      selectedDay == i + 1 &&
-      selectedYear == year &&
-      selectedMonth == month
-    ) {
-      day_element.classList.add("selected");
-    }
-
-    day_element.addEventListener("click", function () {
-      selectedDate = new Date(year + "-" + (month + 1) + "-" + (i + 1));
-      selectedDay = i + 1;
-      console.log(selectedDay);
-      selectedMonth = month;
-      selectedYear = year;
-
-      selected_date_ele.textContent = formatDate(selectedDate);
-      selected_date_ele.dataset.value = selectedDate;
-    });
-
-    days_ele.appendChild(day_element);
-  }
-}
-
-function formatDate(selectedDate) {
-  let day = selectedDate.getDate();
-  if (day < 10) {
-    day = "0" + day;
-  }
-
-  let month = selectedDate.getMonth() + 1;
-  if (month < 10) {
-    month = "0" + month;
-  }
-
-  let year = selectedDate.getFullYear();
-
-  return day + " / " + month + " / " + year;
-}
-
-var separateDialCode;
-
-// PHONE NUMBER AND CODE
-
 /*
  * International Telephone Input v17.0.18
  * https://github.com/jackocnr/intl-tel-input.git
@@ -1146,14 +886,12 @@ var separateDialCode;
                 (!inputValue || inputValue.charAt(0) !== "+");
               var val = useAttribute ? attributeValue : inputValue;
               var dialCode = this._getDialCode(val);
-
               var isRegionlessNanp = this._isRegionlessNanp(val);
               var _this$options = this.options,
                 initialCountry = _this$options.initialCountry,
                 nationalMode = _this$options.nationalMode,
                 autoHideDialCode = _this$options.autoHideDialCode,
                 separateDialCode = _this$options.separateDialCode;
-
               // if we already have a dial code, and it's not a regionlessNanp, we can go ahead and set the
               // flag, else fall back to the default country
               if (dialCode && !isRegionlessNanp) {
@@ -1698,7 +1436,6 @@ var separateDialCode;
               }
               // try and extract valid dial code from input
               var dialCode = this._getDialCode(number, true);
-              //console.log(dialCode);
               var numeric = this._getNumeric(number);
               var countryCode = null;
               if (dialCode) {
@@ -1911,7 +1648,6 @@ var separateDialCode;
               var flagChanged = this._setFlag(
                 listItem.getAttribute("data-country-code")
               );
-              //console.log(flagChanged);
               this._closeDropdown();
               this._updateDialCode(
                 listItem.getAttribute("data-dial-code"),
@@ -2007,11 +1743,9 @@ var separateDialCode;
               if (inputVal.charAt(0) === "+") {
                 // there's a plus so we're dealing with a replacement (doesn't matter if nationalMode or not)
                 var prevDialCode = this._getDialCode(inputVal);
-                //console.log(prevDialCode);
                 if (prevDialCode) {
                   // current number contains a valid dial code, so replace it
                   newNumber = inputVal.replace(prevDialCode, newDialCode);
-                  console.log(newNumber);
                 } else {
                   // current number contains an invalid dial code, so ditch it
                   // (no way to determine where the invalid dial code ends and the rest of the number begins)
@@ -2060,7 +1794,6 @@ var separateDialCode;
                       if (this.countryCodes[numericChars]) {
                         // store the actual raw string (useful for matching later)
                         dialCode = number.substr(0, i + 1);
-                        //console.log(dialCode);
                       }
                     } else {
                       if (this.dialCodes[numericChars]) {
@@ -2076,7 +1809,6 @@ var separateDialCode;
                   }
                 }
               }
-              nhm = dialCode;
               return dialCode;
             },
           },
@@ -2098,7 +1830,6 @@ var separateDialCode;
               } else {
                 prefix = "";
               }
-              //console.log(prefix + val);
               return prefix + val;
             },
           },
@@ -2392,19 +2123,4 @@ var separateDialCode;
       return iti;
     };
   })();
-});
-
-const util = window.utils;
-
-//window.intlTelInput(input, {});
-
-window.intlTelInput(input, {
-  separateDialCode: true,
-  utilsScript: util,
-});
-
-input.addEventListener("keyup", (e) => {
-  e.preventDefault();
-  var gg = e.target.value;
-  console.log(`${nhm}${gg}`);
 });

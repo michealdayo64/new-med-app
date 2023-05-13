@@ -56,7 +56,8 @@
     <br>
     <br>
     <div class="panel-container">
-        
+        <div class="space-panel1">
+          <div class="serve-content1">
           <div class="mycar-aler">
             <i class="icofont-power"></i><p> Please select any service to book an appointment.</p>
           </div>
@@ -67,7 +68,7 @@
           
           <div class="service-content" id="btn-trial">
             <div class = "content-container">
-              <img src="" alt="logo">
+              <img src="{% static 'images/AMITOP CARE LLC 001 (1).png' %}" alt="logo">
               <div class="mytextT">
               <div class="mytext">
                 <div class="mytextText">
@@ -81,9 +82,20 @@
             </div>
             
           </div>
-        
-        
-        
+        </div>
+
+          <div class="next-btn">
+            <h1></h1>
+            <div class="yesback">
+              <p>Next:</p>
+              <p>Date & Time <i class="icofont-arrow-right"></i></p>
+            </div>
+         </div>
+        </div>
+
+
+        <div class="space-panel2">
+          <div class="date-content">
           <a id="dateandtime">Date and Time</a>
           <div class="datetime-panel">
               
@@ -236,7 +248,19 @@
               </div>
               </div>
             </div>
-
+            
+          </div>
+          <div class="next-btn1" id="sec-back">
+            <p class="icofont-arrow-left"><i></i>back</p>
+            <div class="yesback1">
+              <p>Next:</p>
+              <p>Date & Time <i class="icofont-arrow-right"></i></p>
+            </div>
+         </div>
+        </div>
+          
+          <div class="space-panel3">
+            <div class="basic-content">
             <div id="basicdetail">Basic Details</div>
           <div class="basicdetail-content">
             <form action="" method="post">
@@ -250,36 +274,59 @@
             <input type="email" name="eamiladdress" placeholder="Enter your email address" id="">
             <p></p>
             <label for="">Phone Number<a>*</a></label><br>
-            <div>
-            <select name="cars" id="cars">
-              <option value="volvo">hello<img src="{% static 'images/usa-img.jpg' %}" style="height: 100px; width: 50px;" alt=""></option>
-              <option value="saab"><img src="{% static 'images/usa-img.jpg' %}" alt=""></option>
-              <option value="opel"><img src="{% static 'images/usa-img.jpg' %}" alt=""></option>
-              <option value="audi"><img src="{% static 'images/usa-img.jpg' %}" alt=""></option>
-            </select>
-            <input type="text" name="name" placeholder="Enter your first name" id="">
+            <input type="tel" name="" id="phone">
             <p></p>
-          </div>
+
+            <label for="">Please explain your reason for the consultation<a>*</a></label> <br>
+            <textarea name="" id="" rows="5" placeholder="Please enter here..."></textarea>
           </form>
           </div>
-
-            
+        </div>
+        <div class="next-btn2" id="sec-back">
+          <p class="previous-btn2"><i class="icofont-arrow-left"></i>back</p>
+          <div class="yesback2">
+            <p>Next:</p>
+            <p>Date & Time <i class="icofont-arrow-right"></i></p>
           </div>
-          
-          <div class="back" id="sec-back">
-            <p>back</p>
-          </div>
-          
-          
+       </div>
+        </div>
 
-          <div is="summary"></div>
+
+        <div class="space-panel4">
           <div class="summary-content">
-            <p>hello</p>
+            <img src="{% static 'images/summary.jpg' %}" alt="" srcset="">
+            <p>Summary</p>
+            <p>Your appointment booking summary</p>
+            <p>Customer</p>
+            <p>Mike Taiwo</p>
+            <div>
+              <div>
+                <p>Service</p>
+                <p>15 Minutes Free Initial Consultation</p>
+              </div>
+              <div>
+                <p>Date & Time</p>
+                <p>13-05-2023, 10:00 – 10:15</p>
+              </div>
+            </div>
           </div>
+          <div class="next-btn3" id="sec-back">
+            <p class="icofont-arrow-left"><i></i>back</p>
+            <div class="yesback2">
+              <p>Next:</p>
+              <p>Date & Time <i class="icofont-arrow-right"></i></p>
+            </div>
+         </div>
+        </div>
+          
+          
+
+          
+
+          </div>
+          </div>  
     </div>
 </div>
-</div>
-    </div>
     
   </section>
 
@@ -287,5 +334,7 @@
   <br>
 
   <script src="{% static 'js/schedule.js'%}"></script>
+  <script src="{% static 'build/js/utils.js'%}"></script>
+ 
   
 {% endblock %}

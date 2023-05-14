@@ -58,14 +58,12 @@
     <div class="panel-container">
         <div class="space-panel1">
           <div class="serve-content1">
-          <div class="mycar-aler">
-            <i class="icofont-power"></i><p> Please select any service to book an appointment.</p>
-          </div>
+          
         
         <div class="select-service">
           <a id="service">Select Service</a>
         </div>
-          
+          {% if not request.user.fifteen_min_trial %}
           <div class="service-content" id="btn-trial">
             <div class = "content-container">
               <img src="{% static 'images/AMITOP CARE LLC 001 (1).png' %}" alt="logo">
@@ -82,6 +80,26 @@
             </div>
             
           </div>
+          {% else %}
+          <div class="row">
+            {% for i in ailment_list %}
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="service-item mb-4">
+                <div class="icon d-flex align-items-center">
+                  {% if i.image_icon %}
+                  <img src="{{ i.image_icon.url }}" alt="" srcset="">
+                  {% endif %}
+                  <p class="mt-3 mb-3">{{ i.title }}</p>
+                </div>
+      
+                
+              </div>
+            </div>
+            {% endfor %}
+      
+            
+          </div>
+          {% endif %}
         </div>
 
           <div class="next-btn">

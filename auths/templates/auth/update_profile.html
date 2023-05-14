@@ -32,38 +32,45 @@
           <p>Personal Information</p>
           <br>
           
+          <form method="post" enctype="multipart/form-data">{% csrf_token %}
             <div class="row">
               <div class="col">
-                <label for="">Patient name *</label>
-                <input type="text" name="" id="">
+                <label for="">Patient First Name *</label>
+                <input type="text" name="first_name" id="">
               </div>
               <div class="col">
-                <label for="">Patient name *</label>
-                <input type="text" name="" id="">
+                <label for="">Patient Middle Name *</label>
+                <input type="text" name="middle_name" id="">
               </div>
               <div class="col">
-                <label for="">Patient name *</label>
-                <input type="text" name="" id="">
+                <label for="">Patient Last Name *</label>
+                <input type="text" name="last_name" id="">
               </div>
               <div class="col">
-                <label for="">Patient name *</label>
-                <input type="text" name="" id="">
+                <label for="">Phone Number *</label>
+                <input type="tel" name="phone_number" id="">
               </div>
             </div>
             <br>
             <div class="row">
               <div class="col">
-                1 of 3
+                <label for="">Address *</label><br>
+                <input type="text" name="address" id="">
               </div>
               <div class="col">
-                2 of 3
+                <label for="">Upload Picture *</label>
+                <input type="file" name="profile_image" id="">
               </div>
               <div class="col">
-                3 of 3
+                
               </div>
             </div>
+            <br>
+            <input type="submit" value="Submit">
+          </form>
           
     </div>
   </section>
+  <br>
 
 {% endblock %}

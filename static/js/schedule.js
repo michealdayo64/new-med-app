@@ -53,6 +53,8 @@ function trialBTN() {
   date_picker_ele.style.display = "block";
   alert.style.display = "none";
   space_panel2.style.display = "flex";
+
+  fetch()
 }
 
 btn_trial.addEventListener("click", trialBTN);

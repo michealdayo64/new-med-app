@@ -27,10 +27,10 @@ def fifteenMinBook(request):
         if request.method == "POST":
             user.fifteen_min_trial = True
             user.save()
-            data["result"] = "15min free trial Selected"
+            data["response"] = "15min free trial Selected"
             return JsonResponse(data = data)
     else:
-        data["result"] = "User not authenticated"
+        data["response"] = "User not authenticated"
         return JsonResponse(data = data)
 
 def blog(request):

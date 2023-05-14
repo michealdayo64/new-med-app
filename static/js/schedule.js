@@ -37,6 +37,8 @@ const previous_btn2 = document.querySelector(".previous-btn2");
 const yesback2 = document.querySelector(".yesback2");
 const summary_content = document.querySelector(".summary-content");
 
+const url = window.location.origin
+
 var nhm;
 
 function trialBTN() {
@@ -54,14 +56,19 @@ function trialBTN() {
   alert.style.display = "none";
   space_panel2.style.display = "flex";
 
-  fetch()
+  fetch(`$url/fifteen-min/`,{
+    body:null,
+    method: "POST",
+  }).then((res) => res.json()).then((data) => {
+    console.log(data)
+  });
 }
 
 btn_trial.addEventListener("click", trialBTN);
 
 t2.addEventListener("click", () => {
   alert.style.display = "flex";
-});
+})
 
 previous_btn2.addEventListener("click", () => {
   service.style.display = "none";

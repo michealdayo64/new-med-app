@@ -1099,8 +1099,14 @@ a:focus {
   color: #223a66;
 }
 
+
+
 .letter-spacing {
   letter-spacing: 2px;
+}
+
+.pick-treat{
+  cursor: pointer;
 }
 
 .text-color {

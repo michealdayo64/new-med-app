@@ -1,7 +1,9 @@
+from datetime import datetime
 from django.shortcuts import render
-from .models import Ailments
+from .models import Ailments, Appointment
 from auths.models import Account
 from django.http import JsonResponse
+import json
 
 # Create your views here.
 
@@ -31,7 +33,37 @@ def fifteenMinBook(request):
             return JsonResponse(data = data)
     else:
         data["response"] = "User not authenticated"
-        return JsonResponse(data = data)
+        return JsonResponse(json.dumps(data), safe=False)
+    
+def bookingDetails(request, id = None):
+    payload = {}
+    ns = json.loads(request.body)
+    print(ns)
+    user = request.user
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            date = ns["date"]
+            date_format = datetime.strptime(date, '%d/%m/%Y')
+            time = ns["time"]
+            print(time)
+            phone_no = ns["phone"]
+            print(phone_no)
+            message = ns["message"]
+            print(message)
+
+            if id:
+                ailment_id = Ailments.objects.get(id = id)
+                Appointment.objects.create(user = user, ailment_id = ailment_id, phone_no = phone_no, message = message, date = date_format, appointment_time = time)
+                payload["response"] = "Appointment Order"
+                return JsonResponse(json.dumps(payload), safe=False)
+            else:
+                Appointment.objects.create(user = user, phone_no = phone_no, message = message, date = date_format, appointment_time = time)
+                payload["response"] = "Appointment Order"
+                return JsonResponse(json.dumps(payload), safe=False)
+    else:
+        payload["response"] = ["User not authenticated"]
+        return JsonResponse(json.dumps(payload), safe=False)
+
 
 def blog(request):
     return render(request, 'view/blog.html')

@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import index, about, blog, contact, booking_page, faq, private_policy, t_and_c, fifteenMinBook
+from .views import index, about, blog, contact, booking_page, faq, private_policy, t_and_c, fifteenMinBook, bookingDetails
+from django.views.decorators.csrf import csrf_exempt
 
 
 urlpatterns = [
@@ -11,7 +12,7 @@ urlpatterns = [
    path('faq-page/', faq, name = 'faq'),
    path('private-policy-page/', private_policy, name = 'private-policy'),
     path('t-and-c/', t_and_c, name = 't-and-c'),
-    path('fifteen-min/', fifteenMinBook, name = 'fifteen-min'),
-    
+    path('fifteen-min/', csrf_exempt(fifteenMinBook), name = 'fifteen-min'),
+    path('booking-order/', csrf_exempt(bookingDetails), name = 'booking-order'),
     
 ]

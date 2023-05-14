@@ -21,7 +21,6 @@ const month_ele = document.querySelector(".month .month-item");
 const next_month_ele = document.querySelector(".month .next-month");
 const prev_month_ele = document.querySelector(".month .prev-month");
 const days_ele = document.querySelector(".days-container");
-console.log(days_ele);
 var input = document.querySelector("#phone");
 const next_btn = document.querySelector(".next-btn");
 const space_panel1 = document.querySelector(".space-panel1");
@@ -36,10 +35,52 @@ const next_btn3 = document.querySelector(".next-btn3");
 const previous_btn2 = document.querySelector(".previous-btn2");
 const yesback2 = document.querySelector(".yesback2");
 const summary_content = document.querySelector(".summary-content");
+const pick_treats = [...document.getElementsByClassName("pick-treat")];
+const ailment_panel = document.querySelector(".ailment-panel");
+console.log(ailment_panel);
 
-const url = window.location.origin
-
+const url = window.location.origin;
 var nhm;
+let date = new Date();
+let day = date.getDate();
+let month = date.getMonth();
+let year = date.getFullYear();
+
+var selectedDate = date;
+let selectedDay = day;
+let selectedMonth = month;
+let selectedYear = year;
+
+let date_selected;
+let valuuTime;
+var phoneNum;
+var message;
+var pk;
+
+pick_treats.forEach((pick_treat) =>
+  pick_treat.addEventListener("click", () => {
+    pk = pick_treat.getAttribute("data-pk");
+    console.log(pk);
+    ailment_panel.style.display = "none";
+    service.style.display = "none";
+    dates_ele.style.display = "block";
+    dateandtime.style.display = "block";
+    datetime_panel.style.display = "flex";
+    t1.classList.remove("active1");
+    t2.classList.add("active2");
+    next_btn.style.display = "none";
+    space_panel1.style.display = "none";
+    serve_content1.style.display = "none";
+    next_btn1.style.display = "flex";
+    date_picker_ele.style.display = "block";
+    alert.style.display = "none";
+    space_panel2.style.display = "flex";
+  })
+);
+
+function inputMessage() {
+  message = document.querySelector("#message").value;
+}
 
 function trialBTN() {
   service.style.display = "none";
@@ -56,19 +97,21 @@ function trialBTN() {
   alert.style.display = "none";
   space_panel2.style.display = "flex";
 
-  fetch(`$url/fifteen-min/`,{
-    body:null,
+  fetch(`${url}/fifteen-min/`, {
+    body: null,
     method: "POST",
-  }).then((res) => res.json()).then((data) => {
-    console.log(data)
-  });
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
 }
 
-btn_trial.addEventListener("click", trialBTN);
+//btn_trial.addEventListener("click", trialBTN);
 
 t2.addEventListener("click", () => {
   alert.style.display = "flex";
-})
+});
 
 previous_btn2.addEventListener("click", () => {
   service.style.display = "none";
@@ -105,22 +148,26 @@ yesback2.addEventListener("click", (e) => {
   space_panel4.style.display = "flex";
   next_btn3.style.display = "flex";
   summary_content.style.display = "flex";
+  console.log(date_selected);
+
+  fetch(`${url}/booking-order/`, {
+    body: JSON.stringify({
+      date: date_selected,
+      time: valuuTime,
+      phone: phoneNum,
+      message: message,
+    }),
+    method: "POST",
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
 });
 
-/*sec_back.addEventListener("click", () => {
-  service.style.display = "block";
-  btn_trial.style.display = "block";
-  dateandtime.style.display = "none";
-  datetime_panel.style.display = "none";
-  t1.classList.add("active1");
-  t2.classList.remove("active2");
-  sec_back.style.display = "none";
-  alert.style.display = "none";
-});*/
-
 function selectTime(timeId) {
-  const valuu = document.getElementById(timeId).textContent;
-  console.log(valuu);
+  valuuTime = document.getElementById(timeId).textContent;
+  console.log(valuuTime);
   dateandtime.style.display = "none";
   datetime_panel.style.display = "none";
   t1.classList.remove("active1");
@@ -153,16 +200,6 @@ const months = [
   "November",
   "December",
 ];
-
-let date = new Date();
-let day = date.getDate();
-let month = date.getMonth();
-let year = date.getFullYear();
-
-let selectedDate = date;
-let selectedDay = day;
-let selectedMonth = month;
-let selectedYear = year;
 
 month_ele.textContent = months[month] + " " + year;
 
@@ -239,10 +276,14 @@ function populateDates() {
 
     day_element.addEventListener("click", function () {
       selectedDate = new Date(year + "-" + (month + 1) + "-" + (i + 1));
+      //date_selected = selectedDate;
+      console.log(selectedDate);
       selectedDay = i + 1;
-      console.log(selectedDay);
+      //console.log(selectedDay);
       selectedMonth = month;
       selectedYear = year;
+
+      date_selected = formatDate(selectedDate);
 
       selected_date_ele.textContent = formatDate(selectedDate);
       selected_date_ele.dataset.value = selectedDate;
@@ -251,6 +292,7 @@ function populateDates() {
     days_ele.appendChild(day_element);
   }
 }
+//console.log(date_selected);
 
 function formatDate(selectedDate) {
   let day = selectedDate.getDate();
@@ -264,8 +306,8 @@ function formatDate(selectedDate) {
   }
 
   let year = selectedDate.getFullYear();
-
-  return day + " / " + month + " / " + year;
+  //date_selected = day + "-" + month + "-" + year;
+  return day + "/" + month + "/" + year;
 }
 
 var separateDialCode;
@@ -2420,5 +2462,6 @@ window.intlTelInput(input, {
 input.addEventListener("keyup", (e) => {
   e.preventDefault();
   var gg = e.target.value;
+  phoneNum = `${nhm}${gg}`;
   console.log(`${nhm}${gg}`);
 });

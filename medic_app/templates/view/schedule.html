@@ -66,7 +66,7 @@
           <a id="service">Select Service</a>
         </div>
           {% if not request.user.fifteen_min_trial %}
-          <div class="service-content" id="btn-trial">
+          <div class="service-content" id="btn-trial" onclick="trialBTN()">
             <div class = "content-container">
               <img src="{% static 'images/AMITOP CARE LLC 001 (1).png' %}" alt="logo">
               <div class="mytextT">
@@ -83,11 +83,11 @@
             
           </div>
           {% else %}
-          <div class="row">
+          <div class="row ailment-panel">
             {% for i in ailment_list %}
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="service-item mb-4">
-                <div class="icon d-flex align-items-center">
+                <div class="icon d-flex align-items-center pick-treat"  data-pk="{{ i.pk }}">
                   {% if i.image_icon %}
                   <img src="{{ i.image_icon.url }}" alt="" srcset="">
                   {% endif %}
@@ -285,28 +285,28 @@
           <div class="basicdetail-content">
             <form action="" method="post">
             <label for="">First Name<a>*</a></label><br>
-            <input type="text" name="firstname" placeholder="Enter your first name" id="">
+            <input type="text" name="firstname" placeholder="Enter your first name" value="{{ request.user.first_name }}" id="firstname">
             <p></p>
             <label for="">Last Name<a>*</a></label><br>
-            <input type="text" name="lastname" placeholder="Enter your last name" id="">
+            <input type="text" name="lastname" placeholder="Enter your last name" value="{{ request.user.last_name }}" id="lastname">
             <p></p>
             <label for="">Email Address<a>*</a></label><br>
-            <input type="email" name="eamiladdress" placeholder="Enter your email address" id="">
+            <input type="email" name="eamiladdress" placeholder="Enter your email address" value="{{ request.user.email }}" id="eamiladdress">
             <p></p>
             <label for="">Phone Number<a>*</a></label><br>
             <input type="tel" name="" id="phone">
             <p></p>
 
             <label for="">Please explain your reason for the consultation<a>*</a></label> <br>
-            <textarea name="" id="" rows="5" placeholder="Please enter here..."></textarea>
+            <textarea name="" id="message" rows="5" placeholder="Please enter here..." onchange="inputMessage()"></textarea>
           </form>
           </div>
         </div>
         <div class="next-btn2" id="sec-back">
           <p class="previous-btn2"><i class="icofont-arrow-left"></i>back</p>
           <div class="yesback2">
-            <p>Next:</p>
-            <p>Date & Time <i class="icofont-arrow-right"></i></p>
+            
+            <p>Save<i class="icofont-arrow-right"></i></p>
           </div>
        </div>
         </div>

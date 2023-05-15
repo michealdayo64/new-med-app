@@ -2065,6 +2065,10 @@ body .full-body{
   
 }
 
+.about-text p{
+  text-align: justify;
+}
+
 .policy-list ol li a{
   font-weight: bold;
   text-decoration: none;

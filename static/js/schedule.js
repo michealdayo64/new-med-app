@@ -37,7 +37,9 @@ const yesback2 = document.querySelector(".yesback2");
 const summary_content = document.querySelector(".summary-content");
 const pick_treats = [...document.getElementsByClassName("pick-treat")];
 const ailment_panel = document.querySelector(".ailment-panel");
-console.log(ailment_panel);
+var app_names = document.querySelector("#app-name")
+var app_service = document.querySelector("#app-service")
+var app_datetime = document.querySelector("#app-datetime")
 
 const url = window.location.origin;
 var nhm;
@@ -150,20 +152,75 @@ yesback2.addEventListener("click", (e) => {
   summary_content.style.display = "flex";
   console.log(date_selected);
 
-  fetch(`${url}/booking-order/`, {
-    body: JSON.stringify({
-      date: date_selected,
-      time: valuuTime,
-      phone: phoneNum,
-      message: message,
-    }),
-    method: "POST",
-  })
-    .then((res) => res.json())
+  if (pk){
+    fetch(`${url}/booking-order/${pk}/`, {
+      body: JSON.stringify({
+        date: date_selected,
+        time: valuuTime,
+        phone: phoneNum,
+        message: message,
+      }),
+      method: "POST",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }else{
+    fetch(`${url}/booking-order/`, {
+      body: JSON.stringify({
+        date: date_selected,
+        time: valuuTime,
+        phone: phoneNum,
+        message: message,
+      }),
+      method: "POST",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }
+  allSummary()
+});
+
+function allSummary(){
+  if(pk){
+    fetch(`${url}/summary/${pk}/`, {
+      method: "GET",
+    }).then((res) => res.json())
+    .then((data) => {
+      console.log(data["firstname"]);
+      if(app_names){
+        app_names.textContent = data["firstname"] + " " + data["lastname"]
+      }
+      if(app_service){
+        app_service.textContent = data["service"]
+      }
+      if(app_datetime){
+        app_datetime.textContent = data["date_and_time"]
+      }
+    });
+  }else{
+    fetch(`${url}/summary/`, {
+      method: "GET",
+    }).then((res) => res.json())
     .then((data) => {
       console.log(data);
+      if(app_names){
+        app_names.textContent = data["firstname"] + " " + data["lastname"]
+      }
+      if(app_service){
+        app_service.textContent = data["service"]
+      }
+      if(app_datetime){
+        app_datetime.textContent = data["date_and_time"]
+      }
+      
     });
-});
+  }
+    
+  }
 
 function selectTime(timeId) {
   valuuTime = document.getElementById(timeId).textContent;

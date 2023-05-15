@@ -21,6 +21,9 @@ def booking_page(request):
         context ["ailment_list"] = ailment_list
     return render(request, 'view/schedule.html', context)
 
+def writeUs(request):
+    pass
+
 def fifteenMinBook(request):
     data = {}
     if request.user.is_authenticated:
@@ -38,18 +41,17 @@ def fifteenMinBook(request):
 def bookingDetails(request, id = None):
     payload = {}
     ns = json.loads(request.body)
-    print(ns)
     user = request.user
     if request.user.is_authenticated:
         if request.method == "POST":
             date = ns["date"]
             date_format = datetime.strptime(date, '%d/%m/%Y')
             time = ns["time"]
-            print(time)
+           
             phone_no = ns["phone"]
-            print(phone_no)
+            
             message = ns["message"]
-            print(message)
+            
 
             if id:
                 ailment_id = Ailments.objects.get(id = id)
@@ -62,6 +64,34 @@ def bookingDetails(request, id = None):
                 return JsonResponse(json.dumps(payload), safe=False)
     else:
         payload["response"] = ["User not authenticated"]
+        return JsonResponse(json.dumps(payload), safe=False)
+
+def bookingSummary(request, id = None):
+    payload = {}
+    user = request.user
+    if user.is_authenticated:
+        if id:
+            appointment = Appointment.objects.filter(ailment_id = id)[0]
+            print(appointment)
+            payload = {
+                    "firstname": appointment.user.first_name,
+                    "lastname": appointment.user.last_name,
+                    "service": appointment.ailment_id.title,
+                    "date_and_time": f'{appointment.date}, {appointment.appointment_time}'
+                }
+            return JsonResponse(data = payload, safe=False)
+        else:
+            appointment = Appointment.objects.filter(ailment_id = id)[0]
+            print(appointment)
+            payload = {
+                    "firstname": appointment.user.first_name,
+                    "lastname": appointment.user.last_name,
+                    "service": "15min Consultation",
+                    "date_and_time": f'{appointment.date}, {appointment.appointment_time}'
+                }
+            return JsonResponse(data = payload, safe=False)
+    else:
+        payload["response"] = "User not authenticated"
         return JsonResponse(json.dumps(payload), safe=False)
 
 

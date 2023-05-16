@@ -839,6 +839,16 @@ a:focus {
   background-color: green;
 }
 
+
+.alert {
+  position:fixed;
+  z-index: 999;
+  width: 800px;
+  background: greenyellow;
+  opacity: 3;
+  color: white;
+}
+
 /*---------------END------------------------*/
 
 

@@ -71,8 +71,10 @@ def bookingSummary(request, id = None):
     user = request.user
     if user.is_authenticated:
         if id:
-            appointment = Appointment.objects.filter(ailment_id = id)[0]
-            print(appointment)
+            ailment_id = Ailments.objects.get(id = id)
+            print(ailment_id)
+            appointment = Appointment.objects.filter(ailment_id = ailment_id).first()
+        
             payload = {
                     "firstname": appointment.user.first_name,
                     "lastname": appointment.user.last_name,
@@ -81,8 +83,8 @@ def bookingSummary(request, id = None):
                 }
             return JsonResponse(data = payload, safe=False)
         else:
-            appointment = Appointment.objects.filter(ailment_id = id)[0]
-            print(appointment)
+            appointment = Appointment.objects.all().first()
+
             payload = {
                     "firstname": appointment.user.first_name,
                     "lastname": appointment.user.last_name,

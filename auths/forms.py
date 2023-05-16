@@ -33,7 +33,7 @@ class AccountAuthenticationForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ("email", "password")
+        fields = ("email", "password", )
 
     def clean(self):
         if self.is_valid():

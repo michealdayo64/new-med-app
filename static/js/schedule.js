@@ -98,6 +98,7 @@ function trialBTN() {
   date_picker_ele.style.display = "block";
   alert.style.display = "none";
   space_panel2.style.display = "flex";
+  populateDates()
 
   fetch(`${url}/fifteen-min/`, {
     body: null,
@@ -341,6 +342,7 @@ function populateDates() {
       selectedYear = year;
 
       date_selected = formatDate(selectedDate);
+      
 
       selected_date_ele.textContent = formatDate(selectedDate);
       selected_date_ele.dataset.value = selectedDate;

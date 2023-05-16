@@ -3,7 +3,21 @@
 
 {% block title %} AmiTop Care LLC {% endblock %}
 
+
+
 {% block content %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="container">
+      <div class="alert alert-warning alert-dismissable" role="alert">
+        <button class="close" data-dismiss="alert">
+          <small><sup>x</sup></small>
+        </button>
+        {{message}}
+      </div>
+    </div>
+    {% endfor %}
+  {% endif %}
 <!-- Slider Start -->
 <section class="banner" style="background-image: url('{% static "images/AMITOP CARE LONG++.jpeg" %}');">
 	<div class="container">

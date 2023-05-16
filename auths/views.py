@@ -3,6 +3,7 @@ from .forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateFor
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from .models import Account
+from django.contrib import messages
 
 
 # Create your views here.
@@ -27,8 +28,10 @@ def registerView(request, *args, **kwargs):
             if destination:
                 return redirect(destination)
             if account.profile_updated:
+                messages.success(request, f"{account.username} Registered Successfully")
                 return redirect('index')
             else:
+                messages.success(request, f"{account.username}, you need to update your account")
                 return redirect('update_user')
         else:
             context['registration_form'] = form
@@ -58,8 +61,10 @@ def loginView(request, *args, **kwargs):
                 if destination:
                     return redirect(destination)
                 if user.profile_updated:
+                    messages.info(request, f"Login Successfully")
                     return redirect("index")
                 else:
+                    messages.info(request, f"Login Successfully")
                     return redirect('update-user')
 				
         else:

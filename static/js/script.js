@@ -14,6 +14,8 @@
         $('.backtop').removeClass('reveal');
     }
 });
+
+
  
 	$('.portfolio-single-slider').slick({
 		infinite: true,
@@ -178,7 +180,7 @@
 
 		
  // Shuffle js filter and masonry
-    var Shuffle = window.Shuffle;
+    /*var Shuffle = window.Shuffle;
     var jQuery = window.jQuery;
 	  var el = document.querySelector('.shuffle-wrapper')
     var myShuffle = new Shuffle(el, {
@@ -191,6 +193,6 @@
         if (input.checked) {
             myShuffle.filter(input.value);
         }
-    });
+    });*/
 
 })(jQuery);

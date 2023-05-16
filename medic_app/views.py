@@ -1,9 +1,11 @@
 from datetime import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Ailments, Appointment
 from auths.models import Account
 from django.http import JsonResponse
 import json
+from django.contrib import messages
+from .forms import WriteUsForm
 
 # Create your views here.
 
@@ -19,10 +21,24 @@ def booking_page(request):
     if request.user.is_authenticated:
         ailment_list = Ailments.objects.all()
         context ["ailment_list"] = ailment_list
+    else:
+        messages.info(request, "You have to Login to book an appointmnt")
+        return redirect("index")
     return render(request, 'view/schedule.html', context)
 
 def writeUs(request):
-    pass
+    if request.method == "POST":
+        form = WriteUsForm(request.POST or None)
+        print(form)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Form Submitted Successfully")     
+            return redirect('index')   
+    else:
+        WriteUsForm()
+        return render(request, 'view/write_us.html')
+    
+    
 
 def fifteenMinBook(request):
     data = {}

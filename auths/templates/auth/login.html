@@ -6,12 +6,15 @@
     <meta charset="UTF-8">
     <title> Login and Registration Form in HTML & CSS | CodingLab </title>
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    
     <!-- Fontawesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
+  
   <div class="container">
+    
     <input type="checkbox" id="flip">
     <div class="cover">
       <div class="front">
@@ -24,7 +27,9 @@
       
     </div>
     <div class="forms">
+      
         <div class="form-content">
+          
           <div class="login-form">
             <div class="title">Login</div>
           <form action="#" method="post">{% csrf_token %}
@@ -37,6 +42,19 @@
                 <i class="fas fa-lock"></i>
                 <input type="password" name="password" placeholder="Enter your password" required>
               </div>
+              {% for field in login_form %}
+				<p>
+				{% for error in field.errors %}
+				<p style="color: red">{{ error }}</p>
+				{% endfor %}
+				</p>
+				{% endfor %}
+				{% if login_form.non_field_errors %}
+				<div style="color: red">
+					<p>{{login_form.non_field_errors}}</p>
+				</div>
+
+				{% endif %}
               <div class="text"><a href="#">Forgot password?</a></div>
               <div class="button input-box">
                 <input type="submit" value="Sumbit">

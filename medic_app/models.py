@@ -8,9 +8,11 @@ class WriteUs(models.Model):
     email = models.EmailField(null = True, blank=True)
     phone_no = models.CharField(max_length = 50, null = True, blank = True)
     message = models.TextField(null = True, blank = True)
+    created = models.DateTimeField(auto_now_add = True, null=True, blank=True)
+    updated = models.DateTimeField(auto_now_add = True, null=True, blank=True)
 
     def __str__(self):
-        return email
+        return self.email
 
 
 class Ailments(models.Model):

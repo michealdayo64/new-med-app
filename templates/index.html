@@ -30,7 +30,11 @@
 					
 					<p class="mb-4 pr-5">Medication Management & Psychotherapy. We also offer services to Hindi, Punjabi, Urdu, Bengali, and Bhojpuri speaking patients.</p>
 					<div class="btn-container ">
+						{% if request.user.is_authenticated %}
 						<a href="{% url 'booking' %}" target="_blank" class="btn btn-main-2 btn-icon btn-round-full">Book Appointments<i class="icofont-simple-right ml-2  "></i></a>
+						{% else %}
+						<a href="{% url 'booking' %}" class="btn btn-main-2 btn-icon btn-round-full">Book Appointments<i class="icofont-simple-right ml-2  "></i></a>
+						{% endif %}
 					</div>
 				</div>
 			</div>
@@ -50,7 +54,11 @@
 						<span>24 Hours Service</span>
 						<h4 class="mb-3">Easily Accessible Services</h4>
 						<p class="mb-4">We can accommodate to your work schedule.</p>
-						<a href="appoinment.html" class="btn btn-main btn-round-full">Appointments Available</a>
+						{% if request.user.is_authenticated %}
+						<a href="{% url 'booking' %}" class="btn btn-main btn-round-full">Appointments Available</a>
+						{% else %}
+						<a href="{% url 'booking' %}" class="btn btn-main btn-round-full">Appointments Available</a>
+						{% endif %}
 					</div>
 				
 					<div class="feature-item mb-5 mb-lg-0">
@@ -73,7 +81,11 @@
 						<span>Emegency Cases</span>
 						<h4 class="mb-3">Mentoring New PMHNP</h4>
 						<p>Adjusting to new Job, resume revision, geri psychiatry live classes, reading job hiring contracts -guidance is available.</p>
-                        <a href="appoinment.html" class="btn btn-main btn-round-full">Book Now</a>
+                        {% if request.user.is_authenticated %}
+						<a href="{% url 'booking' %}" class="btn btn-main btn-round-full">Book Now</a>
+						{% else %}
+						<a href="{% url 'booking' %}" class="btn btn-main btn-round-full">Book Now</a>
+						{% endif %}
 					</div>
 				</div>
 			</div>
@@ -141,102 +153,7 @@
 	</div>
 </section>
 
-<section class="section appoinment">
-	<div class="container">
-		<div class="row align-items-center">
-			
-			<div class="col-lg-6 col-md-10 ">
-				<div class="appoinment-wrap mt-5 mt-lg-0">
-					<h2 class="mb-2 title-color">Write Us Below</h2>
-					<p class="mb-4">Get in touch with us by sending us a quick message. We're always here to respond.</p>
-					     <form id="#" class="appoinment-form" method="post" action="#">
-                    <div class="row">
-                         <div class="col-lg-6">
-                            <div class="form-group">
-                                <input name="first_name" id="firstname" type="text" class="form-control" placeholder="First Name">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <input name="last_name" id="lastname" type="text" class="form-control" placeholder="Last Name">
-                            </div>
-                        </div>
-                         <div class="col-lg-6">
-                            <div class="form-group">
-                                <input name="email" id="email" type="email" class="form-control" placeholder="Email">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <input name="phone" id="phone" type="Number" class="form-control" placeholder="Phone Number">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group-2 mb-4">
-                        <textarea name="message" id="message" class="form-control" rows="6" placeholder="Enter your message here"></textarea>
-                    </div>
-
-                    <a class="btn btn-main btn-round-full" href="appoinment.html" >Submit Now<i class="icofont-ui-message ml-2"></i></a>
-                </form>
-            </div>
-			</div>
-			<div class="col-lg-6 ">
-				<div class="appoinment-wrap mt-5 mt-lg-0">
-					<p style="color: red;">Contact Us</p>
-					<h2 class="mb-2 title-color">Let's Get In Touch</h2>
-					<br>
-					<br>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="place-num">
-								<i class="icofont-ui-call ml-2"></i>
-								<div class="num-place">
-									<a>Hampden Drive Norwood</a><br>
-									<a>823-4565-13456</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="place-num">
-								<i class="icofont-ui-call ml-2"></i>
-								<div class="num-place">
-									<a>Hampden Drive Norwood</a><br>
-									<a>823-4565-13456</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<br>
-				
-					<div class="row">
-						<div class="col-md-6">
-							<div class="place-num">
-								<i class="icofont-ui-messaging ml-2"></i>
-								<div class="num-place">
-									<a>Email</a><br>
-									<a>amitopcarellc@gmail.com</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<hr>
-					<p style="color: #223a66; font-weight: bold; font-size: 20px;">Working Hours</p>
-					<div class="day-time">
-					<a>Monday: 9:00 AM - 6:00pm</a>
-					<a>Tuesday: 9:00 AM - 6:00pm</a>
-					<a>Wednesday: 9:00 AM - 6:00pm</a>
-					<a>Thursday: 9:00 AM - 6:00pm</a>
-					<a>Friday: 9:00 AM - 6:00pm</a>
-					<a>Saturday: 10:00 AM - 5:00pm</a>
-					<a>Saturday: Appointment availability upon request.</a>
-				</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+{% include 'view/write_us.html' %}
 
 <section class="section testimonial-2 gray-bg">
 	<div class="container">
@@ -264,7 +181,7 @@
 					<i class="icofont-quote-right"></i>
 
 					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb1.jpg" alt="" class="img-fluid">
+						<img src="{% static 'images/team/test-thumb1.jpg' %}" alt="" class="img-fluid">
 					</div>
 
 					<div class="client-info ">
@@ -278,7 +195,7 @@
 
 				<div class="testimonial-block style-2  gray-bg">
 					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb2.jpg" alt="" class="img-fluid">
+						<img src="{% static 'images/team/test-thumb2.jpg' %}" alt="" class="img-fluid">
 					</div>
 
 					<div class="client-info">
@@ -294,7 +211,7 @@
 
 				<div class="testimonial-block style-2  gray-bg">
 					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb3.jpg" alt="" class="img-fluid">
+						<img src="{% static 'images/team/test-thumb3.jpg' %}" alt="" class="img-fluid">
 					</div>
 
 					<div class="client-info">
@@ -310,7 +227,7 @@
 
 				<div class="testimonial-block style-2  gray-bg">
 					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb4.jpg" alt="" class="img-fluid">
+						<img src="{% static 'images/team/test-thumb4.jpg' %}" alt="" class="img-fluid">
 					</div>
 
 					<div class="client-info">
@@ -325,7 +242,7 @@
 
 				<div class="testimonial-block style-2  gray-bg">
 					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb1.jpg" alt="" class="img-fluid">
+						<img src="{% static 'images/team/test-thumb1.jpg' %}" alt="" class="img-fluid">
 					</div>
 
 					<div class="client-info">

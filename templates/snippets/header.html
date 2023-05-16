@@ -17,10 +17,12 @@
 							
 						</a>
 						{% if request.user.is_authenticated %}
+						<span><img src="{{ request.user.profile_image.url }}" alt="" id="avatar-img" srcset=""></span>
 						<a href="{% url 'logout' %}" style="margin-left: 20px;">
 							<span>Logout</span>
 							<span><i class="icofont-logout"></i></span>
 						</a>
+						
 						{% else %}
 						<a href="{% url 'login' %}" style="margin-left: 20px;">
 							<span>Login</span>
@@ -48,8 +50,8 @@
 				<a class="nav-link" href="/">Home</a>
 			  </li>
 			  <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
-              <li class="nav-item"><a class="nav-link" href="#treatment">Treatments</a></li>
-				<li class="nav-item"><a class="nav-link" href="#insurance">Insurances/No Insurances</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'index' %}#treatment">Treatments</a></li>
+				<li class="nav-item"><a class="nav-link" href="{% url 'index' %}#insurance">Insurances/No Insurances</a></li>
 				<li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>   
 			   <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
 			</ul>

@@ -31,8 +31,8 @@ def registerView(request, *args, **kwargs):
                 messages.success(request, f"{account.username} Registered Successfully")
                 return redirect('index')
             else:
-                messages.success(request, f"{account.username}, you need to update your account")
-                return redirect('update_user')
+                messages.success(request, f"{account.username}, You need to update your account")
+                return redirect('update-user')
         else:
             context['registration_form'] = form
 
@@ -46,9 +46,6 @@ def registerView(request, *args, **kwargs):
 def loginView(request, *args, **kwargs):
     context = {}
     user = request.user
-    if user.is_authenticated:
-        return redirect("index")
-
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
@@ -64,9 +61,9 @@ def loginView(request, *args, **kwargs):
                     messages.info(request, f"Login Successfully")
                     return redirect("index")
                 else:
-                    messages.info(request, f"Login Successfully")
+                    messages.info(request, f"You have to update your profile")
                     return redirect('update-user')
-				
+            
         else:
             form = AccountAuthenticationForm()
             context['login_form'] = form
@@ -84,6 +81,8 @@ def logoutView(request):
     if request.user.is_authenticated:
         logout(request)
         return redirect("login")
+    else:
+        print("your not login")
 
 def update_profile(request, *args, **kwargs):
     if not request.user.is_authenticated:
@@ -97,6 +96,7 @@ def update_profile(request, *args, **kwargs):
             print(upd)
             upd.profile_updated = True
             upd.save()
+            messages.success(request, "Profile Updated Successfully")
             return redirect("index")
     else:
         form = AccountUpdateForm()

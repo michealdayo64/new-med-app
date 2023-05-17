@@ -112,7 +112,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'amitopdb', 
         'USER': 'amitop', 
-        'PASSWORD': 'password1',
+        'PASSWORD': 'Silverspooon05_',
         'HOST': '127.0.0.1', 
         'PORT': '5432',
     }

@@ -27,15 +27,15 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-SECURE_CONTENT_TYPE_NOSNIFF = False
-SECURE_BROWSER_XSS_FILTER = False
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
-SECURE_SSL_REDIRECT = False
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 #SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-#CSRF_TRUSTED_ORIGINS = ['yoursite.com']
+CSRF_TRUSTED_ORIGINS = ['https://www.amitopcare.com']
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://www.amitopcare.com']
 
 
 
@@ -99,24 +99,24 @@ WSGI_APPLICATION = 'medical.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
+}'''
 
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway', 
-        'USER': 'postgres', 
-        'PASSWORD': 'apCuPEzVCtinJjlbwqKt',
-        'HOST': 'containers-us-west-18.railway.app', 
-        'PORT': '7893',
+        'NAME': 'amitopdb', 
+        'USER': 'amitop', 
+        'PASSWORD': 'password1',
+        'HOST': '127.0.0.1', 
+        'PORT': '5432',
     }
-}'''
+}
 
 
 

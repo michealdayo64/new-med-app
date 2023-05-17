@@ -11,6 +11,17 @@ from .forms import WriteUsForm
 
 def index(request):
     ailment_list = Ailments.objects.all()
+    if request.method == "POST":
+        form = WriteUsForm(request.POST or None)
+        print(form)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Form Submitted Successfully")     
+            return redirect('index')   
+        else:
+            WriteUsForm()
+            messages.success(request, "You need to fill the form")     
+            return redirect('index') 
     context = {
         "ailment_list": ailment_list
     }
@@ -26,7 +37,7 @@ def booking_page(request):
         return redirect("index")
     return render(request, 'view/schedule.html', context)
 
-def writeUs(request):
+"""def writeUs(request):
     if request.method == "POST":
         form = WriteUsForm(request.POST or None)
         print(form)
@@ -36,7 +47,7 @@ def writeUs(request):
             return redirect('index')   
     else:
         WriteUsForm()
-        return render(request, 'view/write_us.html')
+        return render(request, 'view/write_us.html')"""
     
     
 
@@ -123,6 +134,17 @@ def contact(request):
     return render(request, 'view/contact.html')
 
 def faq(request):
+    if request.method == "POST":
+        form = WriteUsForm(request.POST or None)
+        
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Form Submitted Successfully")     
+            return redirect('faq')   
+        else:
+            WriteUsForm()
+            messages.success(request, "You need to fill the form")     
+            return redirect('faq') 
     return render(request, 'view/faq.html')
 
 def private_policy(request):

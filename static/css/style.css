@@ -208,6 +208,15 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   border-radius: 50px;
 }
 
+.btn-round-full input{
+  background-color: #223a66;
+  border: none;
+}
+
+.btn-round-full input:hover{
+  background-color: #e12454;
+}
+
 .btn.active:focus, .btn:active:focus, .btn:focus {
   outline: 0;
 }
@@ -505,7 +514,7 @@ a:focus {
 }
 
 #navbarmain .nav-link:hover{
-  border-bottom: 3px solid red;
+  
   
 }
 

@@ -37,9 +37,14 @@ const yesback2 = document.querySelector(".yesback2");
 const summary_content = document.querySelector(".summary-content");
 const pick_treats = [...document.getElementsByClassName("pick-treat")];
 const ailment_panel = document.querySelector(".ailment-panel");
-var app_names = document.querySelector("#app-name")
-var app_service = document.querySelector("#app-service")
-var app_datetime = document.querySelector("#app-datetime")
+var app_names = document.querySelector("#app-name");
+var app_service = document.querySelector("#app-service");
+var app_datetime = document.querySelector("#app-datetime");
+var mytime = document.querySelector(".mytime");
+var dots_bars_9 = document.querySelector(".dots-bars-9");
+const mytime_slot3 = document.querySelector(".mytime-slot3");
+const mytime_slot2 = document.querySelector(".mytime-slot2");
+const mytime_slot1 = document.querySelector(".mytime-slot1");
 
 const url = window.location.origin;
 var nhm;
@@ -59,6 +64,7 @@ var phoneNum;
 var message;
 var pk;
 
+// SELECT AILMENT
 pick_treats.forEach((pick_treat) =>
   pick_treat.addEventListener("click", () => {
     //populateDates();
@@ -78,14 +84,15 @@ pick_treats.forEach((pick_treat) =>
     date_picker_ele.style.display = "block";
     alert.style.display = "none";
     space_panel2.style.display = "flex";
-    //date_picker_ele.addEventListener("click", toggleDatePicker);
   })
 );
 
+// INPUT MESSAGE
 function inputMessage() {
   message = document.querySelector("#message").value;
 }
 
+// 15MIN TRIAL
 function trialBTN() {
   service.style.display = "none";
   btn_trial.style.display = "none";
@@ -100,7 +107,7 @@ function trialBTN() {
   date_picker_ele.style.display = "block";
   alert.style.display = "none";
   space_panel2.style.display = "flex";
-  
+  populateDates();
 
   fetch(`${url}/fifteen-min/`, {
     body: null,
@@ -112,8 +119,7 @@ function trialBTN() {
     });
 }
 
-//btn_trial.addEventListener("click", trialBTN);
-
+// TIME
 t2.addEventListener("click", () => {
   alert.style.display = "flex";
 });
@@ -135,6 +141,7 @@ previous_btn2.addEventListener("click", () => {
   datetime_panel.style.display = "flex";
 });
 
+// LAST PANEL CONTENT
 yesback2.addEventListener("click", (e) => {
   e.preventDefault();
   dateandtime.style.display = "none";
@@ -143,7 +150,6 @@ yesback2.addEventListener("click", (e) => {
   t2.classList.remove("active2");
   t3.classList.remove("active3");
   t4.classList.add("active4");
-  //sec_back.style.display = "block";
   basic_detail.style.display = "none";
   basicdetail_content.style.display = "none";
   date_content.style.display = "none";
@@ -153,9 +159,8 @@ yesback2.addEventListener("click", (e) => {
   space_panel4.style.display = "flex";
   next_btn3.style.display = "flex";
   summary_content.style.display = "flex";
-  console.log(date_selected);
 
-  if (pk){
+  if (pk) {
     fetch(`${url}/booking-order/${pk}/`, {
       body: JSON.stringify({
         date: date_selected,
@@ -169,7 +174,7 @@ yesback2.addEventListener("click", (e) => {
       .then((data) => {
         console.log(data);
       });
-  }else{
+  } else {
     fetch(`${url}/booking-order/`, {
       body: JSON.stringify({
         date: date_selected,
@@ -184,47 +189,48 @@ yesback2.addEventListener("click", (e) => {
         console.log(data);
       });
   }
-  allSummary()
+  allSummary();
 });
 
-function allSummary(){
-  if(pk){
+function allSummary() {
+  if (pk) {
     fetch(`${url}/summary/${pk}/`, {
       method: "GET",
-    }).then((res) => res.json())
-    .then((data) => {
-      console.log(data["firstname"]);
-      if(app_names){
-        app_names.textContent = data["firstname"] + " " + data["lastname"]
-      }
-      if(app_service){
-        app_service.textContent = data["service"]
-      }
-      if(app_datetime){
-        app_datetime.textContent = data["date_and_time"]
-      }
-    });
-  }else{
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data["firstname"]);
+        if (app_names) {
+          app_names.textContent = data["firstname"] + " " + data["lastname"];
+        }
+        if (app_service) {
+          app_service.textContent = data["service"];
+        }
+        if (app_datetime) {
+          app_datetime.textContent = data["date_and_time"];
+        }
+      });
+  } else {
     fetch(`${url}/summary/`, {
       method: "GET",
-    }).then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      if(app_names){
-        app_names.textContent = data["firstname"] + " " + data["lastname"]
-      }
-      if(app_service){
-        app_service.textContent = data["service"]
-      }
-      if(app_datetime){
-        app_datetime.textContent = data["date_and_time"]
-      }
-      
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (app_names) {
+          app_names.textContent = data["firstname"] + " " + data["lastname"];
+        }
+        if (app_service) {
+          app_service.textContent = data["service"];
+        }
+        if (app_datetime) {
+          app_datetime.textContent = data["date_and_time"];
+        }
+      });
   }
-    
-  }
+}
 
+// SELECT TIME
 function selectTime(timeId) {
   valuuTime = document.getElementById(timeId).textContent;
   console.log(valuuTime);
@@ -244,6 +250,7 @@ function selectTime(timeId) {
   next_btn2.style.display = "flex";
 }
 
+/*-------------------START---------------------------*/
 // CALENDAR CODE
 
 const months = [
@@ -269,10 +276,8 @@ selected_date_ele.dataset.value = selectedDate;
 
 populateDates();
 
-
 next_month_ele.addEventListener("click", goToNextMonth);
 prev_month_ele.addEventListener("click", goToPrevMonth);
-
 
 /*function toggleDatePicker(e) {
   if (!checkClassExist(e.path, "dates-container")) {
@@ -280,7 +285,7 @@ prev_month_ele.addEventListener("click", goToPrevMonth);
   }
 }*/
 
-function checkClassExist(path, selector) {
+/*function checkClassExist(path, selector) {
   if (path !== undefined) {
     for (let i = 0; i < path.length; i++) {
       if (path[i].classList && path[i].classList.contains(selector)) {
@@ -289,7 +294,7 @@ function checkClassExist(path, selector) {
     }
   }
   return false;
-}
+}*/
 
 function goToNextMonth() {
   month++;
@@ -337,23 +342,28 @@ function populateDates() {
     }
 
     day_element.addEventListener("click", function () {
+      mytime.style.display = "block";
+      dots_bars_9.style.display = "block";
+      mytime_slot3.style.display = "none";
+      mytime_slot2.style.display = "none";
+      mytime_slot1.style.display = "none";
       selectedDate = new Date(year + "-" + (month + 1) + "-" + (i + 1));
-      //date_selected = selectedDate;
-      console.log(selectedDate);
       selectedDay = i + 1;
-      //console.log(selectedDay);
       selectedMonth = month;
       selectedYear = year;
 
-      if(selectedDay && selectedMonth && selectedYear){
-        day_element.classList.add("selected");
-      }
-
       date_selected = formatDate(selectedDate);
-      
 
       selected_date_ele.textContent = formatDate(selectedDate);
       selected_date_ele.dataset.value = selectedDate;
+
+      setTimeout(myGG, 5000);
+      function myGG() {
+        dots_bars_9.style.display = "none";
+        mytime_slot3.style.display = "block";
+        mytime_slot2.style.display = "block";
+        mytime_slot1.style.display = "block";
+      }
     });
 
     days_ele.appendChild(day_element);
@@ -377,8 +387,9 @@ function formatDate(selectedDate) {
   return day + "/" + month + "/" + year;
 }
 
+/*---------------------------END-----------------------------*/
 
-
+/*-------------------------START-----------------------------
 // PHONE NUMBER AND CODE
 
 /*
@@ -2530,5 +2541,6 @@ input.addEventListener("keyup", (e) => {
   e.preventDefault();
   var gg = e.target.value;
   phoneNum = `${nhm}${gg}`;
-  console.log(`${nhm}${gg}`);
 });
+
+/*--------------------------END--------------------*/

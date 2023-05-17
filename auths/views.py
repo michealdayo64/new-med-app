@@ -58,15 +58,18 @@ def loginView(request, *args, **kwargs):
                 if destination:
                     return redirect(destination)
                 if user.profile_updated:
+                    print("login")
                     messages.info(request, f"Login Successfully")
                     return redirect("index")
                 else:
                     messages.info(request, f"You have to update your profile")
                     return redirect('update-user')
-            
         else:
-            form = AccountAuthenticationForm()
+            print("Invalid")
             context['login_form'] = form
+    else:
+        form = AccountAuthenticationForm()
+        context['login_form'] = form
     return render(request, 'auth/login.html', context)
 
 def get_redirect_if_exist(request):

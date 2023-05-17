@@ -40,7 +40,7 @@ class AccountAuthenticationForm(forms.ModelForm):
             email = self.cleaned_data['email']
             password = self.cleaned_data['password']
             if not authenticate(email = email, password = password):
-                raise forms.ValidationError("Invalid Login")
+                raise forms.ValidationError("Invalid Login. Enter a correct email or password")
 
 class AccountUpdateForm(forms.ModelForm):
      

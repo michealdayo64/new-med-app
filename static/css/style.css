@@ -735,7 +735,7 @@ a:focus {
 
 .mytime{
   width: 500px;
-  display: block;
+  display: none;
   border: 1px solid gray;
   margin-left: 10px;
   height: 400px;

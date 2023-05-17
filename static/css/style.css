@@ -847,7 +847,7 @@ a:focus {
   background-color: green;
 }
 
-.days-container .day.selected {
+.days-container .day .selected {
   background-color: green;
 }
 
@@ -1382,12 +1382,17 @@ a:focus {
 .accordion {
   cursor: pointer;
   padding: 2px;
+  color: #000;
   padding-left: 20px;
   width: 100%;
   display: flex;
   border: 0.5px solid rgb(224, 224, 224);
   align-items: center;
   transition: 0.5s;
+}
+
+.icofont-navigation-menu{
+  color: #223a66;
 }
 
 .accordion .icofont-rounded-up{

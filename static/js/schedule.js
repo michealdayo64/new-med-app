@@ -61,6 +61,7 @@ var pk;
 
 pick_treats.forEach((pick_treat) =>
   pick_treat.addEventListener("click", () => {
+    //populateDates();
     pk = pick_treat.getAttribute("data-pk");
     console.log(pk);
     ailment_panel.style.display = "none";
@@ -77,6 +78,7 @@ pick_treats.forEach((pick_treat) =>
     date_picker_ele.style.display = "block";
     alert.style.display = "none";
     space_panel2.style.display = "flex";
+    //date_picker_ele.addEventListener("click", toggleDatePicker);
   })
 );
 
@@ -98,7 +100,7 @@ function trialBTN() {
   date_picker_ele.style.display = "block";
   alert.style.display = "none";
   space_panel2.style.display = "flex";
-  populateDates()
+  
 
   fetch(`${url}/fifteen-min/`, {
     body: null,
@@ -261,14 +263,16 @@ const months = [
 
 month_ele.textContent = months[month] + " " + year;
 
+date_selected = formatDate(date);
 selected_date_ele.textContent = formatDate(date);
 selected_date_ele.dataset.value = selectedDate;
 
 populateDates();
 
-//date_picker_ele.addEventListener("click", toggleDatePicker);
+
 next_month_ele.addEventListener("click", goToNextMonth);
 prev_month_ele.addEventListener("click", goToPrevMonth);
+
 
 /*function toggleDatePicker(e) {
   if (!checkClassExist(e.path, "dates-container")) {
@@ -341,6 +345,10 @@ function populateDates() {
       selectedMonth = month;
       selectedYear = year;
 
+      if(selectedDay && selectedMonth && selectedYear){
+        day_element.classList.add("selected");
+      }
+
       date_selected = formatDate(selectedDate);
       
 
@@ -369,7 +377,7 @@ function formatDate(selectedDate) {
   return day + "/" + month + "/" + year;
 }
 
-var separateDialCode;
+
 
 // PHONE NUMBER AND CODE
 

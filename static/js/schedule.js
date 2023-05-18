@@ -67,9 +67,7 @@ var pk;
 // SELECT AILMENT
 pick_treats.forEach((pick_treat) =>
   pick_treat.addEventListener("click", () => {
-    //populateDates();
     pk = pick_treat.getAttribute("data-pk");
-    console.log(pk);
     ailment_panel.style.display = "none";
     service.style.display = "none";
     dates_ele.style.display = "block";

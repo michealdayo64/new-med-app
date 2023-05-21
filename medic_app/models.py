@@ -31,6 +31,7 @@ class Appointment(models.Model):
     ailment_id = models.ForeignKey(Ailments, null = True, blank = True, on_delete = models.CASCADE)
     phone_no = models.CharField(max_length=30, null=True, blank=True)
     message = models.TextField(null=True, blank=True)
+    is_booked = models.BooleanField(default=False)
     date = models.DateField()
     appointment_time = models.CharField(max_length=20, null=True, blank=True)
 

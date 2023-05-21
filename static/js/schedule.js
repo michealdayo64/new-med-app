@@ -41,10 +41,12 @@ var app_names = document.querySelector("#app-name");
 var app_service = document.querySelector("#app-service");
 var app_datetime = document.querySelector("#app-datetime");
 var mytime = document.querySelector(".mytime");
-var dots_bars_9 = document.querySelector(".dots-bars-9");
+var loading_spin2 = document.querySelector(".dots-bars-9");
 const mytime_slot3 = document.querySelector(".mytime-slot3");
 const mytime_slot2 = document.querySelector(".mytime-slot2");
 const mytime_slot1 = document.querySelector(".mytime-slot1");
+const contentdisplay1 = document.querySelector("#content-display1");
+const dots_bars_1 = document.querySelector(".dots-bars-1");
 
 const url = window.location.origin;
 var nhm;
@@ -58,16 +60,30 @@ let selectedDay = day;
 let selectedMonth = month;
 let selectedYear = year;
 
-let date_selected;
-let valuuTime;
+var date_selected;
+var valuuTime;
 var phoneNum;
 var message;
 var pk;
+
+load_schedule_page();
+
+function load_schedule_page() {
+  contentdisplay1.style.display = "none";
+  dots_bars_1.style.display = "block";
+  setTimeout(schd_load1, 5000);
+}
+
+function schd_load1() {
+  dots_bars_1.style.display = "none";
+  contentdisplay1.style.display = "block";
+}
 
 // SELECT AILMENT
 pick_treats.forEach((pick_treat) =>
   pick_treat.addEventListener("click", () => {
     pk = pick_treat.getAttribute("data-pk");
+    console.log(pk);
     ailment_panel.style.display = "none";
     service.style.display = "none";
     dates_ele.style.display = "block";
@@ -158,6 +174,7 @@ yesback2.addEventListener("click", (e) => {
   next_btn3.style.display = "flex";
   summary_content.style.display = "flex";
 
+  var app_id;
   if (pk) {
     fetch(`${url}/booking-order/${pk}/`, {
       body: JSON.stringify({
@@ -171,6 +188,16 @@ yesback2.addEventListener("click", (e) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (app_names) {
+          app_names.innerHTML = data["firstname"] + " " + data["lastname"];
+        }
+        if (app_service) {
+          app_service.innerHTML = data["service"];
+        }
+        if (app_datetime) {
+          app_datetime.innerHTML = data["date_and_time"];
+        }
+        console.log("hello");
       });
   } else {
     fetch(`${url}/booking-order/`, {
@@ -184,31 +211,40 @@ yesback2.addEventListener("click", (e) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-      });
-  }
-  allSummary();
-});
-
-function allSummary() {
-  if (pk) {
-    fetch(`${url}/summary/${pk}/`, {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data["firstname"]);
+        console.log(data["app_id"]);
         if (app_names) {
-          app_names.textContent = data["firstname"] + " " + data["lastname"];
+          app_names.innerHTML = data["firstname"] + " " + data["lastname"];
         }
         if (app_service) {
-          app_service.textContent = data["service"];
+          app_service.innerHTML = data["service"];
         }
         if (app_datetime) {
-          app_datetime.textContent = data["date_and_time"];
+          app_datetime.innerHTML = data["date_and_time"];
         }
       });
-  } else {
+  }
+  //allSummary(app_id);
+});
+
+/*function allSummary(my_id) {
+  console.log(my_id);
+  fetch(`${url}/summary/${my_id}/`, {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data["date_and_time"]);
+      if (app_names) {
+        app_names.textContent = data["firstname"] + " " + data["lastname"];
+      }
+      if (app_service) {
+        app_service.textContent = data["service"];
+      }
+      if (app_datetime) {
+        app_datetime.textContent = data["date_and_time"];
+      }
+    });*/
+/*else {
     fetch(`${url}/summary/`, {
       method: "GET",
     })
@@ -225,8 +261,8 @@ function allSummary() {
           app_datetime.textContent = data["date_and_time"];
         }
       });
-  }
-}
+  }*/
+//}
 
 // SELECT TIME
 function selectTime(timeId) {
@@ -340,8 +376,7 @@ function populateDates() {
     }
 
     day_element.addEventListener("click", function () {
-      mytime.style.display = "block";
-      dots_bars_9.style.display = "block";
+      loading_spin2.style.display = "block";
       mytime_slot3.style.display = "none";
       mytime_slot2.style.display = "none";
       mytime_slot1.style.display = "none";
@@ -349,7 +384,7 @@ function populateDates() {
       selectedDay = i + 1;
       selectedMonth = month;
       selectedYear = year;
-
+      console.log(selectedDate);
       date_selected = formatDate(selectedDate);
 
       selected_date_ele.textContent = formatDate(selectedDate);
@@ -357,7 +392,7 @@ function populateDates() {
 
       setTimeout(myGG, 5000);
       function myGG() {
-        dots_bars_9.style.display = "none";
+        loading_spin2.style.display = "none";
         mytime_slot3.style.display = "block";
         mytime_slot2.style.display = "block";
         mytime_slot1.style.display = "block";

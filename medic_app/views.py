@@ -74,41 +74,50 @@ def bookingDetails(request, id = None):
             date = ns["date"]
             date_format = datetime.strptime(date, '%d/%m/%Y')
             time = ns["time"]
-           
             phone_no = ns["phone"]
-            
             message = ns["message"]
             
 
             if id:
                 ailment_id = Ailments.objects.get(id = id)
-                Appointment.objects.create(user = user, ailment_id = ailment_id, phone_no = phone_no, message = message, date = date_format, appointment_time = time)
+                app_id = Appointment.objects.create(user = user, ailment_id = ailment_id, phone_no = phone_no, message = message, date = date_format, appointment_time = time, is_booked = False)
                 payload["response"] = "Appointment Order"
-                return JsonResponse(json.dumps(payload), safe=False)
+                payload['app_id'] = app_id.id
+                payload['firstname'] = app_id.user.first_name
+                payload['lastname'] = app_id.user.last_name
+                payload['service'] = app_id.ailment_id.title
+                payload['date_and_time'] = f'{app_id.date}, {app_id.appointment_time}'
+                return JsonResponse((payload), safe=False)
             else:
-                Appointment.objects.create(user = user, phone_no = phone_no, message = message, date = date_format, appointment_time = time)
+                app_id = Appointment.objects.create(user = user, phone_no = phone_no, message = message, date = date_format, appointment_time = time, is_booked = False)
                 payload["response"] = "Appointment Order"
-                return JsonResponse(json.dumps(payload), safe=False)
+                payload['app_id'] = app_id.id
+                payload['firstname'] = app_id.user.first_name
+                payload['lastname'] = app_id.user.last_name
+                payload['service'] = "15min Consultation"
+                return JsonResponse((payload), safe=False)
     else:
         payload["response"] = ["User not authenticated"]
         return JsonResponse(json.dumps(payload), safe=False)
 
-def bookingSummary(request, id = None):
+'''def bookingSummary(request, id = None):
     payload = {}
     user = request.user
     if user.is_authenticated:
         if id:
-            ailment_id = Ailments.objects.get(id = id)
-            print(ailment_id)
-            appointment = Appointment.objects.filter(ailment_id = ailment_id).first()
-        
-            payload = {
-                    "firstname": appointment.user.first_name,
-                    "lastname": appointment.user.last_name,
-                    "service": appointment.ailment_id.title,
-                    "date_and_time": f'{appointment.date}, {appointment.appointment_time}'
-                }
-            return JsonResponse(data = payload, safe=False)
+            #ailment_id = Ailments.objects.get(id = id)
+            #print(ailment_id)
+            appointment = Appointment.objects.filter(id = id).first()
+            if appointment:
+                appoint = appointment
+            #print(appointment.date, appointment.appointment_time)
+                payload = {
+                        "firstname": appoint.user.first_name,
+                        "lastname": appoint.user.last_name,
+                        "service": appoint.ailment_id.title,
+                        "date_and_time": f'{appoint.date}, {appoint.appointment_time}'
+                    }
+                return JsonResponse(data = payload, safe=False)
         else:
             appointment = Appointment.objects.all().first()
 
@@ -119,6 +128,25 @@ def bookingSummary(request, id = None):
                     "date_and_time": f'{appointment.date}, {appointment.appointment_time}'
                 }
             return JsonResponse(data = payload, safe=False)
+    else:
+        payload["response"] = "User not authenticated"
+        return JsonResponse(json.dumps(payload), safe=False)'''
+    
+
+def bookingSummary(request, id):
+    payload = {}
+    user = request.user
+    if user.is_authenticated:
+        print(id)
+        appointment = Appointment.objects.get(id = id, user = user)
+        print(appointment.date, appointment.appointment_time)
+        payload = {
+                "firstname": appointment.user.first_name,
+                "lastname": appointment.user.last_name,
+                "service": appointment.ailment_id.title,
+                "date_and_time": f'{appointment.date}, {appointment.appointment_time}'
+            }
+        return JsonResponse(data = payload, safe=False)
     else:
         payload["response"] = "User not authenticated"
         return JsonResponse(json.dumps(payload), safe=False)

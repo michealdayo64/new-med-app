@@ -4,7 +4,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <title> Login | AmiTop Care LLC</title>
+    <title> Forgot Password | AmiTop Care LLC</title>
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
     
     <!-- Fontawesome CDN Link -->
@@ -31,17 +31,14 @@
         <div class="form-content">
           
           <div class="login-form">
-            <div class="title">Login</div>
+            <div class="title">Forgot Password</div>
           <form action="#" method="post">{% csrf_token %}
             <div class="input-boxes">
               <div class="input-box">
                 <i class="fas fa-envelope"></i>
                 <input type="text" name="email" placeholder="Enter your email" required>
               </div>
-              <div class="input-box">
-                <i class="fas fa-lock"></i>
-                <input type="password" name="password" placeholder="Enter your password" required>
-              </div>
+              
               {% for field in login_form %}
 				<p>
 				{% for error in field.errors %}
@@ -55,11 +52,10 @@
 				</div>
 
 				{% endif %}
-              <div class="text"><a href="{% url 'forgot-pass' %}">Forgot password?</a></div>
               <div class="button input-box">
-                <input type="submit" value="Sumbit">
+                <input type="submit" value="Send">
               </div>
-              <div class="text sign-up-text">Don't have an account? <a href="{% url 'register' %}" for="">SigUp now</a></div>
+              
             </div>
         </form>
       </div>

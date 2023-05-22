@@ -868,13 +868,16 @@ a:focus {
   background-color: green;
 }
 
+.all-form label{
+  color: #01225f;
+}
 
 .alert {
-  margin-left: 250px;
-  margin-top: 20px;
+  
+  margin-top: 10px;
   position:fixed;
   z-index: 999;
-  width: 500px;
+  width: 400px;
   background: greenyellow;
   opacity: 3;
   color: rgb(0, 0, 0);
@@ -1139,7 +1142,7 @@ a:focus {
 
 
 .banner .block h1 {
-  font-size: 60px;
+  font-size: 50px;
   line-height: 1.2;
   letter-spacing: -1.2px;
   text-transform: capitalize;

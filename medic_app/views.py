@@ -95,6 +95,7 @@ def bookingDetails(request, id = None):
                 payload['firstname'] = app_id.user.first_name
                 payload['lastname'] = app_id.user.last_name
                 payload['service'] = "15min Consultation"
+                payload['date_and_time'] = f'{app_id.date}, {app_id.appointment_time}'
                 return JsonResponse((payload), safe=False)
     else:
         payload["response"] = ["User not authenticated"]

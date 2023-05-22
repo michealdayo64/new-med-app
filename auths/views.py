@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from .models import Account
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 # Create your views here.
@@ -18,21 +20,16 @@ def registerView(request, *args, **kwargs):
     if request.POST:
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-            email = form.cleaned_data.get('email').lower()
-            raw_password = form.cleaned_data.get('password1')
-            account = authenticate(email=email, password=raw_password)
-            print(account)
-            login(request, account)
-            destination = kwargs.get("next")
-            if destination:
-                return redirect(destination)
-            if account.profile_updated:
-                messages.success(request, f"{account.username} Registered Successfully")
-                return redirect('index')
-            else:
-                messages.success(request, f"{account.username}, You need to update your account")
-                return redirect('update-user')
+            user = form.save()
+            user.is_active = False
+            user.save()
+            #subject = 'test mail'
+            #message = "Test email"
+            #mail_from = settings.EMAIL_HOST_USER
+            #mail_to = ['omotoshomicheal93@gmail.com']
+            #send_mail(subject, message, mail_from, mail_to)
+            messages.success(request, "Registered Successfully")
+            return redirect('register')
         else:
             context['registration_form'] = form
 
@@ -54,18 +51,17 @@ def loginView(request, *args, **kwargs):
             user = authenticate(email = email, password = password)
             if user:
                 login(request, user)
+                
                 destination = get_redirect_if_exist(request)
                 if destination:
                     return redirect(destination)
                 if user.profile_updated:
-                    print("login")
                     messages.info(request, f"Login Successfully")
                     return redirect("index")
                 else:
                     messages.info(request, f"You have to update your profile")
                     return redirect('update-user')
         else:
-            print("Invalid")
             context['login_form'] = form
     else:
         form = AccountAuthenticationForm()
@@ -106,6 +102,12 @@ def update_profile(request, *args, **kwargs):
         context['form'] = form 
     #context['DATA_UPLOAD_MAX_MEMORY_SIZE'] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
     return render(request, 'auth/update_profile.html', context)
+
+def forgetPass(request):
+    return render(request, "auth/forgot_pass.html")
+
+def resetPass(request):
+    return render(request, "auth/reset_pass.html")
 
 
 

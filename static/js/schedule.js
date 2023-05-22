@@ -174,7 +174,6 @@ yesback2.addEventListener("click", (e) => {
   next_btn3.style.display = "flex";
   summary_content.style.display = "flex";
 
-  var app_id;
   if (pk) {
     fetch(`${url}/booking-order/${pk}/`, {
       body: JSON.stringify({
@@ -226,43 +225,7 @@ yesback2.addEventListener("click", (e) => {
   //allSummary(app_id);
 });
 
-/*function allSummary(my_id) {
-  console.log(my_id);
-  fetch(`${url}/summary/${my_id}/`, {
-    method: "GET",
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data["date_and_time"]);
-      if (app_names) {
-        app_names.textContent = data["firstname"] + " " + data["lastname"];
-      }
-      if (app_service) {
-        app_service.textContent = data["service"];
-      }
-      if (app_datetime) {
-        app_datetime.textContent = data["date_and_time"];
-      }
-    });*/
-/*else {
-    fetch(`${url}/summary/`, {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (app_names) {
-          app_names.textContent = data["firstname"] + " " + data["lastname"];
-        }
-        if (app_service) {
-          app_service.textContent = data["service"];
-        }
-        if (app_datetime) {
-          app_datetime.textContent = data["date_and_time"];
-        }
-      });
-  }*/
-//}
+
 
 // SELECT TIME
 function selectTime(timeId) {

@@ -64,13 +64,22 @@ AUTHENTICATION_BACKENDS = (
     'auths.backends.CaseInsensitiveModelBackend',
     )
 
+'''EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_USE_TLS = True
+EMAIL_HOST = 'mail.privateemail.com'
+EMAIL_HOST_USER = 'amitopcare@amitopcare.com'
+EMAIL_HOST_PASSWORD = 'Silverspooon05_'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True'''
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'amitopcare.com'
 EMAIL_HOST_USER = 'contact@amitopcare.com'
 EMAIL_HOST_PASSWORD = 'Silverspooon05_'
 EMAIL_PORT = 587
-EMAIL_USE_SSL = False
+#EMAIL_USE_SSL = True
+
 
 
 

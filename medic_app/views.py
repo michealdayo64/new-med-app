@@ -100,38 +100,6 @@ def bookingDetails(request, id = None):
     else:
         payload["response"] = ["User not authenticated"]
         return JsonResponse(json.dumps(payload), safe=False)
-
-'''def bookingSummary(request, id = None):
-    payload = {}
-    user = request.user
-    if user.is_authenticated:
-        if id:
-            #ailment_id = Ailments.objects.get(id = id)
-            #print(ailment_id)
-            appointment = Appointment.objects.filter(id = id).first()
-            if appointment:
-                appoint = appointment
-            #print(appointment.date, appointment.appointment_time)
-                payload = {
-                        "firstname": appoint.user.first_name,
-                        "lastname": appoint.user.last_name,
-                        "service": appoint.ailment_id.title,
-                        "date_and_time": f'{appoint.date}, {appoint.appointment_time}'
-                    }
-                return JsonResponse(data = payload, safe=False)
-        else:
-            appointment = Appointment.objects.all().first()
-
-            payload = {
-                    "firstname": appointment.user.first_name,
-                    "lastname": appointment.user.last_name,
-                    "service": "15min Consultation",
-                    "date_and_time": f'{appointment.date}, {appointment.appointment_time}'
-                }
-            return JsonResponse(data = payload, safe=False)
-    else:
-        payload["response"] = "User not authenticated"
-        return JsonResponse(json.dumps(payload), safe=False)'''
     
 
 def bookingSummary(request, id):
@@ -151,6 +119,18 @@ def bookingSummary(request, id):
     else:
         payload["response"] = "User not authenticated"
         return JsonResponse(json.dumps(payload), safe=False)
+    
+def getAllAppointment(request):
+    payload = {}
+    data = []
+    app = Appointment.objects.all()
+    for i in app:
+        data.append({
+            'date': i.date,
+            'time': i.appointment_time
+        })
+    payload['result']=data
+    return JsonResponse(payload, safe=False)
 
 
 def blog(request):

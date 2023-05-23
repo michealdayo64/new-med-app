@@ -32,26 +32,22 @@
           
           <div class="login-form">
             <div class="title">Forgot Password</div>
-          <form action="#" method="post">{% csrf_token %}
+            {% if messages %}
+    {% for message in messages %}
+    
+      <div class="alert alert-warning alert-dismissable" role="alert">
+        {{message}}
+      </div>
+   
+    {% endfor %}
+  {% endif %}
+          <form method="post">{% csrf_token %}
             <div class="input-boxes">
               <div class="input-box">
                 <i class="fas fa-envelope"></i>
                 <input type="text" name="email" placeholder="Enter your email" required>
               </div>
               
-              {% for field in login_form %}
-				<p>
-				{% for error in field.errors %}
-				<p style="color: red">{{ error }}</p>
-				{% endfor %}
-				</p>
-				{% endfor %}
-				{% if login_form.non_field_errors %}
-				<div style="color: red">
-					<p>{{login_form.non_field_errors}}</p>
-				</div>
-
-				{% endif %}
               <div class="button input-box">
                 <input type="submit" value="Send">
               </div>
@@ -63,5 +59,6 @@
     </div>
     </div>
   </div>
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

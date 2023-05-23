@@ -10,7 +10,8 @@ const t4 = document.getElementById("t4");
 const active2 = document.getElementsByClassName("active2");
 const alert = document.getElementsByClassName("mycar-aler")[0];
 const sec_back = document.getElementById("sec-back");
-var bb = document.getElementsByClassName("bb");
+var bb = [...document.getElementsByClassName("bb")];
+
 var select_time = document.getElementsByClassName("select-time");
 const basic_detail = document.getElementById("basicdetail");
 const basicdetail_content = document.querySelector(".basicdetail-content");
@@ -225,11 +226,9 @@ yesback2.addEventListener("click", (e) => {
   //allSummary(app_id);
 });
 
-
-
 // SELECT TIME
 function selectTime(timeId) {
-  valuuTime = document.getElementById(timeId).textContent;
+  valuuTime = document.getElementById(timeId).innerHTML;
   console.log(valuuTime);
   dateandtime.style.display = "none";
   datetime_panel.style.display = "none";
@@ -347,18 +346,47 @@ function populateDates() {
       selectedDay = i + 1;
       selectedMonth = month;
       selectedYear = year;
-      console.log(selectedDate);
       date_selected = formatDate(selectedDate);
+      var lm = new Date(selectedDate);
+      var dstr = new Date(lm.getTime() - lm.getTimezoneOffset() * 60000)
+        .toISOString()
+        .split("T")[0];
+      console.log(dstr);
 
       selected_date_ele.textContent = formatDate(selectedDate);
       selected_date_ele.dataset.value = selectedDate;
 
       setTimeout(myGG, 5000);
       function myGG() {
-        loading_spin2.style.display = "none";
-        mytime_slot3.style.display = "block";
-        mytime_slot2.style.display = "block";
-        mytime_slot1.style.display = "block";
+        fetch(`${url}/get-appointment/`, {
+          body: null,
+          method: "GET",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            //console.log(data);
+            data["result"].forEach((pp) => {
+              //console.log(pp["date"]);
+              bb.forEach((k) => {
+                if (
+                  pp["date"] == dstr &&
+                  pp["time"] == k.childNodes[1].textContent
+                ) {
+                  console.log(pp["time"]);
+                  console.log(k.childNodes[1].textContent);
+                  k.removeAttribute("onclick");
+                  k.style.cursor = "not-allowed";
+                  k.style.backgroundColor = "grey";
+                  k.style.color = "white";
+                }
+              });
+            });
+
+            loading_spin2.style.display = "none";
+            mytime_slot3.style.display = "block";
+            mytime_slot2.style.display = "block";
+            mytime_slot1.style.display = "block";
+          });
       }
     });
 

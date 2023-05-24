@@ -9,6 +9,7 @@ const t3 = document.getElementById("t3");
 const t4 = document.getElementById("t4");
 const active2 = document.getElementsByClassName("active2");
 const alert = document.getElementsByClassName("mycar-aler")[0];
+const alert2 = document.querySelector(".mycar-aler2");
 const sec_back = document.getElementById("sec-back");
 var bb = [...document.getElementsByClassName("bb")];
 
@@ -48,6 +49,8 @@ const mytime_slot2 = document.querySelector(".mytime-slot2");
 const mytime_slot1 = document.querySelector(".mytime-slot1");
 const contentdisplay1 = document.querySelector("#content-display1");
 const dots_bars_1 = document.querySelector(".dots-bars-1");
+const service_content = document.querySelector(".service-content");
+const select_service = document.querySelector(".select-service");
 
 const url = window.location.origin;
 var nhm;
@@ -80,12 +83,34 @@ function schd_load1() {
   contentdisplay1.style.display = "block";
 }
 
+function selectService() {
+  space_panel1.style.display = "flex";
+  serve_content1.style.display = "block";
+  if (service_content) {
+    service_content.style.display = "block";
+  }
+  next_btn.style.display = "flex";
+  if (ailment_panel) {
+    ailment_panel.style.display = "flex";
+  }
+  select_service.style.display = "block";
+  service.style.display = "block";
+  space_panel2.style.display = "none";
+  date_content.style.display = "none";
+  dateandtime.style.display = "none";
+  datetime_panel.style.display = "none";
+  t1.classList.add("active1");
+  console.log("hello");
+}
+
 // SELECT AILMENT
 pick_treats.forEach((pick_treat) =>
-  pick_treat.addEventListener("click", () => {
+  pick_treat.addEventListener("click", (e) => {
+    e.preventDefault();
     pk = pick_treat.getAttribute("data-pk");
-    console.log(pk);
-    ailment_panel.style.display = "none";
+    //console.log(pk);
+    space_panel2.style.display = "flex";
+    date_content.style.display = "block";
     service.style.display = "none";
     dates_ele.style.display = "block";
     dateandtime.style.display = "block";
@@ -98,7 +123,8 @@ pick_treats.forEach((pick_treat) =>
     next_btn1.style.display = "flex";
     date_picker_ele.style.display = "block";
     alert.style.display = "none";
-    space_panel2.style.display = "flex";
+
+    populateDates();
   })
 );
 
@@ -134,9 +160,37 @@ function trialBTN() {
     });
 }
 
-// TIME
+// ALERT
 t2.addEventListener("click", () => {
   alert.style.display = "flex";
+  setTimeout(alertFunc, 2000);
+  function alertFunc() {
+    alert.style.display = "none";
+  }
+});
+
+next_btn.addEventListener("click", () => {
+  alert.style.display = "flex";
+  setTimeout(alertFunc, 2000);
+  function alertFunc() {
+    alert.style.display = "none";
+  }
+});
+
+t3.addEventListener("click", () => {
+  alert2.style.display = "flex";
+  setTimeout(alertFunc, 2000);
+  function alertFunc() {
+    alert2.style.display = "none";
+  }
+});
+
+next_btn1.addEventListener("click", () => {
+  alert2.style.display = "flex";
+  setTimeout(alertFunc, 2000);
+  function alertFunc() {
+    alert2.style.display = "none";
+  }
 });
 
 previous_btn2.addEventListener("click", () => {
@@ -365,28 +419,44 @@ function populateDates() {
           .then((res) => res.json())
           .then((data) => {
             //console.log(data);
-            data["result"].forEach((pp) => {
+            /*data["result"].forEach((pp) => {
               //console.log(pp["date"]);
               bb.forEach((k) => {
                 if (
-                  pp["date"] == dstr &&
-                  pp["time"] == k.childNodes[1].textContent
+                  pp["date"] === dstr &&
+                  pp["time"] === k.childNodes[1].textContent
                 ) {
                   console.log(pp["time"]);
                   console.log(k.childNodes[1].textContent);
                   k.removeAttribute("onclick");
-                  k.style.cursor = "not-allowed";
+                  k.style.cursor = "not-allowed"
                   k.style.backgroundColor = "grey";
                   k.style.color = "white";
                 }
               });
-            });
-
-            loading_spin2.style.display = "none";
-            mytime_slot3.style.display = "block";
-            mytime_slot2.style.display = "block";
-            mytime_slot1.style.display = "block";
+            });*/
+            for (i = 0; i < data["result"].length; i++) {
+              //console.log(data["result"][i]["date"]);
+              for (j = 0; j < bb.length; j++) {
+                //console.log(bb[j][i].childNodes[1].textContent);
+                if (
+                  data["result"][i]["date"] === dstr &&
+                  data["result"][i]["time"] === bb[j].childNodes[1].textContent
+                ) {
+                  console.log(bb[j].childNodes[1].textContent);
+                  console.log("hello");
+                  bb[j].removeAttribute("onclick");
+                  bb[j].style.cursor = "not-allowed";
+                  bb[j].style.backgroundColor = "grey";
+                  //bb[j].style.color = "white";
+                }
+              }
+            }
           });
+        loading_spin2.style.display = "none";
+        mytime_slot3.style.display = "block";
+        mytime_slot2.style.display = "block";
+        mytime_slot1.style.display = "block";
       }
     });
 

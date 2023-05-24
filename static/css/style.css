@@ -972,6 +972,29 @@ a:focus {
   margin-top: 20px;
 }
 
+.mycar-aler2 {
+  display: none;
+  align-items: center;
+  border-left: 3px solid red;
+  padding: 0px;
+  width: 100%;
+  background-color: white;
+  box-shadow: -3px 9px 33px 1px rgba(153,144,144,0.75);
+-webkit-box-shadow: -3px 9px 33px 1px rgba(153,144,144,0.75);
+-moz-box-shadow: -3px 9px 33px 1px rgba(153,144,144,0.75);
+}
+
+.mycar-aler2 i{
+  margin-left: 15px;
+  color: red;
+}
+
+.mycar-aler2 p{
+  margin-left: 15px;
+  color: red;
+  margin-top: 20px;
+}
+
 .panel-container #summary{
   display: none;
 }
@@ -1016,6 +1039,8 @@ a:focus {
   border-bottom-right-radius: 10px;
 
 }
+
+
 
 .next-btn .yesback{
   display: flex;

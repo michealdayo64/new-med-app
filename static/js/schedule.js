@@ -450,6 +450,10 @@ function populateDates() {
                   bb[j].style.backgroundColor = "grey";
                   //bb[j].style.color = "white";
                 }
+                else{
+                  bb[j].setAttribute('onclick',`${selectTime(bb[j].childNodes[1].textContent)}`)
+                }
+                
               }
             }
           });

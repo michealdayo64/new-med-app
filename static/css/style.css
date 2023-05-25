@@ -1333,6 +1333,39 @@ a:focus {
   margin-top: -70px;
 }
 
+/*---- Payment CSS ------*/
+
+.pay-bg{
+  background-color: rgb(177, 177, 177);
+}
+
+.pay-body{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.pay-body h1{
+  color: white;
+}
+
+.pay-body p{
+  color: white;
+  font-size: 20px;
+}
+
+.pay-body li{
+  color: #04AA6D;
+}
+
+.pay-intrusction{
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+/* ---- END ----*/
+
 .feature-item {
   flex-basis: 33.33%;
   margin: 0px 10px;

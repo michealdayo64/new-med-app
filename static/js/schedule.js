@@ -10,7 +10,7 @@ const t4 = document.getElementById("t4");
 const active2 = document.getElementsByClassName("active2");
 const alert = document.getElementsByClassName("mycar-aler")[0];
 const alert2 = document.querySelector(".mycar-aler2");
-const sec_back = document.getElementById("sec-back");
+const back_to_service = document.getElementById("back-to-service");
 var bb = [...document.getElementsByClassName("bb")];
 
 var select_time = document.getElementsByClassName("select-time");
@@ -193,7 +193,7 @@ next_btn1.addEventListener("click", () => {
   }
 });
 
-previous_btn2.addEventListener("click", () => {
+/*previous_btn2.addEventListener("click", () => {
   service.style.display = "none";
   btn_trial.style.display = "none";
   dateandtime.style.display = "block";
@@ -208,7 +208,52 @@ previous_btn2.addEventListener("click", () => {
   next_btn2.style.display = "none";
   space_panel3.style.display = "none";
   datetime_panel.style.display = "flex";
-});
+});*/
+
+// GO BACK TO DATE AND TIME TAB
+function backToDateTime() {
+  service.style.display = "none";
+  if (btn_trial) {
+    btn_trial.style.display = "none";
+  }
+  dateandtime.style.display = "block";
+  datetime_panel.style.display = "flex";
+  t1.classList.remove("active1");
+  t2.classList.add("active2");
+  t3.classList.remove("active3");
+  next_btn1.style.display = "flex";
+  date_picker_ele.style.display = "block";
+  alert.style.display = "none";
+  space_panel2.style.display = "flex";
+  next_btn2.style.display = "none";
+  space_panel3.style.display = "none";
+  datetime_panel.style.display = "flex";
+  space_panel2.style.display = "flex";
+  date_content.style.display = "block";
+  dates_ele.style.display = "block";
+  next_btn.style.display = "none";
+  space_panel1.style.display = "none";
+}
+
+// GO BACK TO NAME TAB
+function backToNameTab() {
+  dateandtime.style.display = "none";
+  datetime_panel.style.display = "none";
+  t1.classList.remove("active1");
+  t2.classList.remove("active2");
+  t3.classList.add("active3");
+  t4.classList.remove("active4");
+  basic_detail.style.display = "block";
+  basicdetail_content.style.display = "block";
+  date_content.style.display = "none";
+  next_btn1.style.display = "none";
+  space_panel2.style.display = "none";
+  space_panel3.style.display = "flex";
+  space_panel4.style.display = "none";
+  next_btn3.style.display = "none";
+  next_btn3.style.display = "flex";
+  summary_content.style.display = "none";
+}
 
 // LAST PANEL CONTENT
 yesback2.addEventListener("click", (e) => {
@@ -418,23 +463,6 @@ function populateDates() {
         })
           .then((res) => res.json())
           .then((data) => {
-            //console.log(data);
-            /*data["result"].forEach((pp) => {
-              //console.log(pp["date"]);
-              bb.forEach((k) => {
-                if (
-                  pp["date"] === dstr &&
-                  pp["time"] === k.childNodes[1].textContent
-                ) {
-                  console.log(pp["time"]);
-                  console.log(k.childNodes[1].textContent);
-                  k.removeAttribute("onclick");
-                  k.style.cursor = "not-allowed"
-                  k.style.backgroundColor = "grey";
-                  k.style.color = "white";
-                }
-              });
-            });*/
             for (i = 0; i < data["result"].length; i++) {
               //console.log(data["result"][i]["date"]);
               for (j = 0; j < bb.length; j++) {

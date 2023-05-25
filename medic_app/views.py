@@ -132,6 +132,10 @@ def getAllAppointment(request):
     payload['result']=data
     return JsonResponse(payload, safe=False)
 
+def paymnent(request):
+    
+    return render(request, 'view/payment.html')
+
 
 def blog(request):
     return render(request, 'view/blog.html')

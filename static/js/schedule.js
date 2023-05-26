@@ -69,6 +69,7 @@ var valuuTime;
 var phoneNum;
 var message;
 var pk;
+var app_pk;
 
 load_schedule_page();
 
@@ -286,7 +287,8 @@ yesback2.addEventListener("click", (e) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data["app_id"]);
+        app_pk = data["app_id"];
         if (app_names) {
           app_names.innerHTML = data["firstname"] + " " + data["lastname"];
         }
@@ -311,6 +313,7 @@ yesback2.addEventListener("click", (e) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data["app_id"]);
+        app_pk = data["app_id"];
         if (app_names) {
           app_names.innerHTML = data["firstname"] + " " + data["lastname"];
         }
@@ -345,6 +348,11 @@ function selectTime(timeId) {
   next_btn2.style.display = "flex";
 }
 
+// BOOK APPOINTMENT
+function bookAppointment() {
+  window.location.href = url + `/payment/${app_pk}/`;
+}
+
 /*-------------------START---------------------------*/
 // CALENDAR CODE
 
@@ -373,23 +381,6 @@ populateDates();
 
 next_month_ele.addEventListener("click", goToNextMonth);
 prev_month_ele.addEventListener("click", goToPrevMonth);
-
-/*function toggleDatePicker(e) {
-  if (!checkClassExist(e.path, "dates-container")) {
-    dates_ele.classList.toggle("active");
-  }
-}*/
-
-/*function checkClassExist(path, selector) {
-  if (path !== undefined) {
-    for (let i = 0; i < path.length; i++) {
-      if (path[i].classList && path[i].classList.contains(selector)) {
-        return true;
-      }
-    }
-  }
-  return false;
-}*/
 
 function goToNextMonth() {
   month++;
@@ -452,6 +443,20 @@ function populateDates() {
         .split("T")[0];
       console.log(dstr);
 
+      function myff() {
+        for (k = 0; k < bb.length; k++) {
+          console.log("man");
+          //bb[j].removeAttribute("onclick");
+          bb[k].setAttribute(
+            "onclick",
+            `${selectTime(bb[k].childNodes[1].id)}`
+          );
+          bb[k].style.cursor = "pointer";
+          bb[k].style.backgroundColor = "white";
+          bb[k].style.color = "black";
+        }
+      }
+
       selected_date_ele.textContent = formatDate(selectedDate);
       selected_date_ele.dataset.value = selectedDate;
 
@@ -463,28 +468,32 @@ function populateDates() {
         })
           .then((res) => res.json())
           .then((data) => {
+            //var plpl = data["result"].find(d => d["date"] === dstr)
+
             for (i = 0; i < data["result"].length; i++) {
               //console.log(data["result"][i]["date"]);
+              //if (data["result"][i]["date"] === dstr) {
               for (j = 0; j < bb.length; j++) {
-                //console.log(bb[j][i].childNodes[1].textContent);
                 if (
-                  data["result"][i]["date"] === dstr &&
-                  data["result"][i]["time"] === bb[j].childNodes[1].textContent
+                  data["result"][i]["date"] == dstr &&
+                  data["result"][i]["time"] == bb[j].childNodes[1].textContent
                 ) {
-                  console.log(bb[j].childNodes[1].textContent);
-                  console.log("hello");
-                  bb[j].removeAttribute("onclick");
-                  bb[j].style.cursor = "not-allowed";
-                  bb[j].style.backgroundColor = "grey";
-                  //bb[j].style.color = "white";
+                  if (bb[j].getAttribute("onclick")) {
+                    bb[j].removeAttribute("onclick");
+                    break;
+                  }
+                  if (bb[j].removeAttribute("onclick")) {
+                    bb[j].setAttribute(
+                      "onclick",
+                      `${selectTime(bb[j].childNodes[1].id)}`
+                    );
+                    break;
+                  }
                 }
-                else{
-                  bb[j].setAttribute('onclick',`${selectTime(bb[j].childNodes[1].textContent)}`)
-                }
-                
               }
             }
           });
+        myff();
         loading_spin2.style.display = "none";
         mytime_slot3.style.display = "block";
         mytime_slot2.style.display = "block";

@@ -17,5 +17,5 @@ urlpatterns = [
     path('booking-order/<id>/', csrf_exempt(bookingDetails), name = 'booking-order-id'),
     path('summary/<id>/', bookingSummary, name = "summary-id"),
     path('get-appointment/', getAllAppointment, name='get-appointment'),
-    path('payment/', paymnent, name='payment')
+    path('payment/<id>/', paymnent, name='payment')
 ]

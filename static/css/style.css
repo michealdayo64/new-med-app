@@ -266,7 +266,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 }
 
 .tab-container{
-  height: 70px;
+  height: 80px;
   width: 100%;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
@@ -280,6 +280,7 @@ border: 1px gray solid;
 }
 
 .tab-container .tab{
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -287,7 +288,7 @@ border: 1px gray solid;
 
 .tab-container p{
   margin-left: 10px;
-  margin-top: 15px;
+  margin-top: 10px;
   font-size: 15px;
   cursor: not-allowed;
 }
@@ -659,6 +660,7 @@ a:focus {
 
 .date-content{
   padding: 20px;
+  overflow-y: scroll;
 }
 
 .basic-content{
@@ -2551,6 +2553,58 @@ body .full-body{
   cursor: pointer;
   opacity: 1;
 }
+
+/*------ START MEDIA QUERIES --------*/
+@media screen and (max-width: 768px) {
+  .tab-container .tab{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+  }
+
+  .tab-container{
+    height: 110px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 6px 21px 86px -15px rgba(31,21,21,0.75);
+  -webkit-box-shadow: 6px 21px 86px -15px rgba(31,21,21,0.75);
+  -moz-box-shadow: 6px 21px 86px -15px rgba(31,21,21,0.75);
+  border: 1px gray solid;
+  }
+
+  .datetime-panel{
+  
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+
+  .mytime{
+    width: 370px;
+    display: block;
+    border: 1px solid gray;
+    margin-left: 10px;
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 15px;
+    padding-top: 20px;
+    margin-top: 350px;
+    margin-right: 10px;
+  }
+}
+
+
+/*-------END MEDIA QUERIE -----------*/
 
 
 

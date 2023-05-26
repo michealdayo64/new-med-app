@@ -38,3 +38,10 @@ class Appointment(models.Model):
 
     def __str__(self):
         return f'{self.user}'
+    
+class Payment(models.Model):
+    app_id = models.ForeignKey(Appointment, null=True, blank=True, on_delete=models.CASCADE)
+    is_payed = models.BooleanField(default=False)
+    payment_IDnumber = models.CharField(null=True, blank=True, max_length=70)
+    created = models.DateTimeField(auto_now_add = True)
+    updated = models.DateTimeField(auto_now_add = True)

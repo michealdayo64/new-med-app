@@ -132,20 +132,6 @@ def getAllAppointment(request):
     payload['result']=data
     return JsonResponse(payload, safe=False)
 
-def paymnent(request):
-    
-    return render(request, 'view/payment.html')
-
-
-def blog(request):
-    return render(request, 'view/blog.html')
-
-def about(request):
-    return render(request, 'view/about.html')
-
-def contact(request):
-    return render(request, 'view/contact.html')
-
 def faq(request):
     if request.method == "POST":
         form = WriteUsForm(request.POST or None)
@@ -159,6 +145,22 @@ def faq(request):
             messages.success(request, "You need to fill the form")     
             return redirect('faq') 
     return render(request, 'view/faq.html')
+
+def paymnent(request, id):
+    app_id = Appointment.objects.get(id = id)
+    print(app_id)
+    return render(request, 'view/payment.html')
+
+
+def blog(request):
+    return render(request, 'view/blog.html')
+
+def about(request):
+    return render(request, 'view/about.html')
+
+def contact(request):
+    return render(request, 'view/contact.html')
+
 
 def private_policy(request):
     return render(request, 'view/private_policy.html')

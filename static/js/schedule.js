@@ -443,7 +443,7 @@ function populateDates() {
         .split("T")[0];
       console.log(dstr);
 
-      function myff() {
+      /*function myff() {
         for (k = 0; k < bb.length; k++) {
           console.log("man");
           //bb[j].removeAttribute("onclick");
@@ -455,7 +455,7 @@ function populateDates() {
           bb[k].style.backgroundColor = "white";
           bb[k].style.color = "black";
         }
-      }
+      }*/
 
       selected_date_ele.textContent = formatDate(selectedDate);
       selected_date_ele.dataset.value = selectedDate;
@@ -493,7 +493,7 @@ function populateDates() {
               }
             }
           });
-        myff();
+        //myff();
         loading_spin2.style.display = "none";
         mytime_slot3.style.display = "block";
         mytime_slot2.style.display = "block";

@@ -12,7 +12,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from .utils import account_activation_token
 import threading
-import validate_email
+#import validate_email
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 
 class EmailThread(threading.Thread):

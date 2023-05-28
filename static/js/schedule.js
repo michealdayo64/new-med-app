@@ -2,11 +2,12 @@
 const btn_trial = document.getElementById("btn-trial");
 const service = document.getElementById("service");
 const dateandtime = document.getElementById("dateandtime");
-const datetime_panel = document.querySelector(".datetime-panel");
+const datetime_panel = document.querySelector("#datetime-panel");
 const t1 = document.getElementById("t1");
 const t2 = document.getElementById("t2");
 const t3 = document.getElementById("t3");
 const t4 = document.getElementById("t4");
+const t5 = document.getElementById("t5");
 const active2 = document.getElementsByClassName("active2");
 const alert = document.getElementsByClassName("mycar-aler")[0];
 const alert2 = document.querySelector(".mycar-aler2");
@@ -34,15 +35,15 @@ const space_panel3 = document.querySelector(".space-panel3");
 const space_panel4 = document.querySelector(".space-panel4");
 const next_btn2 = document.querySelector(".next-btn2");
 const next_btn3 = document.querySelector(".next-btn3");
-const previous_btn2 = document.querySelector(".previous-btn2");
-const yesback2 = document.querySelector(".yesback2");
+//const previous_btn2 = document.querySelector(".previous-btn2");
+const saveAppointment = document.querySelector(".save-appointment");
 const summary_content = document.querySelector(".summary-content");
 const pick_treats = [...document.getElementsByClassName("pick-treat")];
 const ailment_panel = document.querySelector(".ailment-panel");
 var app_names = document.querySelector("#app-name");
 var app_service = document.querySelector("#app-service");
 var app_datetime = document.querySelector("#app-datetime");
-var mytime = document.querySelector(".mytime");
+//var mytime = document.querySelector(".mytime");
 var loading_spin2 = document.querySelector(".dots-bars-9");
 const mytime_slot3 = document.querySelector(".mytime-slot3");
 const mytime_slot2 = document.querySelector(".mytime-slot2");
@@ -51,6 +52,9 @@ const contentdisplay1 = document.querySelector("#content-display1");
 const dots_bars_1 = document.querySelector(".dots-bars-1");
 const service_content = document.querySelector(".service-content");
 const select_service = document.querySelector(".select-service");
+const space_panel5 = document.querySelector(".space-panel5");
+const next_btn4 = document.querySelector(".next-btn4");
+const dots_bars_2 = document.querySelector(".dots-bars-2");
 
 const url = window.location.origin;
 var nhm;
@@ -76,7 +80,7 @@ load_schedule_page();
 function load_schedule_page() {
   contentdisplay1.style.display = "none";
   dots_bars_1.style.display = "block";
-  setTimeout(schd_load1, 5000);
+  setTimeout(schd_load1, 2000);
 }
 
 function schd_load1() {
@@ -84,6 +88,7 @@ function schd_load1() {
   contentdisplay1.style.display = "block";
 }
 
+// BUTTON SERVICE PANEL
 function selectService() {
   space_panel1.style.display = "flex";
   serve_content1.style.display = "block";
@@ -96,12 +101,22 @@ function selectService() {
   }
   select_service.style.display = "block";
   service.style.display = "block";
+  space_panel5.style.display = "none";
+  t1.classList.add("active1");
+  t5.classList.remove("active5");
+  next_btn4.style.display = "none";
+}
+
+// BUTTON APPOITMENT TYPE
+function appType() {
+  space_panel5.style.display = "flex";
+  t2.classList.remove("active2");
+  t5.classList.add("active5");
   space_panel2.style.display = "none";
   date_content.style.display = "none";
   dateandtime.style.display = "none";
   datetime_panel.style.display = "none";
-  t1.classList.add("active1");
-  console.log("hello");
+  next_btn4.style.display = "flex";
 }
 
 // SELECT AILMENT
@@ -109,34 +124,62 @@ pick_treats.forEach((pick_treat) =>
   pick_treat.addEventListener("click", (e) => {
     e.preventDefault();
     pk = pick_treat.getAttribute("data-pk");
-    //console.log(pk);
-    space_panel2.style.display = "flex";
-    date_content.style.display = "block";
+    dots_bars_2.style.display = "none";
+    space_panel5.style.display = "flex";
     service.style.display = "none";
-    dates_ele.style.display = "block";
-    dateandtime.style.display = "block";
-    datetime_panel.style.display = "flex";
     t1.classList.remove("active1");
-    t2.classList.add("active2");
-    next_btn.style.display = "none";
+    t5.classList.add("active5");
     space_panel1.style.display = "none";
     serve_content1.style.display = "none";
-    next_btn1.style.display = "flex";
-    date_picker_ele.style.display = "block";
+    next_btn.style.display = "none";
     alert.style.display = "none";
-
-    populateDates();
+    next_btn4.style.display = "flex";
   })
 );
+
+function selectAilment() {
+  console.log(pk);
+
+  space_panel2.style.display = "flex";
+  date_content.style.display = "block";
+  service.style.display = "none";
+  space_panel5.style.display = "none";
+  dates_ele.style.display = "block";
+  dateandtime.style.display = "block";
+  datetime_panel.style.display = "flex";
+  t5.classList.remove("active5");
+  t2.classList.add("active2");
+  next_btn.style.display = "none";
+  next_btn4.style.display = "none";
+  space_panel1.style.display = "none";
+  serve_content1.style.display = "none";
+  next_btn1.style.display = "flex";
+  date_picker_ele.style.display = "block";
+  alert.style.display = "none";
+
+  populateDates();
+}
 
 // INPUT MESSAGE
 function inputMessage() {
   message = document.querySelector("#message").value;
 }
 
+function inputFirstname() {
+  message = document.querySelector("#firstname").value;
+}
+
+function inputLastname() {
+  message = document.querySelector("#lastname").value;
+}
+
+function inputEmail() {
+  message = document.querySelector("#eamiladdress").value;
+}
+
 // 15MIN TRIAL
 function trialBTN() {
-  service.style.display = "none";
+  /*service.style.display = "none";
   btn_trial.style.display = "none";
   dateandtime.style.display = "block";
   datetime_panel.style.display = "flex";
@@ -158,7 +201,17 @@ function trialBTN() {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-    });
+    });*/
+
+  space_panel5.style.display = "flex";
+  service.style.display = "none";
+  t1.classList.remove("active1");
+  t5.classList.add("active5");
+  space_panel1.style.display = "none";
+  serve_content1.style.display = "none";
+  next_btn.style.display = "none";
+  alert.style.display = "none";
+  next_btn4.style.display = "flex";
 }
 
 // ALERT
@@ -193,23 +246,6 @@ next_btn1.addEventListener("click", () => {
     alert2.style.display = "none";
   }
 });
-
-/*previous_btn2.addEventListener("click", () => {
-  service.style.display = "none";
-  btn_trial.style.display = "none";
-  dateandtime.style.display = "block";
-  datetime_panel.style.display = "flex";
-  t1.classList.remove("active1");
-  t2.classList.add("active2");
-  t3.classList.remove("active3");
-  next_btn1.style.display = "flex";
-  date_picker_ele.style.display = "block";
-  alert.style.display = "none";
-  space_panel2.style.display = "flex";
-  next_btn2.style.display = "none";
-  space_panel3.style.display = "none";
-  datetime_panel.style.display = "flex";
-});*/
 
 // GO BACK TO DATE AND TIME TAB
 function backToDateTime() {
@@ -257,7 +293,7 @@ function backToNameTab() {
 }
 
 // LAST PANEL CONTENT
-yesback2.addEventListener("click", (e) => {
+saveAppointment.addEventListener("click", (e) => {
   e.preventDefault();
   dateandtime.style.display = "none";
   datetime_panel.style.display = "none";
@@ -428,6 +464,8 @@ function populateDates() {
     }
 
     day_element.addEventListener("click", function () {
+      //$(".day").load(location.href + " .day");
+      //mytime - slot1;
       loading_spin2.style.display = "block";
       mytime_slot3.style.display = "none";
       mytime_slot2.style.display = "none";
@@ -443,23 +481,12 @@ function populateDates() {
         .split("T")[0];
       console.log(dstr);
 
-      /*function myff() {
-        for (k = 0; k < bb.length; k++) {
-          console.log("man");
-          //bb[j].removeAttribute("onclick");
-          bb[k].setAttribute(
-            "onclick",
-            `${selectTime(bb[k].childNodes[1].id)}`
-          );
-          bb[k].style.cursor = "pointer";
-          bb[k].style.backgroundColor = "white";
-          bb[k].style.color = "black";
-        }
-      }*/
-
       selected_date_ele.textContent = formatDate(selectedDate);
       selected_date_ele.dataset.value = selectedDate;
-
+      //$(".mytime").load(location.href + " .mytime");
+      //$(".mytime-slot1").load(location.href + " .mytime-slot1");
+      //$(".mytime-slot2").load(location.href + " .mytime-slot2");
+      //$(".mytime-slot3").load(location.href + " .mytime-slot3");
       setTimeout(myGG, 5000);
       function myGG() {
         fetch(`${url}/get-appointment/`, {
@@ -470,30 +497,22 @@ function populateDates() {
           .then((data) => {
             //var plpl = data["result"].find(d => d["date"] === dstr)
 
-            for (i = 0; i < data["result"].length; i++) {
-              //console.log(data["result"][i]["date"]);
-              //if (data["result"][i]["date"] === dstr) {
-              for (j = 0; j < bb.length; j++) {
+            data["result"].forEach((i) => {
+              bb.forEach((j) => {
                 if (
-                  data["result"][i]["date"] == dstr &&
-                  data["result"][i]["time"] == bb[j].childNodes[1].textContent
+                  dstr == i["date"] &&
+                  j.childNodes[1].textContent == i["time"]
                 ) {
-                  if (bb[j].getAttribute("onclick")) {
-                    bb[j].removeAttribute("onclick");
-                    break;
-                  }
-                  if (bb[j].removeAttribute("onclick")) {
-                    bb[j].setAttribute(
-                      "onclick",
-                      `${selectTime(bb[j].childNodes[1].id)}`
-                    );
-                    break;
-                  }
+                  console.log(j.childNodes[1].textContent);
+                  j.removeAttribute("onclick");
+                  j.style.backgroundColor = "grey";
+                  return;
                 }
-              }
-            }
+              });
+            });
           });
         //myff();
+
         loading_spin2.style.display = "none";
         mytime_slot3.style.display = "block";
         mytime_slot2.style.display = "block";

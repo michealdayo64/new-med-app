@@ -209,11 +209,11 @@ def resetPass(request, uidb64, token):
             user = Account.objects.get(pk = user_id)
             user.set_password(password1)
             user.save()
-            if not PasswordResetTokenGenerator().check_token(user, token):
+            if PasswordResetTokenGenerator().check_token(user, token):
                 messages.info(request, 'Password link invalid, Pls request for a new one')
-                return render(request, "auth/reset_pass.html")
+                return redirect('forgot-pass')
             messages.info(request, "Password was set successfully")
-            redirect('login')
+            return redirect('login')
         except Exception as identifier:
             messages.info(request, 'something went wrong')
             return render(request, "auth/reset_pass.html")

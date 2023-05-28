@@ -26,7 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+#DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
 
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
@@ -37,6 +38,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 CSRF_TRUSTED_ORIGINS = ['https://www.amitopcare.com']
 
 ALLOWED_HOSTS = ['www.amitopcare.com', 'amitopcare.com']
+#ALLOWED_HOSTS = ['www.amitopcare.com/amitop', 'amitopcare.com/amitop']
 #ALLOWED_HOSTS = []
 
 
@@ -120,24 +122,24 @@ WSGI_APPLICATION = 'medical.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}'''
+}
 
 
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'amitopdb', 
         'USER': 'amitop', 
         'PASSWORD': 'Silverspooon05_',
-        'HOST': 'localhost', 
+        'HOST': '127.0.0.1', 
         'PORT': '3306',
     }
-}
+}'''
 
 
 

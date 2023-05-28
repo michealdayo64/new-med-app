@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Schedule - AmiTop Care LLC{% endblock %}
+{% block title %}Patient Scheduling - AmiTop Care LLC{% endblock %}
 
 {% block content %} 
  
@@ -25,6 +25,28 @@
     </div>
   </section>
 
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Intake</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <p style="color: green;">email us at: <a href="mailto:amitopcarellc@gmail.com">amitopcarellc@gmail.com</a></p>
+         Or
+         <p style="color: green;">Call: +1-339-237-2599 to book a one hour appointment with us</p> 
+        </div>
+        <div class="modal-footer">
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
   <section class="schedule">
     <div class="dots-bars-1"></div>
     <div class="container" id="content-display1">
@@ -41,6 +63,10 @@
             <i class="icofont-server"></i>
             <p>Select Service</p>
         </div>
+        <div class="tab" id="t5">
+          <i class="icofont-law-book"></i>
+          <p>Book As</p>
+      </div>
         <div class="tab" id="t2">
             <i class="icofont-ui-calendar"></i>
             <p>Date & Time</p>
@@ -57,6 +83,7 @@
     <br>
     <br>
     <div class="panel-container">
+      
         <div class="space-panel1">
           <div class="serve-content1">
           <div class="mycar-aler">
@@ -114,15 +141,36 @@
          </div>
         </div>
 
+        <!-- Modal -->
+
+
+    <div class="space-panel5">
+      <div class="dots-bars-2"></div>
+        <div>
+          <p>Select one to book as New-Intake or Roll-Over</p>
+        </div>
+        
+        <div class="intakes">
+          <p id="new-intake" data-toggle="modal" data-target="#exampleModal">New Intake</p>
+          <p>|</p>
+          <p id="roll-over" onclick="selectAilment()">Roller Over</p>
+        </div>
+        <div class="next-btn4" onclick="selectService()">
+          <p>Back</p>
+        </div>
+    </div>
+
 
         <div class="space-panel2">
+          
           <div class="date-content">
             <div class="mycar-aler2">
               <i class="icofont-power"></i><p>Please select a date to fix an appointment</p>
             </div>
           <a id="dateandtime">Date and Time</a>
-          <div class="datetime-panel">
+          <div id="datetime-panel">
               
+                
               <div class="date-picker-wrapper" id="date-wrapper">
                 <div class="selected-date"></div>
           
@@ -136,8 +184,9 @@
                   <div class="days-container"></div>
                 </div>
               </div>
+           
             
-            <div class="mytime">
+            <div class="mytime" id="reload">
               <h3>Time Slot</h3>
               <div class="dots-bars-9"></div>
               <div class="mytime-slot1">
@@ -272,11 +321,13 @@
                 </div>
               </div>
               </div>
+              
+          
             </div>
             
           </div>
           <div class="next-btn1" id="sec-back">
-            <p onclick="selectService()"><i class="icofont-arrow-left"></i>back</p>
+            <p onclick="appType()"><i class="icofont-arrow-left"></i>back</p>
             <div class="yesback1">
               <p>Next:</p>
               <p>Date & Time <i class="icofont-arrow-right"></i></p>
@@ -290,13 +341,13 @@
           <div class="basicdetail-content">
             <form action="" method="post">
             <label for="">First Name<a>*</a></label><br>
-            <input type="text" name="firstname" placeholder="Enter your first name" value="{{ request.user.first_name }}" id="firstname">
+            <input type="text" name="firstname" placeholder="Enter your first name" value="{% if request.user.first_name %} {{ request.user.first_name }} {% endif %}" onchange="inputFirstname()" id="firstname">
             <p></p>
             <label for="">Last Name<a>*</a></label><br>
-            <input type="text" name="lastname" placeholder="Enter your last name" value="{{ request.user.last_name }}" id="lastname">
+            <input type="text" name="lastname" placeholder="Enter your last name" value="{% if request.user.last_name %} {{ request.user.last_name }} {% endif %}" onchange="inputLastname()" id="lastname">
             <p></p>
             <label for="">Email Address<a>*</a></label><br>
-            <input type="email" name="eamiladdress" placeholder="Enter your email address" value="{{ request.user.email }}" id="eamiladdress">
+            <input type="email" name="eamiladdress" placeholder="Enter your email address" value="{% if request.user.email %} {{ request.user.email }} {% endif %}" onchange="inputEmail()" id="eamiladdress">
             <p></p>
             <label for="">Phone Number<a>*</a></label><br>
             <input type="tel" name="" id="phone">
@@ -309,8 +360,7 @@
         </div>
         <div class="next-btn2" id="sec-back">
           <p class="previous-btn2" onclick="backToDateTime()"><i class="icofont-arrow-left"></i>back</p>
-          <div class="yesback2">
-            
+          <div class="save-appointment">
             <p>Save<i class="icofont-arrow-right"></i></p>
           </div>
        </div>

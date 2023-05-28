@@ -1,13 +1,26 @@
 from datetime import datetime
 from django.shortcuts import render, redirect
-from .models import Ailments, Appointment
+from .models import Ailments, Appointment, Payment
 from auths.models import Account
 from django.http import JsonResponse
 import json
 from django.contrib import messages
 from .forms import WriteUsForm
+from django.contrib.auth.decorators import login_required
+from django.core.mail import EmailMessage
+from django.conf import settings
+import threading
 
 # Create your views here.
+
+class EmailThread(threading.Thread):
+
+    def __init__(self, email):
+        self.email = email
+        threading.Thread.__init__(self)
+
+    def run(self):
+        self.email.send(fail_silently = False)
 
 def index(request):
     ailment_list = Ailments.objects.all()
@@ -132,6 +145,8 @@ def getAllAppointment(request):
     payload['result']=data
     return JsonResponse(payload, safe=False)
 
+
+
 def faq(request):
     if request.method == "POST":
         form = WriteUsForm(request.POST or None)
@@ -146,9 +161,26 @@ def faq(request):
             return redirect('faq') 
     return render(request, 'view/faq.html')
 
+
+@login_required
 def paymnent(request, id):
-    app_id = Appointment.objects.get(id = id)
-    print(app_id)
+    user = request.user
+    if request.method == "POST":
+        upload_pay = request.FILES.get('upload_pay')
+        app_id = Appointment.objects.get(id = id)
+        app_id.is_booked = True
+        app_id.save()
+
+        Payment.objects.create(user = user, app_id = app_id, is_payed = True, payment_prove = upload_pay)
+        subject = "Appointment Booking"
+        message =  f"Dear, {user.first_name}, {user.last_name}, You have just booked an appointment Successfully for the treatment of {app_id.ailment_id.title}"
+        mail_from = settings.EMAIL_HOST_USER
+        mail_to = [user.email, 'omotoshomicheal93@gmail.com']
+        email = EmailMessage(subject, message, mail_from, mail_to)
+        EmailThread(email).start()
+        messages.success(request, 'You have payed Successful')
+        return redirect('index')
+    #print(app_id)
     return render(request, 'view/payment.html')
 
 

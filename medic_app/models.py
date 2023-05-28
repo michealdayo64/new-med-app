@@ -40,8 +40,10 @@ class Appointment(models.Model):
         return f'{self.user}'
     
 class Payment(models.Model):
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True)
     app_id = models.ForeignKey(Appointment, null=True, blank=True, on_delete=models.CASCADE)
     is_payed = models.BooleanField(default=False)
+    payment_prove = models.ImageField(upload_to='media', null = True, blank=True)
     payment_IDnumber = models.CharField(null=True, blank=True, max_length=70)
     created = models.DateTimeField(auto_now_add = True)
     updated = models.DateTimeField(auto_now_add = True)

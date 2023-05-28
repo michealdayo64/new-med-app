@@ -32,6 +32,15 @@
           
           <div class="login-form">
             <div class="title">Reset Password</div>
+            {% if messages %}
+            {% for message in messages %}
+            
+              <div class="alert alert-warning alert-dismissable" role="alert">
+                {{message}}
+              </div>
+            
+            {% endfor %}
+          {% endif %}
           <form action="#" method="post">{% csrf_token %}
             <div class="input-boxes">
               <div class="input-box">

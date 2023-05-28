@@ -23,13 +23,15 @@
             </ol>
 
             <div class="pay-data">
-                <p>hello</p>
+                <p>Acc Number: 465323455</p>
+                <p>Account Name: Amitop LCC</p>
+                <p>Bank Name: First Bank</p>
             </div>
 
         </div>       
-        <form action="">
+        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
                     <div>
-                        <input type="submit" value="upload payment prove">
+                       <span class="upload-payment">Uploap payment Prove </span><input type="file" name="upload_pay">
                         <input type="submit" value="Pay">
                     </div>
                 </form>

@@ -358,6 +358,63 @@ border: 1px gray solid;
   cursor: pointer;
 }
 
+.tab-container .active5 i{
+  color: white;
+  background-color: #04AA6D;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.tab-container .active5 p{
+  color: #04AA6D;
+  cursor: pointer;
+}
+
+.space-panel5{
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.space-panel5 div p{
+  padding: 10px;
+}
+
+.intakes{
+  display: flex;
+  align-items: center;
+  margin: auto;
+  
+  
+}
+
+.intakes #new-intake{
+  margin-right: 10px;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 8px 5px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 2px 8px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 2px 8px 5px 0px rgba(0,0,0,0.75);
+}
+
+.intakes #roll-over{
+  margin-left: 10px;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 8px 5px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 2px 8px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 2px 8px 5px 0px rgba(0,0,0,0.75);
+}
+
 
 
 /*-------END------------*/
@@ -731,7 +788,7 @@ a:focus {
   display: none;
 }
 
-.datetime-panel{
+#datetime-panel{
   
   width: 100%;
   display: none;
@@ -741,7 +798,7 @@ a:focus {
 
 
 .mytime{
-  width: 500px;
+  width: 100%;
   display: block;
   border: 1px solid gray;
   margin-left: 10px;
@@ -887,6 +944,14 @@ a:focus {
 }
 
 /*---------------END------------------------*/
+
+.upload-payment{
+  color: white
+}
+
+.style-input{
+  padding-top: 20px;
+}
 
 #avatar-img{
   height: 30px;
@@ -1102,7 +1167,7 @@ a:focus {
   border-bottom-right-radius: 10px;
 }
 
-.next-btn2 .yesback2{
+.next-btn2 .save-appointment{
   display: flex;
   padding: 10px;
   background-color: #04AA6D;
@@ -1119,11 +1184,11 @@ a:focus {
   cursor: pointer;
 }
 
-.next-btn2 .yesback2 p{
+.next-btn2 .save-appointment p{
   color: white;
 }
 
-.next-btn2 .yesback2 h6{
+.next-btn2 .save-appointment h6{
   color: white;
 }
 
@@ -1160,6 +1225,18 @@ a:focus {
 
 .next-btn3 .yesback3 h6{
   color: white;
+}
+
+.next-btn4{
+  display: flex;
+  background-color: rgb(238, 234, 234);
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  cursor: pointer;
+
 }
 
 .banner .block {
@@ -2564,6 +2641,12 @@ body .full-body{
     
   }
 
+  .tab-container .tab p{
+    display: none;
+    
+    
+  }
+
   .tab-container{
     height: 110px;
     width: 100%;
@@ -2578,29 +2661,46 @@ body .full-body{
   border: 1px gray solid;
   }
 
-  .datetime-panel{
+  .mytime{
+    margin-top: 400px;
+    width: 100%;
+    margin-right: 50px;
+  }
+
+  #datetime-panel{
   
     width: 100%;
-    display: none;
+    display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
     
   }
 
-  .mytime{
-    width: 370px;
-    display: block;
-    border: 1px solid gray;
-    margin-left: 10px;
+  .panel-container .service-content{
+    padding: 20px;
     height: 400px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    padding: 15px;
-    padding-top: 20px;
-    margin-top: 350px;
-    margin-right: 10px;
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 10px;
+    display: block;
+    border: 1px solid green;
+    cursor: pointer;
   }
+
+  .date-picker-wrapper {
+    width: 100%;
+    max-width: 500px;
+    
+    background-color: rgb(226, 224, 224);
+    box-shadow: 0px 3px 10px rgba(94, 88, 88, 0.2);
+    display: none;
+    cursor: pointer;
+    user-select: none;
+   
+  }
+  
+
+  
 }
 
 

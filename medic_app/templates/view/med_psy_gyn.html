@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Private Policy - AmiTop Care LLC{% endblock %}
+
+{% block content %} 
+
+<section class="section service-2">
+	<div class="container">
+        <div class="row justify-content-center">
+			<div class="col-lg-7 text-center">
+				<div class="section-title">
+					<h2 style="font-size: 25px; text-decoration: underline;">Psychiatric/Mental Health Services offered</h2>
+				</div>
+			</div>
+		</div>
+
+        <div class="container line-rule">
+            <div class="row justify-content-center">
+                {% for i in ailment_list %}
+                <div class="col-6">
+                    <ul class="ailment-ol">
+                        <li class="ailment">{{ i.title }}</li>
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+            <br>
+            <br>
+            <hr style="height: 20px; color: black;">
+            <h1>
+                Medication Management</h1>
+                <p>If you struggle with depression, anxiety, or another mental health condition, medication can help control your symptoms so they don’t prevent you from living a life of quality. Good Path Health Services offers expert medication management to adults for a wide range of conditions, including post-traumatic stress disorder (PTSD), attention-deficit hyperactivity disorder, (ADHD), and more. If you think medication may help you gain control of your life, schedule a psychiatric diagnostic evaluation with Onyebuchi Ogbo, PMHNP by calling the office in Dedham, Massachusetts, today, or making an appointment online.</p>
+                <h3>What is medication management?</h3>
+                <p>Antidepressants, anti-anxiety drugs, anti-psychotics, and other types of psychiatric medications help control symptoms so people with mental health conditions can function better.</p>
+                <p>But these powerful medications can be detrimental to your physical and emotional health if the dose is too high, the medicine isn’t right for your condition, or you aren’t using the medication properly.</p>
+            </div>
+    </div>
+</section>
+
+<section class="section">
+
+</section>
+
+{% endblock %}

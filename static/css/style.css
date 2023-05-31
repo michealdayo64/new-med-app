@@ -540,6 +540,22 @@ a:focus {
 
 .section-title h2 {
   color: #223a66;
+  font-size: 30px;
+
+}
+
+.ailment{
+  font-weight: bold;
+  color: #152440;
+}
+
+.ailment-ol{
+  color: red;
+}
+
+.line-rule hr{
+  color: black;
+  size: 30px;
 }
 
 .text-lg {
@@ -1611,6 +1627,10 @@ a:focus {
   justify-content: center;
 } 
 
+.content-service p{
+  text-align: justify;
+}
+
 .card .write-form button i{
   font-size: 30px;
   margin-left: 10px;
@@ -1739,6 +1759,8 @@ body .full-body{
 .service .content {
   clear: both;
 }
+
+
 
 .service-block {
   padding: 20px;

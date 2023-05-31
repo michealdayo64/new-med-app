@@ -183,6 +183,8 @@ def paymnent(request, id):
     #print(app_id)
     return render(request, 'view/payment.html')
 
+def theProvider(request):
+    return render(request, 'view/the_provider.html')
 
 def blog(request):
     return render(request, 'view/blog.html')

@@ -1,11 +1,13 @@
 from django.urls import path
-from .views import index, about, blog, contact, booking_page, faq, private_policy, t_and_c, fifteenMinBook, bookingDetails, bookingSummary, getAllAppointment, paymnent
+from .views import  (index, about, blog, contact, booking_page, faq, private_policy, t_and_c,
+     fifteenMinBook, bookingDetails, bookingSummary, getAllAppointment, paymnent, theProvider)
 from django.views.decorators.csrf import csrf_exempt
 
 
 urlpatterns = [
     path('', index, name = 'index'),
     path('about-page/', about, name = 'about'),
+    path('the-provider/', theProvider, name = 'the-provider'),
    path('blog-page/', blog, name = 'blog'),
    path('contact-page/', contact, name='contact'),
    path('booking-page/', booking_page, name = 'booking'),

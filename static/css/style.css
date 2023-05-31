@@ -594,7 +594,7 @@ a:focus {
   position: absolute;
   display: block;
   background: #fff;
-  min-width: 240px;
+  min-width: 260px;
   top: 130%;
   left: 0;
   right: 0px;

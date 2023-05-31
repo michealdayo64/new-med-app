@@ -28,7 +28,7 @@
 					<span class="text-uppercase text-sm letter-spacing ">Total Health care solution</span>
 					<h1 class="mb-3 mt-3">A Judgement free Patient Centered Psychiatrics care with integrative cultural sensitivity approach.</h1>
 					
-					<p class="mb-4 pr-5">Medication Management, Psychotherapy & Psychogenomic Testing. We also offer services to Hindi, Punjabi, Urdu, Bengali, and Bhojpuri speaking patients.</p>
+					
 					<div class="btn-container ">
 						{% if request.user.is_authenticated %}
 						<a href="{% url 'booking' %}" target="_blank" class="btn btn-main-2 btn-icon btn-round-full">Book Appointments<i class="icofont-simple-right ml-2  "></i></a>
@@ -100,11 +100,11 @@
 				<div class="about-img mt-4 mt-lg-0">
 					<img src="{% static 'images/ceo.jpeg' %}" alt="" class="img-fluid">
 				</div>
-				<h3 style="margin-top: 20px; color: #223a66;">Abidemi (Aminat) AmiTop - PMHNP - BC</h3>
+				<h3 style="margin-top: 20px; color: #223a66;">Aminat PMHNP - BC</h3>
 			</div>
 			<div class="col-lg-6">
 				<div class="about-content pl-4 mt-4 mt-lg-0">
-					<h2 class="title-color">About Me</h2>
+					<h2 class="title-color">About The Provider</h2>
 					<p class="mt-4 mb-5" style="text-align: justify;">My name is Amina, I am a Board-Certified Psychiatric Mental Health Nurse Practitioner providing services to adults and geriatrics with cultural sensitivities through telehealth/in person/ in senior care facilities.  My background includes working with patients who struggle with a variety of challenges life may present to us, including working with patients struggling with all mental health diagnoses. I provide compassionate and judgement-free care and integrative collaborative approach. I possess strong clinical skills enhanced by natural ability to build rapport with patients and families.  I believe that one of the most important things that I can do as a provider is to partner with my patients and provide education about various treatment options to allow patients to make an informed decision about what the best care for them will be. I provide a thorough psychiatric evaluation that considers current symptoms, prior experiences, medical history, lifestyle, and health habits to identify mental health concerns and work with you to find a treatment plan that best meets your goals. I view medication as one of many tools that we have to build resiliency. I work with patients to develop a comprehensive patient treatment plan that incorporates all aspects of wellness into their care. My purpose is to help patient achieve their mental health goals and mental wellness by working together to find the best treatment plan that incorporates medication/psychotherapy and lifestyle changes.</p>
 
 					<a href="{% url 'about' %}" class="btn btn-main-2 btn-round-full btn-icon">More About Us<i class="icofont-simple-right ml-3"></i></a>
@@ -130,26 +130,38 @@
 			</div>
 		</div>
 
-		<div class="row">
-			{% for i in ailment_list %}
-			<div class="col-lg-3 col-md-3 col-sm-3">
-				<div class="service-item mb-4">
-					<div class="icon d-flex align-items-center">
-						{% if i.image_icon %}
-						<img src="{{ i.image_icon.url }}" alt="" srcset="">
-						{% endif %}
-						<p class="mt-3 mb-3">{{ i.title }}</p>
-					</div>
-
-					
+		<div class="row justify-content-center">
+			<div class="col-lg-3 col-md-6">
+				<div class="about-block-item mb-5 mb-lg-0">
+					<a href="#">
+					<img src="{% static 'images/about/about-1.jpg' %}" alt="" class="img-fluid w-100">
+					<h4 class="mt-3 text-center">MEDICATION MANAGEMENT</h4>
+				</a>
 				</div>
 			</div>
-			{% endfor %}
+			<div class="col-lg-3 col-md-6">
+				<div class="about-block-item mb-5 mb-lg-0">
+					<a href="#">
+					<img src="{% static 'images/about/about-2.jpg' %}" alt="" class="img-fluid w-100">
+					<h4 class="mt-3 text-center">PSYCHOTHERAPY & COUNSELING</h4>
+				</a>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="about-block-item mb-5 mb-lg-0">
+					<a href="#">
+					<img src="{% static 'images/about/about-4.jpg' %}" alt="" class="img-fluid w-100">
+					<h4 class="mt-3 text-center">GENOMIC
+						TESTING</h4>
+					</a>
+				</div>
+			</div>
 
 			
 		</div>
 	</div>
 </section>
+
 
 <section class="section appoinment">
 	<div class="container">
@@ -205,7 +217,7 @@
 								<i class="icofont-ui-call ml-2"></i>
 								<div class="num-place">
 									<a>Hampden Drive Norwood</a><br>
-									<a>823-4565-13456</a>
+									<a>+1-339-237-2599 </a>
 								</div>
 							</div>
 						</div>
@@ -213,8 +225,8 @@
 							<div class="place-num">
 								<i class="icofont-ui-call ml-2"></i>
 								<div class="num-place">
-									<a>Hampden Drive Norwood</a><br>
-									<a>823-4565-13456</a>
+									<a>Union Place Dedham</a><br>
+									<a>+1(781) 291-5976</a>
 								</div>
 							</div>
 						</div>
@@ -366,7 +378,7 @@
 		</div>
 	</div>
 
-	<div class="container">
+	<!--<div class="container">
 		<div class="row clients-logo">
 			<div class="col-lg-2">
 				<div class="client-thumb">
@@ -419,6 +431,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 </section>
 {% endblock %}

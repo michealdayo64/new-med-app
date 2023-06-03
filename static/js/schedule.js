@@ -134,6 +134,7 @@ pick_treats.forEach((pick_treat) =>
     next_btn.style.display = "none";
     alert.style.display = "none";
     next_btn4.style.display = "flex";
+    //populateDates();
   })
 );
 
@@ -166,43 +167,19 @@ function inputMessage() {
 }
 
 function inputFirstname() {
-  message = document.querySelector("#firstname").value;
+  firstname = document.querySelector("#firstname").value;
 }
 
 function inputLastname() {
-  message = document.querySelector("#lastname").value;
+  lastname = document.querySelector("#lastname").value;
 }
 
 function inputEmail() {
-  message = document.querySelector("#eamiladdress").value;
+  emailaddress = document.querySelector("#eamiladdress").value;
 }
 
 // 15MIN TRIAL
 function trialBTN() {
-  /*service.style.display = "none";
-  btn_trial.style.display = "none";
-  dateandtime.style.display = "block";
-  datetime_panel.style.display = "flex";
-  t1.classList.remove("active1");
-  t2.classList.add("active2");
-  next_btn.style.display = "none";
-  space_panel1.style.display = "none";
-  serve_content1.style.display = "none";
-  next_btn1.style.display = "flex";
-  date_picker_ele.style.display = "block";
-  alert.style.display = "none";
-  space_panel2.style.display = "flex";
-  populateDates();
-
-  fetch(`${url}/fifteen-min/`, {
-    body: null,
-    method: "POST",
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-    });*/
-
   space_panel5.style.display = "flex";
   service.style.display = "none";
   t1.classList.remove("active1");
@@ -413,7 +390,7 @@ date_selected = formatDate(date);
 selected_date_ele.textContent = formatDate(date);
 selected_date_ele.dataset.value = selectedDate;
 
-populateDates();
+//populateDates();
 
 next_month_ele.addEventListener("click", goToNextMonth);
 prev_month_ele.addEventListener("click", goToPrevMonth);
@@ -464,9 +441,17 @@ function populateDates() {
     }
 
     day_element.addEventListener("click", function () {
-      //$(".day").load(location.href + " .day");
-      //mytime - slot1;
       loading_spin2.style.display = "block";
+
+      setTimeout(bookAppByDateTime1, 3000);
+      function bookAppByDateTime1() {
+        bb.forEach((j) => {
+          j.style.backgroundColor = "white";
+          let child = j.firstElementChild;
+          child.classList.remove("disable-link");
+        });
+      }
+
       mytime_slot3.style.display = "none";
       mytime_slot2.style.display = "none";
       mytime_slot1.style.display = "none";
@@ -483,41 +468,38 @@ function populateDates() {
 
       selected_date_ele.textContent = formatDate(selectedDate);
       selected_date_ele.dataset.value = selectedDate;
-      //$(".mytime").load(location.href + " .mytime");
-      //$(".mytime-slot1").load(location.href + " .mytime-slot1");
-      //$(".mytime-slot2").load(location.href + " .mytime-slot2");
-      //$(".mytime-slot3").load(location.href + " .mytime-slot3");
-      setTimeout(myGG, 5000);
-      function myGG() {
-        fetch(`${url}/get-appointment/`, {
-          body: null,
-          method: "GET",
+
+      setTimeout(bookAppByDateTime2, 3000);
+      function bookAppByDateTime2() {
+        fetch(`${url}/get-app-by-date/`, {
+          body: JSON.stringify({
+            date: dstr,
+          }),
+          method: "POST",
         })
           .then((res) => res.json())
           .then((data) => {
-            //var plpl = data["result"].find(d => d["date"] === dstr)
-
+            console.log(data);
             data["result"].forEach((i) => {
               bb.forEach((j) => {
                 if (
-                  dstr == i["date"] &&
-                  j.childNodes[1].textContent == i["time"]
+                  dstr === i["date"] &&
+                  j.childNodes[1].textContent.trim() === i["time"]
                 ) {
-                  console.log(j.childNodes[1].textContent);
-                  j.removeAttribute("onclick");
+                  console.log(dstr === i["date"]);
+                  let child = j.firstElementChild;
+                  child.classList.add("disable-link");
                   j.style.backgroundColor = "grey";
-                  return;
                 }
               });
             });
           });
-        //myff();
-
-        loading_spin2.style.display = "none";
-        mytime_slot3.style.display = "block";
-        mytime_slot2.style.display = "block";
-        mytime_slot1.style.display = "block";
       }
+
+      loading_spin2.style.display = "none";
+      mytime_slot3.style.display = "block";
+      mytime_slot2.style.display = "block";
+      mytime_slot1.style.display = "block";
     });
 
     days_ele.appendChild(day_element);

@@ -558,6 +558,26 @@ a:focus {
   size: 30px;
 }
 
+.line-rule h1{
+  color: #01225f;
+}
+
+.line-rule h3{
+  color: #000;
+}
+
+.line-rule p{
+  color: #000;
+}
+
+.line-rule i{
+  color: #000;
+}
+
+.line-rule i a{
+  color: red;
+}
+
 .text-lg {
   font-size: 50px;
 }
@@ -837,6 +857,10 @@ a:focus {
   display: none;
 }
 
+.disable-link{
+  pointer-events: none;
+  cursor: default;
+}
 
 
 .bb{
@@ -890,9 +914,7 @@ a:focus {
   background-color: #fff;
 }
 
-.active {
-  visibility: visible;
-}
+
 
 .month {
   display: flex;

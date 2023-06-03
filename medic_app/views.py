@@ -139,6 +139,10 @@ def bookingSummary(request, id):
         return JsonResponse(json.dumps(payload), safe=False)
 
 
+def newPatientIntakeForm(request):
+    pass
+
+
 def getAllAppointment(request):
     payload = {}
     data = []
@@ -150,6 +154,24 @@ def getAllAppointment(request):
         })
     payload['result'] = data
     return JsonResponse(payload, safe=False)
+
+
+def getAppointmentTimeByDate(request):
+    # date = request.POST.get
+    payload = {}
+    ns = json.loads(request.body)
+    date = ns['date']
+    data = []
+    # strdate = datetime.strptime(date, '%d-%m-%Y')
+    app = Appointment.objects.filter(date=date)
+    print(app)
+    for i in app:
+        data.append({
+            'date': i.date,
+            'time': i.appointment_time
+        })
+    payload['result'] = data
+    return JsonResponse((payload), safe=False)
 
 
 def faq(request):

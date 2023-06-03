@@ -74,7 +74,7 @@
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="{% url 'services' %}" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Appointments</a>
 				<ul class="dropdown-menu" aria-labelledby="dropdown03">
-					<li><a class="dropdown-item" href="#"><i class="icofont-thin-down"></i>New Intake Patient Form</a></li>
+					<li><a class="dropdown-item" href="{% url 'new-intake' %}"><i class="icofont-thin-down"></i>New Intake Patient Form</a></li>
 					{% if request.user.is_authenticated %}
 					<li><a class="dropdown-item" href="{% url 'booking' %}"><i class="icofont-thin-down"></i>Rollover Patient</a></li>
 					{% else %}

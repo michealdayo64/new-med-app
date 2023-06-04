@@ -74,7 +74,11 @@
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="{% url 'new-intake' %}" id="dropdown03" aria-haspopup="true" aria-expanded="false">Appointments</a>
 				<ul class="dropdown-menu" aria-labelledby="dropdown03">
+					{% if request.user.is_authenticated %}
 					<li><a class="dropdown-item" href="{% url 'new-intake' %}"><i class="icofont-thin-down"></i>New Intake Patient Form</a></li>
+					{% else %}
+					<li><a class="dropdown-item" href="{% url 'index' %}"><i class="icofont-thin-down"></i>New Intake Patient Form</a></li>
+					{% endif %}
 					{% if request.user.is_authenticated %}
 					<li><a class="dropdown-item" href="{% url 'booking' %}"><i class="icofont-thin-down"></i>Rollover Patient</a></li>
 					{% else %}

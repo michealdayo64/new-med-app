@@ -95,6 +95,13 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   border: 1px solid #223a66;
 }
 
+form span{
+  color: red;
+}
+form label{
+  color: #01225f;
+}
+
 .py-7 {
   padding: 7rem 0px;
 }
@@ -391,6 +398,10 @@ border: 1px gray solid;
   
 }
 
+.intake-new h1{
+  color: #01225f;
+}
+
 .intakes #new-intake{
   margin-right: 10px;
   padding: 10px;
@@ -524,6 +535,20 @@ a:focus {
     font-size: 1.3rem;
     line-height: 36px;
   }
+}
+
+.day-week{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.day-week span{
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .title-color {
@@ -701,7 +726,7 @@ a:focus {
 }
 
 .panel-container{
-  height: 700px;
+  height: 800px;
   width: 100%;
   border: 1px solid gray;
   border-radius: 10px;
@@ -749,11 +774,13 @@ a:focus {
   padding: 20px;
   border-radius: 5px;
   overflow-y: scroll;
+  height: 100%;
 }
 
 .date-content{
   padding: 20px;
   overflow-y: scroll;
+  height: 100%;
 }
 
 .basic-content{
@@ -961,8 +988,10 @@ a:focus {
   background-color: green;
 }
 
-.days-container .day .selected {
+.days-container .selected {
   background-color: green;
+  border-radius: 100%;
+  color: white;
 }
 
 .all-form label{
@@ -1936,6 +1965,10 @@ body .full-body{
   color: #223a66;
 }
 
+.all-input input{
+  width: 500px;
+}
+
 .cta-section {
   margin-bottom: -80px;
 }
@@ -2137,6 +2170,8 @@ body .full-body{
   border-radius: 10px;
   background-color: white;
 }
+
+
 
 .wework-block img {
   height: 50px;
@@ -2474,6 +2509,11 @@ body .full-body{
   padding-bottom: 15px;
 }
 
+.select{
+  width: 500px;
+  height: 40px;
+}
+
 .sidebar-widget h5:before {
   position: absolute;
   content: "";
@@ -2546,6 +2586,8 @@ body .full-body{
   border-bottom: 1px solid #eee;
 }
 
+
+
 .search-form {
   position: relative;
 }
@@ -2554,6 +2596,24 @@ body .full-body{
   position: absolute;
   right: 15px;
   top: 35%;
+}
+
+.mycheck{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+}
+
+
+
+.mycheck input{
+  width: 20px;
+}
+
+.mycheck label{
+  margin-left: 15px;
+  margin-top: 10px;
 }
 
 .footer {
@@ -2742,9 +2802,166 @@ body .full-body{
     user-select: none;
    
   }
-  
+
+  .new-intake{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+  }
+
+.new-intake label{
+  color: #01225f;
+}
+
+.new-intake h1{
+  color: #01225f;
+}
+
+
+.all-input input{
+  width: 100%;
+}
+
+  .firstlast input{
+    margin-top: 20px;
+    width: 100%;
+  }
+
+.select{
+  width: 100%;
+  height: 40px;
+}
+
+.day-week{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.day-week span{
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
   
+}
+
+
+@media (max-width: 480px) {
+  .tab-container .tab{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+  }
+
+  .tab-container .tab p{
+    display: none;
+    
+    
+  }
+
+  .tab-container{
+    height: 110px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 6px 21px 86px -15px rgba(31,21,21,0.75);
+  -webkit-box-shadow: 6px 21px 86px -15px rgba(31,21,21,0.75);
+  -moz-box-shadow: 6px 21px 86px -15px rgba(31,21,21,0.75);
+  border: 1px gray solid;
+  }
+
+  .mytime{
+    margin-top: 400px;
+    width: 100%;
+    margin-right: 50px;
+  }
+
+  #datetime-panel{
+  
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+  }
+
+  .panel-container .service-content{
+    padding: 20px;
+    height: 400px;
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 10px;
+    display: block;
+    border: 1px solid green;
+    cursor: pointer;
+  }
+
+  .date-picker-wrapper {
+    width: 100%;
+    max-width: 500px;
+    
+    background-color: rgb(226, 224, 224);
+    box-shadow: 0px 3px 10px rgba(94, 88, 88, 0.2);
+    display: none;
+    cursor: pointer;
+    user-select: none;
+   
+  }
+
+  .new-intake{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+  }
+
+.new-intake label{
+  color: #01225f;
+}
+
+.new-intake h1{
+  color: #01225f;
+}
+
+
+.all-input input{
+  width: 100%;
+}
+
+  .firstlast input{
+    margin-top: 20px;
+    width: 100%;
+  }
+
+.select{
+  width: 100%;
+  height: 40px;
+}
+
+.day-week{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.day-week span{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 }
 
 

@@ -96,13 +96,11 @@ class AdditionalInformation(models.Model):
         max_length=20, null=True, blank=True)
     best_time_reach = models.CharField(
         max_length=20, null=True, blank=True)
-    interest_in = models.CharField(
-        max_length=20, null=True, blank=True),
     insurance_or_pay = models.CharField(
         max_length=20, null=True, blank=True)
-    insurance_carrier = models.CharField(
-        max_length=20, null=True, blank=True),
     insurance = models.CharField(
+        max_length=20, null=True, blank=True)
+    my_insure_carrier = models.CharField(
         max_length=20, null=True, blank=True)
     do_you_have_secondary_insurance = models.CharField(
         max_length=20, null=True, blank=True)
@@ -134,4 +132,4 @@ class AdditionalInformation(models.Model):
         null=True, blank=True)
 
     def __str__(self):
-        return self.user
+        return self.user.username

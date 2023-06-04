@@ -57,7 +57,7 @@ class AccountUpdateForm(forms.ModelForm):
     class Meta:
         model = Account
         fields = ("first_name", "middle_name", "last_name",
-                  "phone_number", "address", "profile_image",)
+                  "phone_number", "address",)
 
 
 REACH_YOU = (
@@ -68,7 +68,7 @@ REACH_YOU = (
 BEST_TIME_REACH_YOU = (
     ('MORNING', 'MORNING'),
     ('AFTERNOON', 'AFTERNOON'),
-    ('EVENING', 'AFTERNOON'),
+    ('EVENING', 'EVENING'),
 )
 
 INSURANCE_OR_PAY = (
@@ -79,12 +79,17 @@ INSURANCE_OR_PAY = (
 GENDER = (
     ('MALE', 'MALE'),
     ('FEMALE', 'FEMALE'),
-    ('NO', 'NO'),
+    ('NO', 'NO')
 )
 
 SECONDARY_INSURANCE = (
     ('YES', 'YES'),
     ('NO', 'NO'),
+)
+
+CURRENT_SUBSCRIBER = (
+    ('YES', 'YES'),
+    ('NO', 'NO')
 )
 
 
@@ -93,31 +98,42 @@ class AdditionalInformationForm(forms.Form):
         'placeholder': 'Enter date of birth'
     }))
     gender = forms.ChoiceField(widget=forms.RadioSelect, choices=GENDER)
-    city = forms.CharField(widget=forms.TextInput)
-    state = city = forms.CharField(widget=forms.TextInput)
-    zipCode = forms.CharField(widget=forms.TextInput)
+    city = forms.CharField(widget=forms.TextInput, required=False)
+    state = forms.CharField(widget=forms.TextInput, required=False)
+    zipCode = forms.CharField(widget=forms.TextInput, required=False)
     best_way_reach = forms.ChoiceField(
         widget=forms.RadioSelect, choices=REACH_YOU)
     best_time_reach = forms.ChoiceField(
         widget=forms.RadioSelect, choices=BEST_TIME_REACH_YOU)
-    interest_in = forms.CharField(widget=forms.TextInput)
     insurance_or_pay = forms.ChoiceField(
         widget=forms.RadioSelect, choices=INSURANCE_OR_PAY)
-    insurance_carrier = forms.CharField(widget=forms.TextInput)
-    insurance = forms.CharField(widget=forms.TextInput)
+    my_insure_carrier = forms.CharField(
+        widget=forms.TextInput, required=False)
+    insurance = forms.CharField(widget=forms.TextInput, required=False)
     do_you_have_secondary_insurance = forms.ChoiceField(
         widget=forms.RadioSelect, choices=SECONDARY_INSURANCE)
-    secondary_insurance_carrier = forms.CharField(widget=forms.TextInput)
-    secondary_insurance = forms.CharField(widget=forms.TextInput)
-    current_psychiatric_diagnosis = forms.CharField(widget=forms.TextInput)
-    current_medications = forms.CharField(widget=forms.TextInput)
-    current_psychiatric_prescriber = forms.CharField(widget=forms.TextInput)
-    history_of_suicide_attempts = forms.CharField(widget=forms.TextInput)
+    secondary_insurance_carrier = forms.CharField(
+        widget=forms.TextInput, required=False)
+    secondary_insurance = forms.CharField(
+        widget=forms.TextInput, required=False)
+    current_psychiatric_diagnosis = forms.CharField(
+        widget=forms.TextInput, required=False)
+    current_medications = forms.CharField(
+        widget=forms.TextInput, required=False)
+    current_psychiatric_prescriber = forms.ChoiceField(
+        widget=forms.RadioSelect, choices=CURRENT_SUBSCRIBER)
+    history_of_suicide_attempts = forms.CharField(
+        widget=forms.TextInput, required=False)
     history_of_self_injurious_behavior = forms.CharField(
-        widget=forms.TextInput)
-    history_of_eating_disorder = forms.CharField(widget=forms.TextInput)
-    history_of_substance_abuse = forms.CharField(widget=forms.TextInput)
-    emergency_contact_firstname = forms.CharField(widget=forms.TextInput)
-    emergency_contact_phone = forms.CharField(widget=forms.TextInput)
-    referred_by = forms.CharField(widget=forms.TextInput)
-    additional_comments = forms.CharField(widget=forms.TextInput)
+        widget=forms.TextInput, required=False)
+    history_of_eating_disorder = forms.CharField(
+        widget=forms.TextInput, required=False)
+    history_of_substance_abuse = forms.CharField(
+        widget=forms.TextInput, required=False)
+    emergency_contact_firstname = forms.CharField(
+        widget=forms.TextInput, required=False)
+    emergency_contact_phone = forms.CharField(
+        widget=forms.TextInput, required=False)
+    referred_by = forms.CharField(widget=forms.TextInput, required=False)
+    additional_comments = forms.CharField(
+        widget=forms.TextInput, required=False)

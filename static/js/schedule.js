@@ -55,6 +55,7 @@ const select_service = document.querySelector(".select-service");
 const space_panel5 = document.querySelector(".space-panel5");
 const next_btn4 = document.querySelector(".next-btn4");
 const dots_bars_2 = document.querySelector(".dots-bars-2");
+const dots_bars_3 = document.querySelector(".dots-bars-3");
 
 const url = window.location.origin;
 var nhm;
@@ -123,9 +124,8 @@ function appType() {
 pick_treats.forEach((pick_treat) =>
   pick_treat.addEventListener("click", (e) => {
     e.preventDefault();
-    pk = pick_treat.getAttribute("data-pk");
-    dots_bars_2.style.display = "none";
-    space_panel5.style.display = "flex";
+    dots_bars_2.style.display = "block";
+    space_panel5.style.display = "none";
     service.style.display = "none";
     t1.classList.remove("active1");
     t5.classList.add("active5");
@@ -134,31 +134,74 @@ pick_treats.forEach((pick_treat) =>
     next_btn.style.display = "none";
     alert.style.display = "none";
     next_btn4.style.display = "flex";
-    //populateDates();
+
+    setTimeout(showPanel5, 2000);
+
+    function showPanel5() {
+      dots_bars_2.style.display = "none";
+      pk = pick_treat.getAttribute("data-pk");
+
+      space_panel5.style.display = "flex";
+      service.style.display = "none";
+      t1.classList.remove("active1");
+      t5.classList.add("active5");
+      space_panel1.style.display = "none";
+      serve_content1.style.display = "none";
+      next_btn.style.display = "none";
+      alert.style.display = "none";
+      next_btn4.style.display = "flex";
+      //populateDates();
+    }
   })
 );
 
+// ROLLOVER BUTTON
 function selectAilment() {
   console.log(pk);
-
-  space_panel2.style.display = "flex";
-  date_content.style.display = "block";
+  dots_bars_3.style.display = "block";
+  space_panel2.style.display = "none";
+  date_content.style.display = "none";
   service.style.display = "none";
   space_panel5.style.display = "none";
-  dates_ele.style.display = "block";
-  dateandtime.style.display = "block";
-  datetime_panel.style.display = "flex";
+  dates_ele.style.display = "none";
+  dateandtime.style.display = "none";
+  datetime_panel.style.display = "none";
   t5.classList.remove("active5");
   t2.classList.add("active2");
   next_btn.style.display = "none";
   next_btn4.style.display = "none";
   space_panel1.style.display = "none";
   serve_content1.style.display = "none";
-  next_btn1.style.display = "flex";
-  date_picker_ele.style.display = "block";
+  next_btn1.style.display = "none";
+  date_picker_ele.style.display = "none";
   alert.style.display = "none";
 
-  populateDates();
+  setTimeout(showPanel2, 2000);
+
+  function showPanel2() {
+    dots_bars_3.style.display = "none";
+    space_panel2.style.display = "flex";
+    date_content.style.display = "block";
+    service.style.display = "none";
+    space_panel5.style.display = "none";
+    dates_ele.style.display = "block";
+    dateandtime.style.display = "block";
+    datetime_panel.style.display = "flex";
+    t5.classList.remove("active5");
+    t2.classList.add("active2");
+    next_btn.style.display = "none";
+    next_btn4.style.display = "none";
+    space_panel1.style.display = "none";
+    serve_content1.style.display = "none";
+    next_btn1.style.display = "flex";
+    date_picker_ele.style.display = "block";
+    alert.style.display = "none";
+    //mytime_slot3.style.display = "block";
+    //mytime_slot2.style.display = "block";
+    //mytime_slot1.style.display = "block";
+
+    populateDates();
+  }
 }
 
 // INPUT MESSAGE
@@ -191,7 +234,7 @@ function trialBTN() {
   next_btn4.style.display = "flex";
 }
 
-// ALERT
+// ALERTS
 t2.addEventListener("click", () => {
   alert.style.display = "flex";
   setTimeout(alertFunc, 2000);
@@ -416,6 +459,7 @@ function goToPrevMonth() {
 }
 
 function populateDates() {
+  console.log(selectedDate);
   days_ele.innerHTML = "";
   let total_days;
 
@@ -441,9 +485,7 @@ function populateDates() {
     }
 
     day_element.addEventListener("click", function () {
-      loading_spin2.style.display = "block";
-
-      setTimeout(bookAppByDateTime1, 3000);
+      bookAppByDateTime1();
       function bookAppByDateTime1() {
         bb.forEach((j) => {
           j.style.backgroundColor = "white";
@@ -452,14 +494,13 @@ function populateDates() {
         });
       }
 
-      mytime_slot3.style.display = "none";
-      mytime_slot2.style.display = "none";
-      mytime_slot1.style.display = "none";
       selectedDate = new Date(year + "-" + (month + 1) + "-" + (i + 1));
+
       selectedDay = i + 1;
       selectedMonth = month;
       selectedYear = year;
       date_selected = formatDate(selectedDate);
+      console.log(date_selected);
       var lm = new Date(selectedDate);
       var dstr = new Date(lm.getTime() - lm.getTimezoneOffset() * 60000)
         .toISOString()
@@ -469,7 +510,7 @@ function populateDates() {
       selected_date_ele.textContent = formatDate(selectedDate);
       selected_date_ele.dataset.value = selectedDate;
 
-      setTimeout(bookAppByDateTime2, 3000);
+      bookAppByDateTime2();
       function bookAppByDateTime2() {
         fetch(`${url}/get-app-by-date/`, {
           body: JSON.stringify({
@@ -495,7 +536,6 @@ function populateDates() {
             });
           });
       }
-
       loading_spin2.style.display = "none";
       mytime_slot3.style.display = "block";
       mytime_slot2.style.display = "block";

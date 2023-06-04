@@ -17,7 +17,7 @@
 							
 						</a>
 						{% if request.user.is_authenticated %}
-						<span><img src="{{ request.user.profile_image.url }}" alt="" id="avatar-img" srcset=""></span>
+						
 						<a>Hi, {{ request.user.username }}</a>
 						<a href="{% url 'logout' %}" style="margin-left: 20px;">
 							<span>Logout</span>
@@ -52,7 +52,7 @@
 			  </li>
 
 			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="{% url 'about' %}" aria-current="page" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About Us</a>
+				<a class="nav-link dropdown-toggle" href="{% url 'about' %}" aria-current="page" id="dropdown02" aria-haspopup="true" aria-expanded="false">About Us</a>
 				<ul class="dropdown-menu" aria-labelledby="dropdown02">
 					<li><a class="dropdown-item" href="{% url 'the-provider' %}"><i class="icofont-thin-down"></i>The Provider</a></li>
 					<li><a class="dropdown-item" href="{% url 'private-policy' %}"><i class="icofont-thin-down"></i>Privacy & Policies</a></li>
@@ -63,7 +63,7 @@
 			 
 
               <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="{% url 'services' %}" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
+				<a class="nav-link dropdown-toggle" href="{% url 'services' %}" id="dropdown03" aria-haspopup="true" aria-expanded="false">Services</a>
 				<ul class="dropdown-menu" aria-labelledby="dropdown03">
 					<li><a class="dropdown-item" href="{% url 'medical-management' %}"><i class="icofont-thin-down"></i>Medication Management</a></li>
 					<li><a class="dropdown-item" href="#psychotherapy"><i class="icofont-thin-down"></i>Pyschotherapy & Counselling</a></li>
@@ -72,7 +72,7 @@
 			</li>
 
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="{% url 'services' %}" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Appointments</a>
+				<a class="nav-link dropdown-toggle" href="{% url 'new-intake' %}" id="dropdown03" aria-haspopup="true" aria-expanded="false">Appointments</a>
 				<ul class="dropdown-menu" aria-labelledby="dropdown03">
 					<li><a class="dropdown-item" href="{% url 'new-intake' %}"><i class="icofont-thin-down"></i>New Intake Patient Form</a></li>
 					{% if request.user.is_authenticated %}

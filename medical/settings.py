@@ -16,7 +16,7 @@ from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-#print(BASE_DIR)
+# print(BASE_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = config('DEBUG', default=False, cast=bool)
+# DEBUG = config('DEBUG', default=False, cast=bool)
 DEBUG = True
 
 '''SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -37,11 +37,9 @@ SECURE_SSL_REDIRECT = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 CSRF_TRUSTED_ORIGINS = ['https://www.amitopcare.com']'''
 
-#ALLOWED_HOSTS = ['www.amitopcare.com', 'amitopcare.com']
-#ALLOWED_HOSTS = ['www.amitopcare.com/amitop', 'amitopcare.com/amitop']
+# ALLOWED_HOSTS = ['www.amitopcare.com', 'amitopcare.com']
+# ALLOWED_HOSTS = ['www.amitopcare.com/amitop', 'amitopcare.com/amitop']
 ALLOWED_HOSTS = []
-
-
 
 
 # Application definition
@@ -61,10 +59,10 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'auths.Account'
 
-AUTHENTICATION_BACKENDS = ( 
-    'django.contrib.auth.backends.AllowAllUsersModelBackend', 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.AllowAllUsersModelBackend',
     'auths.backends.CaseInsensitiveModelBackend',
-    )
+)
 
 '''EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_USE_TLS = True
@@ -80,10 +78,7 @@ EMAIL_HOST = 'amitopcare.com'
 EMAIL_HOST_USER = 'contact@amitopcare.com'
 EMAIL_HOST_PASSWORD = 'Silverspooon05_'
 EMAIL_PORT = 587
-#EMAIL_USE_SSL = True
-
-
-
+# EMAIL_USE_SSL = True
 
 
 MIDDLEWARE = [
@@ -142,7 +137,6 @@ DATABASES = {
 }'''
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -185,7 +179,6 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 BASE_URL = "http://127.0.0.1:8000"
-
 
 
 # Default primary key field type

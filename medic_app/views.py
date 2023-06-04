@@ -197,17 +197,28 @@ def paymnent(request, id):
         app_id = Appointment.objects.get(id=id)
         app_id.is_booked = True
         app_id.save()
-
-        Payment.objects.create(user=user, app_id=app_id,
-                               is_payed=True, payment_prove=upload_pay)
-        subject = "Appointment Booking"
-        message = f"Dear, {user.first_name}, {user.last_name}, You have just booked an appointment Successfully for the treatment of {app_id.ailment_id.title}"
-        mail_from = settings.EMAIL_HOST_USER
-        mail_to = [user.email, 'omotoshomicheal93@gmail.com']
-        email = EmailMessage(subject, message, mail_from, mail_to)
-        EmailThread(email).start()
-        messages.success(request, 'You have payed Successful')
-        return redirect('index')
+        if app_id.ailment_id != None:
+            Payment.objects.create(user=user, app_id=app_id,
+                                   is_payed=True, payment_prove=upload_pay)
+            subject = "Appointment Booking"
+            message = f"Dear, {user.first_name}, {user.last_name}, You have just booked an appointment Successfully for the treatment of {app_id.ailment_id.title}"
+            mail_from = settings.EMAIL_HOST_USER
+            mail_to = [user.email, 'omotoshomicheal93@gmail.com']
+            email = EmailMessage(subject, message, mail_from, mail_to)
+            EmailThread(email).start()
+            messages.success(request, 'You have payed Successful')
+            return redirect('index')
+        else:
+            Payment.objects.create(user=user, app_id=app_id,
+                                   is_payed=True, payment_prove=upload_pay)
+            subject = "Appointment Booking"
+            message = f"Dear, {user.first_name}, {user.last_name}, You have just booked an appointment Successfully for the treatment for free 15 Min Service"
+            mail_from = settings.EMAIL_HOST_USER
+            mail_to = [user.email, 'omotoshomicheal93@gmail.com']
+            email = EmailMessage(subject, message, mail_from, mail_to)
+            EmailThread(email).start()
+            messages.success(request, 'You have payed Successful')
+            return redirect('index')
     # print(app_id)
     return render(request, 'view/payment.html')
 

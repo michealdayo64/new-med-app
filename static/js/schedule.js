@@ -232,6 +232,14 @@ function trialBTN() {
   next_btn.style.display = "none";
   alert.style.display = "none";
   next_btn4.style.display = "flex";
+  fetch(`${url}/fifteen-min/`, {
+    body: null,
+    method: "POST",
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
 }
 
 // ALERTS

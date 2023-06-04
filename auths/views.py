@@ -239,11 +239,16 @@ def resetPass(request, uidb64, token):
 class AdditionaInfoView(View):
     def get(self, *args, **kwargs):
         try:
-            form = AdditionalInformationForm()
+            if self.request.user.is_authenticated:
+                form = AdditionalInformationForm()
 
-            context = {
-                'form': form
-            }
+                context = {
+                    'form': form
+                }
+            else:
+                messages.success(
+                    self.request, "You have to Login to book an appointmnt")
+                return redirect('index')
 
         except Exception:
             print("Nothing")
@@ -251,90 +256,96 @@ class AdditionaInfoView(View):
 
     def post(self, *args, **kwargs):
         user = self.request.user
-        if self.request.method == 'POST':
-            form = AdditionalInformationForm(self.request.POST or None)
-            print(form.is_valid())
-            if form.is_valid():
+        if user.is_authenticated:
+            if self.request.method == 'POST':
+                form = AdditionalInformationForm(self.request.POST or None)
+                print(form.is_valid())
+                if form.is_valid():
 
-                dob = form.cleaned_data.get('dob')
-                print(dob)
-                gender = form.cleaned_data.get('gender')
-                city = form.cleaned_data.get('city')
-                state = form.cleaned_data.get('state')
-                zipCode = form.cleaned_data.get('zipCode')
-                best_way_reach = form.cleaned_data.get('best_way_reach')
-                best_time_reach = form.cleaned_data.get('best_time_reach')
-                insurance_or_pay = form.cleaned_data.get('insurance_or_pay')
-                my_insure_carrier = form.cleaned_data.get('my_insure_carrier')
-                insurance = form.cleaned_data.get('insurance')
-                do_you_have_secondary_insurance = form.cleaned_data.get(
-                    'do_you_have_secondary_insurance')
-                secondary_insurance_carrier = form.cleaned_data.get(
-                    'secondary_insurance_carrier')
-                secondary_insurance = form.cleaned_data.get(
-                    'secondary_insurance')
-                current_psychiatric_diagnosis = form.cleaned_data.get(
-                    'current_psychiatric_diagnosis')
-                current_medications = form.cleaned_data.get(
-                    'current_medications')
-                current_psychiatric_prescriber = form.cleaned_data.get(
-                    'current_psychiatric_prescriber')
-                history_of_suicide_attempts = form.cleaned_data.get(
-                    'history_of_suicide_attempts')
-                history_of_eating_disorder = form.cleaned_data.get(
-                    'history_of_eating_disorder')
-                history_of_substance_abuse = form.cleaned_data.get(
-                    'history_of_substance_abuse')
-                emergency_contact_firstname = form.cleaned_data.get(
-                    'emergency_contact_firstname')
-                emergency_contact_phone = form.cleaned_data.get(
-                    'emergency_contact_phone')
-                referred_by = form.cleaned_data.get('referred_by')
-                additional_comments = form.cleaned_data.get(
-                    'additional_comments')
-                print(current_psychiatric_prescriber)
+                    dob = form.cleaned_data.get('dob')
+                    print(dob)
+                    gender = form.cleaned_data.get('gender')
+                    city = form.cleaned_data.get('city')
+                    state = form.cleaned_data.get('state')
+                    zipCode = form.cleaned_data.get('zipCode')
+                    best_way_reach = form.cleaned_data.get('best_way_reach')
+                    best_time_reach = form.cleaned_data.get('best_time_reach')
+                    insurance_or_pay = form.cleaned_data.get(
+                        'insurance_or_pay')
+                    my_insure_carrier = form.cleaned_data.get(
+                        'my_insure_carrier')
+                    insurance = form.cleaned_data.get('insurance')
+                    do_you_have_secondary_insurance = form.cleaned_data.get(
+                        'do_you_have_secondary_insurance')
+                    secondary_insurance_carrier = form.cleaned_data.get(
+                        'secondary_insurance_carrier')
+                    secondary_insurance = form.cleaned_data.get(
+                        'secondary_insurance')
+                    current_psychiatric_diagnosis = form.cleaned_data.get(
+                        'current_psychiatric_diagnosis')
+                    current_medications = form.cleaned_data.get(
+                        'current_medications')
+                    current_psychiatric_prescriber = form.cleaned_data.get(
+                        'current_psychiatric_prescriber')
+                    history_of_suicide_attempts = form.cleaned_data.get(
+                        'history_of_suicide_attempts')
+                    history_of_eating_disorder = form.cleaned_data.get(
+                        'history_of_eating_disorder')
+                    history_of_substance_abuse = form.cleaned_data.get(
+                        'history_of_substance_abuse')
+                    emergency_contact_firstname = form.cleaned_data.get(
+                        'emergency_contact_firstname')
+                    emergency_contact_phone = form.cleaned_data.get(
+                        'emergency_contact_phone')
+                    referred_by = form.cleaned_data.get('referred_by')
+                    additional_comments = form.cleaned_data.get(
+                        'additional_comments')
+                    print(current_psychiatric_prescriber)
 
-                AdditionalInformation.objects.create(
-                    user=user,
-                    dob=dob,
-                    gender=gender,
-                    city=city,
-                    state=state,
-                    zipCode=zipCode,
-                    best_time_reach=best_time_reach,
-                    best_way_reach=best_way_reach,
-                    insurance_or_pay=insurance_or_pay,
-                    my_insure_carrier=my_insure_carrier,
-                    insurance=insurance,
-                    do_you_have_secondary_insurance=do_you_have_secondary_insurance,
-                    secondary_insurance_carrier=secondary_insurance_carrier,
-                    secondary_insurance=secondary_insurance,
-                    current_psychiatric_diagnosis=current_psychiatric_diagnosis,
-                    current_psychiatric_prescriber=current_psychiatric_prescriber,
-                    current_medications=current_medications,
-                    history_of_suicide_attempts=history_of_suicide_attempts,
-                    history_of_eating_disorder=history_of_eating_disorder,
-                    history_of_substance_abuse=history_of_substance_abuse,
-                    emergency_contact_firstname=emergency_contact_firstname,
-                    emergency_contact_phone=emergency_contact_phone,
-                    referred_by=referred_by,
-                    additional_comments=additional_comments
-                )
-                # addInfo.save()
+                    AdditionalInformation.objects.create(
+                        user=user,
+                        dob=dob,
+                        gender=gender,
+                        city=city,
+                        state=state,
+                        zipCode=zipCode,
+                        best_time_reach=best_time_reach,
+                        best_way_reach=best_way_reach,
+                        insurance_or_pay=insurance_or_pay,
+                        my_insure_carrier=my_insure_carrier,
+                        insurance=insurance,
+                        do_you_have_secondary_insurance=do_you_have_secondary_insurance,
+                        secondary_insurance_carrier=secondary_insurance_carrier,
+                        secondary_insurance=secondary_insurance,
+                        current_psychiatric_diagnosis=current_psychiatric_diagnosis,
+                        current_psychiatric_prescriber=current_psychiatric_prescriber,
+                        current_medications=current_medications,
+                        history_of_suicide_attempts=history_of_suicide_attempts,
+                        history_of_eating_disorder=history_of_eating_disorder,
+                        history_of_substance_abuse=history_of_substance_abuse,
+                        emergency_contact_firstname=emergency_contact_firstname,
+                        emergency_contact_phone=emergency_contact_phone,
+                        referred_by=referred_by,
+                        additional_comments=additional_comments
+                    )
+                    # addInfo.save()
 
-                subject = 'New Intake Patient'
-                message = f"Hi, {user.first_name} {user.last_name}\n Thank you for reaching out to us\n"
-                mail_from = settings.EMAIL_HOST_USER
-                mail_to = [user.email, 'omotoshomicheal93@gmail.com']
-                email = EmailMessage(subject, message, mail_from, mail_to)
-                EmailThread(email).start()
+                    subject = 'New Intake Patient'
+                    message = f"Hi, {user.first_name} {user.last_name}\n Thank you for reaching out to us\n"
+                    mail_from = settings.EMAIL_HOST_USER
+                    mail_to = [user.email, 'omotoshomicheal93@gmail.com']
+                    email = EmailMessage(subject, message, mail_from, mail_to)
+                    EmailThread(email).start()
 
-                messages.success(self.request, "Form Submitted Successfully")
-                return redirect('index')
-            else:
-                print(form.errors.as_data())
-                form = AdditionalInformationForm()
+                    messages.success(
+                        self.request, "Form Submitted Successfully")
+                    return redirect('index')
+                else:
+                    print(form.errors.as_data())
+                    form = AdditionalInformationForm()
         else:
-            print("not posting")
+            messages.info(
+                self.request, "You have to Login to book an appointmnt")
+            return redirect("index")
 
         return render(self.request, 'auth/new_intake.html')

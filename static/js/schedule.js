@@ -56,6 +56,7 @@ const space_panel5 = document.querySelector(".space-panel5");
 const next_btn4 = document.querySelector(".next-btn4");
 const dots_bars_2 = document.querySelector(".dots-bars-2");
 const dots_bars_3 = document.querySelector(".dots-bars-3");
+const dots_bars_4 = document.querySelector(".dots-bars-4");
 
 const url = window.location.origin;
 var nhm;
@@ -75,6 +76,7 @@ var phoneNum;
 var message;
 var pk;
 var app_pk;
+var emailaddress;
 
 load_schedule_page();
 
@@ -140,6 +142,7 @@ pick_treats.forEach((pick_treat) =>
     function showPanel5() {
       dots_bars_2.style.display = "none";
       pk = pick_treat.getAttribute("data-pk");
+      console.log(pk);
 
       space_panel5.style.display = "flex";
       service.style.display = "none";
@@ -232,14 +235,14 @@ function trialBTN() {
   next_btn.style.display = "none";
   alert.style.display = "none";
   next_btn4.style.display = "flex";
-  fetch(`${url}/fifteen-min/`, {
+  /*fetch(`${url}/fifteen-min/`, {
     body: null,
     method: "POST",
   })
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-    });
+    });*/
 }
 
 // ALERTS
@@ -346,6 +349,7 @@ saveAppointment.addEventListener("click", (e) => {
         time: valuuTime,
         phone: phoneNum,
         message: message,
+        email: emailaddress,
       }),
       method: "POST",
     })
@@ -394,27 +398,55 @@ saveAppointment.addEventListener("click", (e) => {
 
 // SELECT TIME
 function selectTime(timeId) {
-  valuuTime = document.getElementById(timeId).innerHTML;
-  console.log(valuuTime);
+  dots_bars_4.style.display = "block";
+  //valuuTime = document.getElementById(timeId).innerHTML;
+  //console.log(valuuTime);
   dateandtime.style.display = "none";
   datetime_panel.style.display = "none";
   t1.classList.remove("active1");
   t2.classList.remove("active2");
   t3.classList.add("active3");
   //sec_back.style.display = "block";
-  basic_detail.style.display = "block";
-  basicdetail_content.style.display = "block";
+  basic_detail.style.display = "none";
+  basicdetail_content.style.display = "none";
   date_content.style.display = "none";
   next_btn1.style.display = "none";
   space_panel2.style.display = "none";
-  space_panel3.style.display = "flex";
+  space_panel3.style.display = "none";
   space_panel4.style.display = "none";
-  next_btn2.style.display = "flex";
+  next_btn2.style.display = "none";
+
+  setTimeout(showPanel3, 2000);
+
+  function showPanel3() {
+    dots_bars_4.style.display = "none";
+    valuuTime = document.getElementById(timeId).innerHTML;
+    console.log(valuuTime);
+    dateandtime.style.display = "none";
+    datetime_panel.style.display = "none";
+    t1.classList.remove("active1");
+    t2.classList.remove("active2");
+    t3.classList.add("active3");
+    //sec_back.style.display = "block";
+    basic_detail.style.display = "block";
+    basicdetail_content.style.display = "block";
+    date_content.style.display = "none";
+    next_btn1.style.display = "none";
+    space_panel2.style.display = "none";
+    space_panel3.style.display = "flex";
+    space_panel4.style.display = "none";
+    next_btn2.style.display = "flex";
+  }
 }
 
 // BOOK APPOINTMENT
 function bookAppointment() {
   window.location.href = url + `/payment/${app_pk}/`;
+}
+
+// New Intake
+function newIntake() {
+  window.location.href = url + `/auth/new-intake/`;
 }
 
 /*-------------------START---------------------------*/

@@ -85,8 +85,13 @@ class Account(AbstractBaseUser):
 
 
 class AdditionalInformation(models.Model):
-    user = models.ForeignKey(
-        Account, on_delete=models.CASCADE, null=False, blank=True)
+    firstname = models.CharField(max_length=50, null=True, blank=True)
+    lastname = models.CharField(max_length=50, null=True, blank=True)
+    email = models.EmailField(
+        verbose_name="email", max_length=60, unique=True, null=True, blank=True)
+    phone_number = models.CharField(max_length=50, null=True, blank=True)
+    fifteen_min_trial = models.BooleanField(
+        default=False, null=True, blank=True)
     dob = models.CharField(max_length=50, null=True, blank=True)
     gender = models.CharField(max_length=50, null=True, blank=True)
     city = models.CharField(max_length=50, null=True, blank=True)
@@ -132,4 +137,4 @@ class AdditionalInformation(models.Model):
         null=True, blank=True)
 
     def __str__(self):
-        return self.user.username
+        return self.firstname

@@ -1310,6 +1310,25 @@ a:focus {
   padding: 80px 0px 160px;
 }
 
+.welcome{
+  width: 800px;
+  margin: auto;
+  background-color: #223a66;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.welcome h1{
+  text-align: center;
+  color: white;
+}
+
+.welcome p{
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
 
 
 .banner .block h1 {
@@ -1653,6 +1672,10 @@ a:focus {
 
 .active .icofont-rounded-down{
   display: none;
+}
+
+.active a:hover{
+  color: red;
 }
 
 .card{
@@ -2299,7 +2322,7 @@ body .full-body{
 }
 
 .policy h1{
-  color: #223a66;;
+  color: #223a66;
 }
 
 .policy h3{
@@ -2847,6 +2870,24 @@ body .full-body{
   margin-right: 10px;
 }
 
+.welcome{
+  width: 400px;
+  margin: auto;
+  background-color: #152440;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.welcome h1{
+  text-align: center;
+  color: white;
+}
+
+.welcome p{
+  text-align: center;
+  color: white;
+}
+
   
 }
 
@@ -2960,6 +3001,24 @@ body .full-body{
 .day-week span{
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.welcome{
+  width: 400px;
+  margin: auto;
+  background-color: #223a66;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.welcome h1{
+  text-align: center;
+  color: white;
+}
+
+.welcome p{
+  text-align: center;
+  color: white;
 }
 
 }

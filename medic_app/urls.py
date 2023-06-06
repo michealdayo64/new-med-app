@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (index, about, blog, contact, booking_page, faq, private_policy, t_and_c, services, medPsycGyn, getAppointmentTimeByDate,
-                    fifteenMinBook, bookingDetails, bookingSummary, getAllAppointment, paymnent, theProvider)
+                    bookingDetails, bookingSummary, getAllAppointment, paymnent, theProvider)
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -16,7 +16,7 @@ urlpatterns = [
     path('t-and-c/', t_and_c, name='t-and-c'),
     path('services/', services, name='services'),
     path('medical-management/', medPsycGyn, name='medical-management'),
-    path('fifteen-min/', csrf_exempt(fifteenMinBook), name='fifteen-min'),
+    # path('fifteen-min/', csrf_exempt(fifteenMinBook), name='fifteen-min'),
     path('booking-order/', csrf_exempt(bookingDetails), name='booking-order'),
     path('booking-order/<id>/', csrf_exempt(bookingDetails),
          name='booking-order-id'),

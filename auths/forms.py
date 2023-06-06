@@ -94,6 +94,10 @@ CURRENT_SUBSCRIBER = (
 
 
 class AdditionalInformationForm(forms.Form):
+    firstname = forms.CharField(widget=forms.TextInput)
+    lastname = forms.CharField(widget=forms.TextInput)
+    email = forms.EmailField(max_length=200)
+    phone_number = forms.CharField(widget=forms.TextInput, required=False)
     dob = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'Enter date of birth'
     }))

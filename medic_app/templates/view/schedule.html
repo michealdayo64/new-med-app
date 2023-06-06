@@ -36,8 +36,17 @@
         </div>
         <div class="modal-body">
          <p style="color: green;">email us at: <a href="mailto:amitopcarellc@gmail.com">amitopcarellc@gmail.com</a></p>
-         Or
-         <p style="color: green;">Call: +1-339-237-2599 to book a one hour appointment with us</p> 
+         <p style="color: green;">Call: +1-339-237-2599 </p> 
+         <P style="color: black;">Or Click the button below</P>
+         <p onclick="newIntake()" style="padding: 10px;
+         background-color: red;
+         color: white;
+         border-radius: 5px;
+         cursor: pointer;
+         box-shadow: 2px 8px 5px 0px rgba(0,0,0,0.75);
+       -webkit-box-shadow: 2px 8px 5px 0px rgba(0,0,0,0.75);
+       -moz-box-shadow: 2px 8px 5px 0px rgba(0,0,0,0.75); text-align: center;">Click to view Form</p>
+         
         </div>
         <div class="modal-footer">
           
@@ -93,43 +102,24 @@
         <div class="select-service">
           <a id="service">Select Service</a>
         </div>
-          {% if not request.user.fifteen_min_trial %}
-          <div class="service-content" id="btn-trial" onclick="trialBTN()">
-            <div class = "content-container">
-              <img src="{% static 'images/AMITOP CARE LLC 001 (1).png' %}" alt="logo">
-              <div class="mytextT">
-              <div class="mytext">
-                <div class="mytextText">
-                  <a>15 Minutes Free Initial Consultation</a>
-                </div>
-                <i class="icofont-check-circled"></i>
+        <div class="service-content" id="btn-trial" onclick="trialBTN()">
+          <div class = "content-container">
+            <img src="{% static 'images/AMITOP CARE LLC 001 (1).png' %}" alt="logo">
+            <div class="mytextT">
+            <div class="mytext">
+              <div class="mytextText">
+                <a>15 Minutes Free Initial Consultation</a>
               </div>
-              <a>This initial free 15 minutes consultation is not an appointment, once the consultation has been done the provider will schedule the appointment. Please Note: If this is an emergency please call 911</a>
-              <p>Duration: 15m</p>
+              <i class="icofont-check-circled"></i>
             </div>
-            </div>
-            
+            <a>This initial free 15 minutes consultation is not an appointment, once the consultation has been done the provider will schedule the appointment. Please Note: If this is an emergency please call 911</a>
+            <p>Duration: 15m</p>
           </div>
-          {% else %}
-          <div class="row ailment-panel">
-            {% for i in ailment_list %}
-            <div class="col-lg-3 col-md-3 col-sm-3">
-              <div class="service-item mb-4">
-                <div class="icon d-flex align-items-center pick-treat"  data-pk="{{ i.pk }}">
-                  {% if i.image_icon %}
-                  <img src="{{ i.image_icon.url }}" alt="" srcset="">
-                  {% endif %}
-                  <p class="mt-3 mb-3">{{ i.title }}</p>
-                </div>
-      
-                
-              </div>
-            </div>
-            {% endfor %}
-      
-            
           </div>
-          {% endif %}
+          
+        </div>
+          
+         
         </div>
 
           <div class="next-btn">
@@ -147,13 +137,12 @@
         <div class="dots-bars-2" style="margin-top: 300px;"></div>
     <div class="space-panel5">
         <div>
-          <p>Select one to book as New-Intake or Roll-Over</p>
+          <p>Click New-Intake Patient Form Blow</p>
         </div>
         
         <div class="intakes">
-          <p id="new-intake" data-toggle="modal" data-target="#exampleModal">New Intake</p>
-          <p>|</p>
-          <p id="roll-over" onclick="selectAilment()">Roller Over</p>
+          <p id="new-intake" data-toggle="modal" data-target="#exampleModal">New Intake Patient Form</p>
+          
         </div>
         <div class="next-btn4" onclick="selectService()">
           <p>Back</p>
@@ -343,6 +332,7 @@
          </div>
         </div>
           
+        <div class="dots-bars-4" style="margin-top: 300px;"></div>
           <div class="space-panel3">
             <div class="basic-content">
             <div id="basicdetail">Basic Details</div>

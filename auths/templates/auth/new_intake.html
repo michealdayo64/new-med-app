@@ -11,29 +11,29 @@
                 <label for="">Name<span>*</span></label>
                 <br>
                 <div class="firstlast">
-                <input type="text" name="" placeholder="Firstname" id="" value="{{ request.user.first_name }}">
-                <input type="text" name="" placeholder="Lastname" value="{{ request.user.last_name }}" id="" style="margin-left: 10px;">
+                <input type="text" name="firstname" placeholder="Firstname" id="" value="" required>
+                <input type="text" name="lastname" placeholder="Lastname" value="" id="" style="margin-left: 10px;" required>
             </div>
                 <p></p>
                 <div class="all-input">
                 <label for="">Email<span>*</span></label>
                 <br>
-                <input type="email" value="{{ request.user.email }}" name="" placeholder="Email">
+                <input type="email" value="" name="email" placeholder="Email" required>
                 <p></p>
                 <label for="">Phone<span>*</span></label>
                 <br>
-                <input type="text" name="" value="{{ request.user.phone_number }}" id="" placeholder="Phone number">
+                <input type="text" name="phone_number" value="" id="" placeholder="Phone number" required>
                 <p></p>
                 <label for="">Date of Birth<span>*</span></label>
                 <br>
-                <input type="text" name="dob" id="" placeholder="mm/dd/yyyy">
+                <input type="text" name="dob" id="" placeholder="mm/dd/yyyy" required>
                 <p></p>
                 <label for="">Gender<span>*</span></label>
             </div>
                 
                 {% for value, name in form.fields.gender.choices %}
                 <div class="mycheck">
-                <input type="radio" value="{{ value }}" name="gender">
+                <input type="radio" value="{{ value }}" name="gender" required>
                 <label>{{ name }}</label>
                 </div>
                 {% endfor %}
@@ -41,13 +41,13 @@
             <div class="all-input">
             <label for="">Address <span>*</span></label>
             <br>
-            <input type="text" name="" id="" placeholder="Street Address">
+            <input type="text" name="" id="" placeholder="Street Address" required>
             <p></p>
-            <input type="text" name="city" id="" placeholder="City">
+            <input type="text" name="city" id="" placeholder="City" required>
             <p></p>
-            <input type="text" name="state" id="" placeholder="State/Region">
+            <input type="text" name="state" id="" placeholder="State/Region" required>
             <p></p>
-            <input type="text" name="zipCode" id="" placeholder="Zip/Postal Code">
+            <input type="text" name="zipCode" id="" placeholder="Zip/Postal Code" required>
         </div>
             <p></p>
             <div class="mr-sm-2">
@@ -86,11 +86,11 @@
             <div class="all-input">
             <label for="">Insurance Carrier <san>*</san></label>
             <br>
-            <input type="text" name="my_insure_carrier" id="">
+            <input type="text" name="my_insure_carrier" id="" required>
             <p></p>
             <label for="">Insurance # <span>*</span></label>
             <br>
-            <input type="text" name="insurance" id="">
+            <input type="text" name="insurance" id="" required>
         </div>
             <p></p>
             <label for="">Do you have a Secondary Insurance?</label>
@@ -115,18 +115,18 @@
             <p></p>
             <label for="">Current Psychiatric Diagnosis <span>*</span></label>
             <br>
-            <input type="text" name="current_psychiatric_diagnosis" id="">
+            <input type="text" name="current_psychiatric_diagnosis" id="" required>
             <p></p>
             <label for="">Current Medications <span>*</span></label>
             <br>
-            <input type="text" name="current_medications" id="">
+            <input type="text" name="current_medications" id="" required>
         </div>
             <p></p>
             <label for="">Do you have a current psychiatric prescriber?</label>
             <br>
             {% for value, name in form.fields.current_psychiatric_prescriber.choices %}
             <div class="mycheck">
-                <input type="radio" name="current_psychiatric_prescriber" value="{{ value }}">
+                <input type="radio" name="current_psychiatric_prescriber" value="{{ value }}" required>
                 <label>{{ name }}</label>
                 </div>
                 {% endfor %}
@@ -139,7 +139,7 @@
             <p></p>
             <label for="">History of Self Injurious Behavior? (such a cutting, etc.) <span>*</span></label>
             <br>
-            <input type="text" name="history_of_self_injurious_behavior" id="">
+            <input type="text" name="history_of_self_injurious_behavior" id="" required>
             <p></p>
             <label for="">History of Eating Disorder? (such as anorexia/ bulimia) <span>*</span></label>
             <br>

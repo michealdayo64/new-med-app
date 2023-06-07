@@ -1307,7 +1307,7 @@ a:focus {
 }
 
 .banner .block {
-  padding: 80px 0px 160px;
+  padding: 30px 0px 160px;
 }
 
 .welcome{
@@ -2849,6 +2849,8 @@ body .full-body{
   .firstlast input{
     margin-top: 20px;
     width: 100%;
+    margin-right: 20px;
+    padding-top: 10px;
   }
 
 .select{
@@ -2982,6 +2984,8 @@ body .full-body{
   .firstlast input{
     margin-top: 20px;
     width: 100%;
+    margin-right: 20px;
+    padding-top: 10px;
   }
 
 .select{

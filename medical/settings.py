@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     # Apps
     'auths',
     'medic_app',
+    'reviews'
 ]
 
 AUTH_USER_MODEL = 'auths.Account'

@@ -2890,6 +2890,42 @@ body .full-body{
   color: white;
 }
 
+.panel-container .service-content .content-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.service-content img{
+  width: 50px;
+  height: 50px;
+  padding-bottom: 20px;
+}
+
+.service-content i{
+  display: none;
+}
+
+.mytext .mytextText a{
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.mytextT a{
+  font-size: 13px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.mytextT p{
+  font-size: 13px;
+  text-align: center;
+  padding-top: 10px;
+}
+
   
 }
 
@@ -2905,8 +2941,11 @@ body .full-body{
 
   .tab-container .tab p{
     display: none;
-    
-    
+  
+  }
+
+  .service-content i{
+    display: none;
   }
 
   .tab-container{
@@ -3023,6 +3062,49 @@ body .full-body{
 .welcome p{
   text-align: center;
   color: white;
+}
+
+.panel-container .service-content .content-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.service-content img{
+  width: 50px;
+  height: 50px;
+  padding-bottom: 20px;
+}
+
+.mytext .mytextText a{
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.mytextT a{
+  font-size: 13px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.mytextT p{
+  font-size: 13px;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.panel-container .service-content{
+  padding: 20px;
+  height: 100px;
+  width: 100%;
+  border: 1px solid gray;
+  border-radius: 10px;
+  display: block;
+  border: 1px solid green;
+  cursor: pointer;
 }
 
 }

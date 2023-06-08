@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from django.conf import settings
 import threading
+from reviews.models import Review
 
 # Create your views here.
 
@@ -26,6 +27,7 @@ class EmailThread(threading.Thread):
 
 def index(request):
     ailment_list = Ailments.objects.all()
+    review_list = Review.objects.all()[:6]
     if request.method == "POST":
         form = WriteUsForm(request.POST or None)
         print(form)
@@ -38,7 +40,8 @@ def index(request):
             messages.success(request, "You need to fill the form")
             return redirect('index')
     context = {
-        "ailment_list": ailment_list
+        "ailment_list": ailment_list,
+        "review_list": review_list
     }
     return render(request, 'index.html', context)
 

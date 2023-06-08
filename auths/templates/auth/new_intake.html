@@ -56,7 +56,7 @@
                 
                 <select class="form-inline mr-sm-2 select" name="best_way_reach" id="best_way_reach">
                     {% for value, name in form.fields.best_way_reach.choices %}
-                  <option value="{{ value }}">{{ name }}</option>
+                  <option style="color:#01225f" value="{{ value }}">{{ name }}</option>
                   {% endfor %}
                 </select>
             
@@ -67,7 +67,7 @@
                 <br>
                 <select class="form-inline mr-sm-2 select" name="best_time_reach" id="best_time_reach">
                     {% for value, name in form.fields.best_time_reach.choices %}
-                  <option value="{{ value }}">{{ name }}</option>
+                  <option style="color: #01225f;" value="{{ value }}">{{ name }}</option>
                   {% endfor %}
                 </select>
             </div>
@@ -78,7 +78,7 @@
                     <br>
                     <select class="form-inline mr-sm-2 select" name="insurance_or_pay" id="insurance_or_pay">
                         {% for value, name in form.fields.insurance_or_pay.choices %}
-                      <option value="{{ value }}">{{ name }}</option>
+                      <option style="color: #01225f;" value="{{ value }}">{{ name }}</option>
                       {% endfor %}
                     </select>
                 </div>
@@ -127,7 +127,7 @@
             {% for value, name in form.fields.current_psychiatric_prescriber.choices %}
             <div class="mycheck">
                 <input type="radio" name="current_psychiatric_prescriber" value="{{ value }}" required>
-                <label>{{ name }}</label>
+                <label style="color: ;">{{ name }}</label>
                 </div>
                 {% endfor %}
                 
@@ -154,7 +154,7 @@
             <br>
             <div class="firstlast">
             <input type="text" name="emergency_contact_firstname" id="" placeholder="First Name">
-            <input type="text" name="emergency_contact_phone" id="" placeholder="Phone Number" style="margin-left: 10px;">
+            <input type="text" name="emergency_contact_phone" id="" placeholder="Phone Number">
         </div>
             <p></p>
             <div class="all-input">

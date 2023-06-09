@@ -2807,10 +2807,10 @@ body .full-body{
     padding: 20px;
     height: 400px;
     width: 100%;
-    border: 1px solid gray;
+    
     border-radius: 10px;
     display: block;
-    border: 1px solid green;
+    
     cursor: pointer;
   }
 
@@ -2926,6 +2926,8 @@ body .full-body{
   padding-top: 10px;
 }
 
+
+
   
 }
 
@@ -2981,10 +2983,10 @@ body .full-body{
     padding: 20px;
     height: 400px;
     width: 100%;
-    border: 1px solid gray;
+    
     border-radius: 10px;
     display: block;
-    border: 1px solid green;
+    
     cursor: pointer;
   }
 
@@ -3047,7 +3049,7 @@ body .full-body{
 }
 
 .welcome{
-  width: 400px;
+  width: 350px;
   margin: auto;
   background-color: #223a66;
   border-radius: 10px;
@@ -3107,7 +3109,18 @@ body .full-body{
   cursor: pointer;
 }
 
+.features {
+  margin-top: 50px;
 }
+
+.banner .block {
+  padding: 3px 0px 160px;
+}
+
+}
+
+
+
 
 
 /*-------END MEDIA QUERIE -----------*/
